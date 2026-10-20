@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { locales, type Locale } from '../../../lib/i18n/locales';
+import { t } from '../../../lib/i18n/t';
+import { loadContent } from '../../../lib/content/load';
+import { propertiesIn } from '../../../lib/neighborhood';
+import { routePath } from '../../../lib/routes';
+import * as pt from '../../../../content/neighborhoods/jurere/guide.pt.md';
+import * as en from '../../../../content/neighborhoods/jurere/guide.en.md';
+import * as es from '../../../../content/neighborhoods/jurere/guide.es.md';
+
+// One neighborhood so far; a new one adds its own guide import here.
+const guides = { jurere: { pt, en, es } };
+
+export async function getStaticPaths() {
+  const { neighborhoods } = await loadContent();
+  return locales.flatMap((lang) =>
+    neighborhoods.map((n) => ({
+      params: { lang, neighborhood: n.id },
+      props: { neighborhood: n },
+    })),
+  );
+}
+
+const locale = Astro.params.lang as Locale;
+const { neighborhood } = Astro.props;
+const { Content } = guides[neighborhood.id as keyof typeof guides][locale];
+const { properties } = await loadContent();
+const apartments = propertiesIn(properties, neighborhood.id);
+---
+
+<BaseLayout
+  locale={locale}
+  page={{ id: 'neighborhood' }}
+  title={neighborhood.data.seo.title[locale]}
+>
+  <article class="guide">
+    <Content />
+  </article>
+  {apartments.length > 0 && (
+    <section class="guide apartments" aria-labelledby="apartments-title">
+      <h2 id="apartments-title">{t(locale, 'neighborhood.properties.title')}</h2>
+      <ul>
+        {apartments.map((p) => (
+          <li>
+            <a href={routePath({ id: 'property', slug: p.id }, locale)}>{p.data.name[locale]}</a>
+            <span>{p.data.subtitle?.[locale]}</span>
+            <p>{p.data.summary[locale]}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .guide {
+    max-inline-size: 48rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .guide :global(table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    overflow-wrap: anywhere;
+  }
+
+  .guide :global(th),
+  .guide :global(td) {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  .guide :global(td:first-child) {
+    overflow-wrap: normal;
+  }
+
+  .apartments span {
+    display: block;
+  }
+
+  .apartments ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .apartments li {
+    margin-block-end: var(--space-4);
+  }
+</style>
