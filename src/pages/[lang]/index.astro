@@ -1,6 +1,8 @@
 ---
 // Placeholder home, replaced by E10 (T27).
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import LanguageBanner from '../../components/LanguageBanner.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 import { locales, type Locale } from '../../lib/i18n/locales';
 
 export function getStaticPaths() {
@@ -11,5 +13,7 @@ const locale = Astro.params.lang as Locale;
 ---
 
 <BaseLayout locale={locale} title="Acácia">
+  <LanguageBanner locale={locale} page={{ id: 'home' }} />
+  <LanguageSwitcher locale={locale} page={{ id: 'home' }} />
   <h1>Acácia</h1>
 </BaseLayout>

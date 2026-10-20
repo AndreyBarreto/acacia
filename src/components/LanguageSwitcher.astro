@@ -1,0 +1,53 @@
+---
+import { locales, type Locale } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
+import { alternates, type PageRef } from '../lib/routes';
+
+export interface Props {
+  locale: Locale;
+  page: PageRef;
+}
+
+const { locale, page } = Astro.props;
+const urls = alternates(page);
+---
+
+<nav aria-label={t(locale, 'common.lang.switch.aria')}>
+  <ul>
+    {locales.map((l) => (
+      <li>
+        {l === locale ? (
+          <span
+            aria-current="page"
+            aria-label={t(locale, 'common.lang.current.aria', {
+              language: t(locale, `common.lang.name.${l}`),
+            })}
+          >
+            {t(locale, `common.lang.short.${l}`)}
+          </span>
+        ) : (
+          <a
+            href={urls[l]}
+            hreflang={l}
+            lang={l}
+            aria-label={t(locale, 'common.lang.switchTo.aria', {
+              language: t(locale, `common.lang.name.${l}`),
+            })}
+          >
+            {t(locale, `common.lang.short.${l}`)}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

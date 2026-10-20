@@ -1,0 +1,63 @@
+---
+import { locales, type Locale } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
+import { alternates, type PageRef } from '../lib/routes';
+
+export interface Props {
+  locale: Locale;
+  page: PageRef;
+}
+
+const { locale, page } = Astro.props;
+const urls = alternates(page);
+const suggestions = locales.filter((l) => l !== locale);
+---
+
+<!-- One hidden suggestion per other locale, each in its own language; the script shows the one
+     matching the browser language. It only suggests: no redirect, dismissal lasts the session. -->
+<div data-lang-banner data-page-lang={locale} hidden>
+  {suggestions.map((l) => (
+    <section data-suggest={l} lang={l} aria-label={t(l, 'common.langSuggest.aria')} hidden>
+      <p>{t(l, 'common.langSuggest.message')}</p>
+      <a href={urls[l]} hreflang={l}>
+        {t(l, 'common.langSuggest.accept')}
+      </a>
+      <button type="button" data-dismiss>
+        {t(l, 'common.langSuggest.dismiss')}
+      </button>
+    </section>
+  ))}
+</div>
+
+<script is:inline>
+  (function () {
+    const banner = document.querySelector('[data-lang-banner]');
+    if (!banner) return;
+    try {
+      if (sessionStorage.getItem('langSuggestDismissed')) return;
+    } catch {}
+    const wanted = (navigator.language || '').slice(0, 2).toLowerCase();
+    const section = banner.querySelector('[data-suggest="' + wanted + '"]');
+    if (!section) return;
+    banner.hidden = false;
+    section.hidden = false;
+    section.querySelector('[data-dismiss]').addEventListener('click', function () {
+      banner.hidden = true;
+      try {
+        sessionStorage.setItem('langSuggestDismissed', '1');
+      } catch {}
+    });
+  })();
+</script>
+
+<style>
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  p {
+    margin: 0;
+  }
+</style>
