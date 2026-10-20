@@ -90,6 +90,8 @@ Formato: decisão — motivo (data, tarefa de origem).
 - No celular, o **botão fixo do WhatsApp fica sempre visível**, como parte da barra da régua (sem pílula extra), e sobe com o banner de cookies.
 - No guia em espanhol, **sem a seção de documentos do carro** ("Si venís en auto") — documentos de viagem não são assunto do site.
 
+- **Revisão (2026-10-20, E9):** sem legendas nas fotos (os textos alternativos ficam só no código) e sem a régua como navegação — a régua aparece só na foto da home. Mais simples e sem JavaScript extra.
+
 ### Design tokens (T08, 2026-10-19)
 - **Um `tokens.css` como fonte da verdade** (custom properties em 2 camadas: primitivos e semânticos), com o contraste testado no Vitest por um parser de CSS — zero build extra e coerente com a decisão de CSS puro. A implementação é na T25, com TDD.
 - **`acacia-400` `#F0C24A`** só para o hover/foco do botão do WhatsApp (7,27:1 com o texto Restinga).
