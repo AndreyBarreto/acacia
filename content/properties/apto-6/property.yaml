@@ -116,6 +116,7 @@ amenities: # somadas às do prédio (wifi, freeParking, privateEntrance, beachGe
   - tv
   - streaming
   - desk
+  - stepFree
   - bedLinen
   - towels
   - hairDryer
@@ -137,7 +138,7 @@ rules:
   notes:
     pt:
       - 'Avise pelo WhatsApp, com antecedência, a que horas pretende chegar.'
-      - 'Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva.' # TODO: tirar se a T19 puser essa frase na UI
+      - 'Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva.'
     en:
       - "Let us know on WhatsApp, ahead of time, roughly when you'll arrive."
       - 'Payment and cancellation are agreed on WhatsApp before we confirm your stay.'

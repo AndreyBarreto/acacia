@@ -147,7 +147,7 @@ rules:
     pt:
       - 'Avise pelo WhatsApp, com antecedência, a que horas pretende chegar.'
       - 'O apartamento fica no andar de cima e o acesso é só por escada.'
-      - 'Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva.' # TODO: tirar se a T19 puser essa frase na UI
+      - 'Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva.'
     en:
       - "Let us know on WhatsApp, ahead of time, roughly when you'll arrive."
       - 'The apartment is upstairs and reached by stairs only.'
@@ -246,7 +246,6 @@ images:
       pt: apto-4-sofa-cama
       en: apt-4-sofa-bed
       es: depto-4-sofa-cama
-    # TODO: confirmar que este é o mesmo sofá-cama de hoje (foto de 2018)
 
   - src: ../../../assets/booking/photos/varanda/16-513747657.jpg
     category: living
