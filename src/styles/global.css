@@ -1,0 +1,98 @@
+/* Base styles. Uses semantic tokens only (src/styles/tokens.css). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-block-size: 100dvh;
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-body);
+}
+
+/* Young Serif has a single weight: hierarchy comes from size, never from a synthetic bold. */
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-regular);
+  font-synthesis: none;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-heading);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-heading);
+}
+
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+p {
+  max-inline-size: var(--measure-prose);
+}
+
+/* Vertical rhythm: consecutive text blocks are spaced, components decide the rest. */
+:where(h1, h2, h3, p, ul, ol) + :where(p, ul, ol) {
+  margin-block-start: var(--space-4);
+}
+
+img,
+svg {
+  display: block;
+  max-inline-size: 100%;
+}
+
+a {
+  color: var(--color-link);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

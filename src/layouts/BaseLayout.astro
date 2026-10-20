@@ -1,5 +1,10 @@
 ---
+import '../styles/tokens.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
 import ConsentBanner from '../components/ConsentBanner.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 import SeoHead from '../components/SeoHead.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
 import { htmlLang, type Locale } from '../lib/i18n/locales';
@@ -19,7 +24,11 @@ const { locale, title } = Astro.props;
     <SeoHead locale={locale} title={title} />
   </head>
   <body>
-    <slot />
+    <Header locale={locale} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} />
     <WhatsAppFab locale={locale} />
     <ConsentBanner locale={locale} />
   </body>

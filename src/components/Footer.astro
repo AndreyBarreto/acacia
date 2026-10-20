@@ -1,0 +1,51 @@
+---
+import logo from '../../assets/brand/logo/logo-horizontal-light.svg';
+import type { Locale } from '../lib/i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const logoHeight = 32;
+const logoWidth = Math.round((logo.width / logo.height) * logoHeight);
+
+// TODO(E5): build the URL with the route helpers from src/lib/routes.ts once they exist.
+const homeHref = `/${locale}/`;
+---
+
+<footer class="site-footer">
+  <a class="brand" href={homeHref}>
+    <img src={logo.src} alt="Acácia" width={logoWidth} height={logoHeight} />
+  </a>
+  <slot name="language-switcher" />
+  <slot />
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-block-start: var(--space-section);
+    padding-block: var(--space-7) max(var(--space-6), var(--safe-bottom));
+    padding-inline: max(var(--gutter), var(--safe-left), (100% - var(--container-max)) / 2)
+      max(var(--gutter), var(--safe-right), (100% - var(--container-max)) / 2);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-ui);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+  }
+
+  .brand img {
+    inline-size: auto;
+    block-size: 2rem;
+  }
+</style>
