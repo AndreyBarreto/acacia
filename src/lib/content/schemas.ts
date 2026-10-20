@@ -58,7 +58,18 @@ export function translated<T extends z.ZodType>(value: T) {
   });
 }
 
-const geo = z.object({ latitude: z.string(), longitude: z.string() });
+// Quoted on purpose: YAML reads -27.43800 as the number -27.438 and the decimals are lost (V30).
+const decimals = 'must be a quoted number with 5 to 7 decimals, like "-27.43812"';
+const coordinate = (limit: number) =>
+  z
+    .string({ error: decimals })
+    .regex(/^-?\d{1,3}\.\d{5,7}$/, decimals)
+    .refine((value) => Math.abs(Number(value)) <= limit, `must be between -${limit} and ${limit}`)
+    .transform(Number);
+
+const geo = z.object({ latitude: coordinate(90), longitude: coordinate(180) });
+
+const whatsapp = z.string().regex(/^\+[1-9]\d{7,14}$/, 'must be in +5548999442015 format');
 
 const seo = z.object({ title: translated(text), description: translated(text) });
 
@@ -128,10 +139,13 @@ function imageSchema<I extends z.ZodType>(image: () => I) {
 
 export const siteSchema = z.object({
   brandName: text,
-  siteUrl: z.string(),
+  siteUrl: z
+    .string()
+    .regex(/^https:\/\//, 'must start with https://')
+    .regex(/[^/]$/, 'must not end with a slash'),
   defaultLocale: z.enum(locales),
   hostLanguages: z.array(text).min(1),
-  contact: z.object({ whatsapp: z.string() }),
+  contact: z.object({ whatsapp }),
 });
 
 export const citySchema = z.object({
@@ -160,7 +174,10 @@ export function buildingSchema<I extends z.ZodType, R extends z.ZodType>({
   return z.object({
     name: text,
     neighborhood: reference('neighborhoods'),
-    address: z.object({ street: text, postalCode: z.string() }),
+    address: z.object({
+      street: text,
+      postalCode: z.string().regex(/^\d{5}-\d{3}$/, 'must look like 88053-682'),
+    }),
     geo,
     beachDistanceMeters: z.number(),
     amenities: amenities.optional(),
@@ -220,6 +237,6 @@ export function propertySchema<I extends z.ZodType, R extends z.ZodType>({
     }),
     images: z.array(imageSchema(image)),
     ogImage: image().optional(),
-    contact: z.object({ whatsapp: z.string() }).optional(),
+    contact: z.object({ whatsapp }).optional(),
   });
 }
