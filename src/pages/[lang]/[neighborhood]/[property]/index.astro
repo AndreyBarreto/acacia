@@ -18,6 +18,9 @@ import {
   ruleRows,
 } from '../../../../lib/property';
 import { routePath } from '../../../../lib/routes';
+import { absoluteUrl } from '../../../../lib/seo/head';
+import { photoUrls } from '../../../../lib/seo/images';
+import { breadcrumbList, vacationRental } from '../../../../lib/seo/jsonld';
 
 export async function getStaticPaths() {
   const { properties } = await loadContent();
@@ -30,8 +33,10 @@ const idOf = (ref: Ref | undefined) => (typeof ref === 'string' ? ref : ref?.id)
 const locale = Astro.params.lang as Locale;
 const { property } = Astro.props;
 const { data } = property;
-const { site, buildings, properties } = await loadContent();
+const { site, cities, neighborhoods, buildings, properties } = await loadContent();
 const building = buildings.find((entry) => entry.id === idOf(data.building))?.data;
+const neighborhood = neighborhoods.find((entry) => entry.id === idOf(data.neighborhood))?.data;
+const city = cities.find((entry) => entry.id === idOf(neighborhood?.city))?.data;
 const text = (key: string, vars?: Record<string, string>) => t(locale, `property.${key}`, vars);
 
 const name = data.name[locale];
@@ -59,13 +64,29 @@ const sizesOf = (index: number, cover?: boolean) => {
   const phone = last && imageCount % 2 === 0 ? '100vw' : '50vw';
   return `(min-width: 56.25em) ${desktop}, ${phone}`;
 };
+const pathOf = (page: Parameters<typeof routePath>[0]) =>
+  absoluteUrl(site.siteUrl, routePath(page, locale));
+const jsonLd: object[] = [
+  breadcrumbList([
+    { name: text('breadcrumb.home'), url: pathOf({ id: 'home' }) },
+    { name: text('breadcrumb.neighborhood'), url: pathOf({ id: 'neighborhood' }) },
+    { name },
+  ]),
+];
+if (building && city) {
+  const images = (await photoUrls(data, building)).map((src) => absoluteUrl(site.siteUrl, src));
+  jsonLd.push(vacationRental({ locale, site, city, building, property: data, images }));
+}
 const otherPlural = new Intl.PluralRules(locale).select(others.length) === 'one' ? 'one' : 'other';
 ---
 
 <BaseLayout
   locale={locale}
   page={{ id: 'property', slug: property.id }}
-  title={name}
+  title={data.seo.title[locale]}
+  description={data.seo.description[locale]}
+  image={data.ogImage ?? data.images.find((image) => image.cover)?.src}
+  jsonLd={jsonLd}
   whatsapp={{ context: { page: 'property', name, code: data.identifier }, phone }}
 >
   <article class="property">

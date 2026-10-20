@@ -8,6 +8,7 @@ import { loadContent } from '../../lib/content/load';
 import { locales, type Locale } from '../../lib/i18n/locales';
 import { t } from '../../lib/i18n/t';
 import { routePath } from '../../lib/routes';
+import { organization } from '../../lib/seo/jsonld';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
@@ -16,7 +17,7 @@ export function getStaticPaths() {
 const locale = Astro.params.lang as Locale;
 const text = (key: string, vars?: Record<string, string>) => t(locale, `home.${key}`, vars);
 
-const { buildings, properties } = await loadContent();
+const { site, buildings, properties } = await loadContent();
 const sorted = [...properties].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
 // The hero is the cover of the first apartment, so its mosaic starts from the next photo.
@@ -39,7 +40,14 @@ const cards = sorted.map((property) => ({
 }));
 ---
 
-<BaseLayout locale={locale} page={{ id: 'home' }} title={text('seo.title')}>
+<BaseLayout
+  locale={locale}
+  page={{ id: 'home' }}
+  title={text('seo.title')}
+  description={text('seo.description')}
+  image={heroImage?.src}
+  jsonLd={[organization(site)]}
+>
   <HomeHero
     locale={locale}
     distance={heroBuilding.data.beachDistanceMeters}

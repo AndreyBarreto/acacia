@@ -18,11 +18,17 @@ interface Props {
   locale: Locale;
   page: PageRef;
   title: string;
+  /** Meta description (70 to 155 characters). */
+  description: string;
+  /** Source of the OG image (see SeoHead). */
+  image?: ImageMetadata;
+  /** JSON-LD objects for this page. */
+  jsonLd?: object[];
   /** The fixed WhatsApp button of this page: a property page passes its context and number. */
   whatsapp?: { context: MessageContext; phone?: string };
 }
 
-const { locale, page, title, whatsapp } = Astro.props;
+const { locale, page, title, description, image, jsonLd, whatsapp } = Astro.props;
 const { site } = await loadContent();
 const whatsappPhone = whatsapp?.phone ?? site.contact.whatsapp;
 ---
@@ -31,7 +37,14 @@ const whatsappPhone = whatsapp?.phone ?? site.contact.whatsapp;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <SeoHead locale={locale} title={title} />
+    <SeoHead
+      locale={locale}
+      page={page}
+      title={title}
+      description={description}
+      image={image}
+      jsonLd={jsonLd}
+    />
   </head>
   <body>
     <LanguageBanner locale={locale} page={page} />

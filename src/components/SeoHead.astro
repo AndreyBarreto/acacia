@@ -1,13 +1,48 @@
 ---
-// Stub owned by E13 (T32): canonical, hreflang, Open Graph and JSON-LD go here.
+// Head metadata (E13, T32): title, description, canonical, hreflang, Open Graph and JSON-LD.
+import { loadContent } from '../lib/content/load';
 import type { Locale } from '../lib/i18n/locales';
+import { getOgImage, OG_HEIGHT, OG_WIDTH } from '../lib/images/og';
+import type { PageRef } from '../lib/routes';
+import { routePath } from '../lib/routes';
+import { absoluteUrl, hreflangLinks, ogLocale } from '../lib/seo/head';
+import { jsonLdScript } from '../lib/seo/jsonld';
 
 interface Props {
   locale: Locale;
+  page: PageRef;
   title: string;
+  description: string;
+  /** Source of the OG image; defaults to the cover of the first apartment (the home hero). */
+  image?: ImageMetadata;
+  jsonLd?: object[];
 }
 
-const { title } = Astro.props;
+const { locale, page, title, description, image, jsonLd = [] } = Astro.props;
+const { site, properties } = await loadContent();
+const canonical = absoluteUrl(site.siteUrl, routePath(page, locale));
+
+const first = [...properties].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))[0];
+const source = image ?? first?.data.images.find((entry) => entry.cover)?.src;
+const og = source && (await getOgImage(source));
 ---
 
 <title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{hreflangLinks(site.siteUrl, page).map((link) => (
+  <link rel="alternate" hreflang={link.hreflang} href={link.href} />
+))}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.brandName} />
+<meta property="og:locale" content={ogLocale(locale)} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{og && <meta property="og:image" content={absoluteUrl(site.siteUrl, og.src)} />}
+{og && <meta property="og:image:width" content={String(OG_WIDTH)} />}
+{og && <meta property="og:image:height" content={String(OG_HEIGHT)} />}
+<meta name="twitter:card" content="summary_large_image" />
+{jsonLd.map((data) => (
+  <script type="application/ld+json" is:inline set:html={jsonLdScript(data)} />
+))}
