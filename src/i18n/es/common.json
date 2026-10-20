@@ -1,0 +1,16 @@
+{
+  "lang.label": "Idioma",
+  "lang.switch.aria": "Cambiar el idioma del sitio",
+  "lang.name.pt": "Português",
+  "lang.name.en": "English",
+  "lang.name.es": "Español",
+  "lang.short.pt": "PT",
+  "lang.short.en": "EN",
+  "lang.short.es": "ES",
+  "lang.current.aria": "Idioma actual: {language}",
+  "lang.switchTo.aria": "Ver esta página en {language}",
+  "langSuggest.aria": "Sugerencia de idioma",
+  "langSuggest.message": "¿Querés ver el sitio en español?",
+  "langSuggest.accept": "Ver en español",
+  "langSuggest.dismiss": "Ahora no"
+}

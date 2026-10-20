@@ -1,0 +1,16 @@
+{
+  "lang.label": "Language",
+  "lang.switch.aria": "Change the site language",
+  "lang.name.pt": "Português",
+  "lang.name.en": "English",
+  "lang.name.es": "Español",
+  "lang.short.pt": "PT",
+  "lang.short.en": "EN",
+  "lang.short.es": "ES",
+  "lang.current.aria": "Current language: {language}",
+  "lang.switchTo.aria": "View this page in {language}",
+  "langSuggest.aria": "Language suggestion",
+  "langSuggest.message": "This site is also available in English.",
+  "langSuggest.accept": "View in English",
+  "langSuggest.dismiss": "Not now"
+}
