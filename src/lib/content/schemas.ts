@@ -80,11 +80,21 @@ const coordinate = (limit: number) =>
     .refine((value) => Math.abs(Number(value)) <= limit, `must be between -${limit} and ${limit}`)
     .transform(Number);
 
-const geo = z.object({ latitude: coordinate(90), longitude: coordinate(180) });
+/** An object that rejects unknown keys, so a misspelled optional field is not silently ignored. */
+function strict<T extends z.ZodRawShape>(shape: T) {
+  return z.strictObject(shape, {
+    error: (issue) =>
+      issue.code === 'unrecognized_keys'
+        ? `has an unknown key: ${issue.keys.join(', ')}`
+        : undefined,
+  });
+}
+
+const geo = strict({ latitude: coordinate(90), longitude: coordinate(180) });
 
 const whatsapp = z.string().regex(/^\+[1-9]\d{7,14}$/, 'must be in +5548999442015 format');
 
-const seo = z.object({ title: translated(sized(1, 60)), description: translated(sized(70, 155)) });
+const seo = strict({ title: translated(sized(1, 60)), description: translated(sized(70, 155)) });
 
 export const amenityKeys = [
   'wifi',
@@ -149,26 +159,24 @@ const slug = (value: string) =>
     .replace(/^-|-$/g, '');
 
 function imageSchema<I extends z.ZodType>(image: () => I) {
-  return z
-    .object({
-      src: image(),
-      alt: translated(sized(5, 125)),
-      category: z.enum(imageCategories),
-      cover: z.boolean().optional(),
-      provisional: z.boolean().optional(),
-      fileName: localized(text).optional(),
-    })
-    .superRefine(({ alt, fileName }, ctx) => {
-      for (const lang of locales) {
-        if (fileName && slug(alt[lang]) === slug(fileName[lang])) {
-          ctx.addIssue({
-            code: 'custom',
-            path: ['alt', lang],
-            message: 'only repeats the file name',
-          });
-        }
+  return strict({
+    src: image(),
+    alt: translated(sized(5, 125)),
+    category: z.enum(imageCategories),
+    cover: z.boolean().optional(),
+    provisional: z.boolean().optional(),
+    fileName: localized(text).optional(),
+  }).superRefine(({ alt, fileName }, ctx) => {
+    for (const lang of locales) {
+      if (fileName && slug(alt[lang]) === slug(fileName[lang])) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['alt', lang],
+          message: 'only repeats the file name',
+        });
       }
-    });
+    }
+  });
 }
 
 export const siteSchema = z.object({
@@ -192,7 +200,7 @@ export const citySchema = z.object({
 export function neighborhoodSchema<R extends z.ZodType>({
   reference,
 }: Pick<Helpers<z.ZodType, R>, 'reference'>) {
-  return z.object({
+  return strict({
     city: reference('cities'),
     name: localized(text),
     geo,
@@ -205,10 +213,10 @@ export function buildingSchema<I extends z.ZodType, R extends z.ZodType>({
   image,
   reference,
 }: Helpers<I, R>) {
-  return z.object({
+  return strict({
     name: text,
     neighborhood: reference('neighborhoods'),
-    address: z.object({
+    address: strict({
       street: text,
       postalCode: z.string().regex(/^\d{5}-\d{3}$/, 'must look like 88053-682'),
     }),
@@ -230,110 +238,98 @@ const highlights = z
   .max(6, { error: (issue) => `has ${(issue.input as unknown[]).length} items (max 6)` });
 
 // Check-in and check-out ranges (V35). The texts only show when check-in starts and check-out ends.
-const rules = z
-  .object({
-    checkIn: z.object({ from: time, until: time.optional() }),
-    checkOut: z.object({ from: time.optional(), until: time }),
-    minNights: whole(1, 90),
-    smoking: z.boolean(),
-    pets: z.boolean(),
-    children: z.boolean(),
-    crib: z.boolean().optional(),
-    selfCheckIn: z.boolean().optional(),
-    notes: localized(z.array(text)).optional(),
-  })
-  .superRefine(({ checkIn, checkOut }, ctx) => {
-    if (checkIn.until && checkIn.until < checkIn.from) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['checkIn', 'until'],
-        message: `is before checkIn.from (${checkIn.from})`,
-      });
-    }
-    if (checkOut.from && checkOut.until < checkOut.from) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['checkOut', 'until'],
-        message: `is before checkOut.from (${checkOut.from})`,
-      });
-    }
-    if (checkOut.until > checkIn.from) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['checkOut', 'until'],
-        message: `is after checkIn.from (${checkIn.from})`,
-      });
-    }
-  });
+const rules = strict({
+  checkIn: strict({ from: time, until: time.optional() }),
+  checkOut: strict({ from: time.optional(), until: time }),
+  minNights: whole(1, 90),
+  smoking: z.boolean(),
+  pets: z.boolean(),
+  children: z.boolean(),
+  crib: z.boolean().optional(),
+  selfCheckIn: z.boolean().optional(),
+  notes: localized(z.array(text)).optional(),
+}).superRefine(({ checkIn, checkOut }, ctx) => {
+  if (checkIn.until && checkIn.until < checkIn.from) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['checkIn', 'until'],
+      message: `is before checkIn.from (${checkIn.from})`,
+    });
+  }
+  if (checkOut.from && checkOut.until < checkOut.from) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['checkOut', 'until'],
+      message: `is before checkOut.from (${checkOut.from})`,
+    });
+  }
+  if (checkOut.until > checkIn.from) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['checkOut', 'until'],
+      message: `is after checkIn.from (${checkIn.from})`,
+    });
+  }
+});
 
 export function propertySchema<I extends z.ZodType, R extends z.ZodType>({
   image,
   reference,
 }: Helpers<I, R>) {
-  return z
-    .object({
-      identifier: z.string().regex(/^[a-z0-9-]+$/, 'must use only a-z, 0-9 and hyphens'),
-      status: z.enum(['published', 'draft']).default('published'),
-      order: z.number().int().optional(),
-      neighborhood: reference('neighborhoods'),
-      building: reference('buildings').optional(),
-      unitLabel: text.optional(),
-      showUnitPublicly: z.boolean().default(false),
-      propertyType: z.enum([
-        'Apartment',
-        'House',
-        'Cottage',
-        'Villa',
-        'Bungalow',
-        'Cabin',
-        'Chalet',
-      ]),
-      name: localized(sized(3, 60)),
-      subtitle: localized(text).optional(),
-      summary: translated(sized(1, 160)),
-      description: translated(text),
-      highlights: translated(highlights),
-      seo,
-      capacity: z.object({ maxGuests: whole(1, 20) }),
-      bedrooms: whole(0),
-      bathrooms: whole(1),
-      floorSizeM2: whole(1).optional(),
-      sleepingAreas: z.array(
-        z.object({
-          room: z.enum(['bedroom', 'livingRoom', 'other']),
-          beds: z.array(
-            z.object({
-              type: z.enum(['double', 'queen', 'king', 'single', 'sofaBed', 'bunkBed']),
-              count: whole(1),
-            }),
-          ),
-        }),
-      ),
-      floor: z.enum(['ground', 'upper']).optional(),
-      views: z.array(z.enum(['sea', 'mountain', 'garden', 'courtyard', 'street'])).optional(),
-      amenities,
-      rules,
-      images: z.array(imageSchema(image)),
-      ogImage: image().optional(),
-      contact: z.object({ whatsapp }).optional(),
-    })
-    .superRefine((property, ctx) => {
-      const beds = property.sleepingAreas.flatMap((area) => area.beds);
-      const places = beds.reduce((sum, bed) => sum + bedPlaces[bed.type] * bed.count, 0);
-      if (places < property.capacity.maxGuests) {
-        ctx.addIssue({
-          code: 'custom',
-          path: ['sleepingAreas'],
-          message: `sleep ${places} guests but capacity.maxGuests is ${property.capacity.maxGuests}`,
-        });
-      }
-      const bedrooms = property.sleepingAreas.filter((area) => area.room === 'bedroom').length;
-      if (bedrooms !== property.bedrooms) {
-        ctx.addIssue({
-          code: 'custom',
-          path: ['bedrooms'],
-          message: `is ${property.bedrooms} but sleepingAreas has ${bedrooms} bedroom${bedrooms === 1 ? '' : 's'}`,
-        });
-      }
-    });
+  return strict({
+    identifier: z.string().regex(/^[a-z0-9-]+$/, 'must use only a-z, 0-9 and hyphens'),
+    status: z.enum(['published', 'draft']).default('published'),
+    order: z.number().int().optional(),
+    neighborhood: reference('neighborhoods'),
+    building: reference('buildings').optional(),
+    unitLabel: text.optional(),
+    showUnitPublicly: z.boolean().default(false),
+    propertyType: z.enum(['Apartment', 'House', 'Cottage', 'Villa', 'Bungalow', 'Cabin', 'Chalet']),
+    name: localized(sized(3, 60)),
+    subtitle: localized(text).optional(),
+    summary: translated(sized(1, 160)),
+    description: translated(text),
+    highlights: translated(highlights),
+    seo,
+    capacity: strict({ maxGuests: whole(1, 20) }),
+    bedrooms: whole(0),
+    bathrooms: whole(1),
+    floorSizeM2: whole(1).optional(),
+    sleepingAreas: z.array(
+      strict({
+        room: z.enum(['bedroom', 'livingRoom', 'other']),
+        beds: z.array(
+          strict({
+            type: z.enum(['double', 'queen', 'king', 'single', 'sofaBed', 'bunkBed']),
+            count: whole(1),
+          }),
+        ),
+      }),
+    ),
+    floor: z.enum(['ground', 'upper']).optional(),
+    views: z.array(z.enum(['sea', 'mountain', 'garden', 'courtyard', 'street'])).optional(),
+    amenities,
+    rules,
+    images: z.array(imageSchema(image)),
+    ogImage: image().optional(),
+    contact: strict({ whatsapp }).optional(),
+  }).superRefine((property, ctx) => {
+    const beds = property.sleepingAreas.flatMap((area) => area.beds);
+    const places = beds.reduce((sum, bed) => sum + bedPlaces[bed.type] * bed.count, 0);
+    if (places < property.capacity.maxGuests) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['sleepingAreas'],
+        message: `sleep ${places} guests but capacity.maxGuests is ${property.capacity.maxGuests}`,
+      });
+    }
+    const bedrooms = property.sleepingAreas.filter((area) => area.room === 'bedroom').length;
+    if (bedrooms !== property.bedrooms) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['bedrooms'],
+        message: `is ${property.bedrooms} but sleepingAreas has ${bedrooms} bedroom${bedrooms === 1 ? '' : 's'}`,
+      });
+    }
+  });
 }
