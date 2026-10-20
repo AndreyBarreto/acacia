@@ -1,0 +1,54 @@
+---
+// Per-property WhatsApp CTA (E8, T31): blank message citing the property name and code.
+import type { Locale } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
+import { siteWhatsApp, whatsappIconPath, whatsappMessage, whatsappUrl } from '../lib/whatsapp';
+
+export interface Props {
+  locale: Locale;
+  /** Short name in the page language: "Apto 4" / "Apt 4" / "Depto 4". */
+  name: string;
+  /** Property identifier, e.g. "acacia-4". */
+  code: string;
+  /** property.contact.whatsapp, when it overrides the site number. */
+  phone?: string;
+}
+
+const { locale, name, code, phone = siteWhatsApp } = Astro.props;
+const text = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
+const href = whatsappUrl(phone, whatsappMessage(text, locale, { page: 'property', name, code }));
+---
+
+<a class="whatsapp-cta" href={href}>
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+    <path d={whatsappIconPath} />
+  </svg>
+  {text('cta.property')}
+</a>
+
+<style>
+  .whatsapp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-pill);
+    background: var(--color-cta-bg);
+    color: var(--color-cta-text);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-ui);
+    text-decoration: none;
+  }
+
+  .whatsapp-cta:hover,
+  .whatsapp-cta:focus-visible {
+    background: var(--color-cta-bg-hover);
+    color: var(--color-cta-text);
+  }
+
+  svg {
+    inline-size: 1.25em;
+    block-size: 1.25em;
+  }
+</style>
