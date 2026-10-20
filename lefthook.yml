@@ -7,3 +7,9 @@ pre-commit:
       run: pnpm check
     test:
       run: pnpm test
+
+# Firefox, WebKit and mobile projects run in CI only.
+pre-push:
+  commands:
+    e2e:
+      run: pnpm exec playwright test --project=chromium
