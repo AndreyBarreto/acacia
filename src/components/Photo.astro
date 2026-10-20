@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  cover?: boolean;
+  sizes?: string;
+}
+
+const { src, alt, cover = false, sizes = '(min-width: 64rem) 50vw, 100vw' } = Astro.props;
+
+if (typeof alt !== 'string') {
+  throw new Error('Photo: the alt prop is required');
+}
+---
+
+<Picture
+  src={src}
+  alt={alt}
+  formats={['avif', 'webp']}
+  widths={[480, 800, 1200]}
+  sizes={sizes}
+  loading={cover ? 'eager' : 'lazy'}
+  fetchpriority={cover ? 'high' : undefined}
+  decoding="async"
+/>
