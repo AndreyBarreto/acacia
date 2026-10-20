@@ -48,7 +48,8 @@ test.describe('at 390 px', () => {
     const footer = await page
       .getByRole('contentinfo')
       .evaluate((el) => el.getBoundingClientRect().bottom);
-    expect(footer).toBeLessThanOrEqual(bar);
+    // Fractional page heights end the scroll on a whole pixel, so allow 1 px of rounding.
+    expect(footer).toBeLessThanOrEqual(bar + 1);
   });
 
   test('the bar sits on top of the cookie banner and drops back when it closes', async ({
