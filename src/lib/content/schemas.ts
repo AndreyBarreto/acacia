@@ -76,7 +76,7 @@ const decimals = 'must be a quoted number with 5 to 7 decimals, like "-27.43812"
 const coordinate = (limit: number) =>
   z
     .string({ error: decimals })
-    .regex(/^-?\d{1,3}\.\d{5,7}$/, decimals)
+    .regex(/^-?\d{1,3}\.\d{5,7}$/, { error: decimals, abort: true })
     .refine((value) => Math.abs(Number(value)) <= limit, `must be between -${limit} and ${limit}`)
     .transform(Number);
 
@@ -139,15 +139,36 @@ const imageCategories = [
   'other',
 ] as const;
 
+/** "Depto 4 Jurerê balcón" → "depto-4-jurere-balcon", to compare an alt with a file name. */
+const slug = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
 function imageSchema<I extends z.ZodType>(image: () => I) {
-  return z.object({
-    src: image(),
-    alt: translated(text),
-    category: z.enum(imageCategories),
-    cover: z.boolean().optional(),
-    provisional: z.boolean().optional(),
-    fileName: localized(text).optional(),
-  });
+  return z
+    .object({
+      src: image(),
+      alt: translated(sized(5, 125)),
+      category: z.enum(imageCategories),
+      cover: z.boolean().optional(),
+      provisional: z.boolean().optional(),
+      fileName: localized(text).optional(),
+    })
+    .superRefine(({ alt, fileName }, ctx) => {
+      for (const lang of locales) {
+        if (fileName && slug(alt[lang]) === slug(fileName[lang])) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['alt', lang],
+            message: 'only repeats the file name',
+          });
+        }
+      }
+    });
 }
 
 export const siteSchema = z.object({

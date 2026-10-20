@@ -161,6 +161,27 @@ export const invalidFixtures: InvalidFixture[] = [
     error: 'rules.minNights must be between 1 and 90',
   },
   {
+    rule: 'V57',
+    case: 'an alt text over 125 characters',
+    schema: 'property',
+    data: withValue(valid.property, 'images.0.alt.en', 'a'.repeat(126)),
+    error: 'images.0.alt.en is 126 chars (max 125)',
+  },
+  {
+    rule: 'V57',
+    case: 'an alt text under 5 characters',
+    schema: 'building',
+    data: withValue(valid.building, 'images.0.alt.pt', 'Casa'),
+    error: 'images.0.alt.pt is 4 chars (min 5)',
+  },
+  {
+    rule: 'V57',
+    case: 'an alt text that only repeats the file name',
+    schema: 'property',
+    data: withValue(valid.property, 'images.0.alt.es', 'Depto 4 Jurerê balcón'),
+    error: 'images.0.alt.es only repeats the file name',
+  },
+  {
     rule: 'V61',
     case: 'seo.title over 60 characters',
     schema: 'property',
