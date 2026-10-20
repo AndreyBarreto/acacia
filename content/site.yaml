@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=../.astro/collections/site.schema.json
+brandName: Acácia
+siteUrl: https://acaciafloripa.com.br
+defaultLocale: pt
+hostLanguages: [pt-BR, es] # o anúncio do Booking diz que o anfitrião fala pt e es
+contact:
+  whatsapp: '+5548999442015'

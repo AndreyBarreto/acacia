@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../../.astro/collections/cities.schema.json
+name: { pt: Florianópolis, en: Florianópolis, es: Florianópolis }
+region: SC
+country: BR
+timeZone: America/Sao_Paulo

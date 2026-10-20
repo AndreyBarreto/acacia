@@ -1,18 +1,14 @@
-# Rascunho T18 (textos) no formato da T11 (docs/plan/data-model.md §4.5 e §11).
-# Destino final (T24): content/properties/apto-4/property.yaml
-# Os caminhos ../../../assets/... funcionam nos dois lugares (os dois ficam 3 níveis abaixo da raiz).
-#
-# Campos PROPOSTOS, fora do data-model (decidir na T24):
+# yaml-language-server: $schema=../../../.astro/collections/properties.schema.json
+# Textos da T18 no formato da T11 (docs/plan/data-model.md §4.5).
 #   subtitle            -> o tipo do apto como detalhe do título ("Apto 4" + "Com varanda e vista
-#                          para o mar"), conforme a decisão da T05. Se não entrar no schema, a T28
-#                          pode usar o primeiro highlight no lugar.
+#                          para o mar"), conforme a decisão da T05.
 #   images[].fileName   -> nome público sugerido por idioma, sem extensão (T26).
 #
 # Tudo o que depende de confirmação está marcado com TODO.
 # Diferença para o apto 6 (anti-canibalização, T12 §5): aqui o principal é varanda + vista para o mar.
 
-identifier: acacia-4                 # nunca muda (schema.org, GA4, iCal)
-status: draft                        # vira published quando os TODOs fecharem
+identifier: acacia-4 # nunca muda (schema.org, GA4, iCal)
+status: draft # vira published quando os TODOs fecharem
 order: 1
 neighborhood: jurere
 building: residencial-acacia
@@ -21,19 +17,19 @@ showUnitPublicly: false
 propertyType: Apartment
 
 name:
-  pt: "Apto 4"
-  en: "Apt 4"
-  es: "Depto 4"
+  pt: 'Apto 4'
+  en: 'Apt 4'
+  es: 'Depto 4'
 
-subtitle:                            # PROPOSTO
-  pt: "Com varanda e vista para o mar"
-  en: "With a sea-view balcony"
-  es: "Con balcón y vista al mar"
+subtitle:
+  pt: 'Com varanda e vista para o mar'
+  en: 'With a sea-view balcony'
+  es: 'Con balcón y vista al mar'
 
-summary:                             # ≤ 160; card na home/bairro e og:description
-  pt: "No andar de cima, com varanda e vista para o mar, a 50 m da praia. Cama de casal no quarto e sofá-cama na sala: até 3 pessoas."
-  en: "Upstairs, with a sea-view balcony, 50 m from the beach. A double bed in the bedroom and a sofa bed in the living room: sleeps 3."
-  es: "En la planta alta, con balcón y vista al mar, a 50 m de la playa. Cama matrimonial en el dormitorio y sofá cama en el living: hasta 3 personas."
+summary: # ≤ 160; card na home/bairro e og:description
+  pt: 'No andar de cima, com varanda e vista para o mar, a 50 m da praia. Cama de casal no quarto e sofá-cama na sala: até 3 pessoas.'
+  en: 'Upstairs, with a sea-view balcony, 50 m from the beach. A double bed in the bedroom and a sofa bed in the living room: sleeps 3.'
+  es: 'En la planta alta, con balcón y vista al mar, a 50 m de la playa. Cama matrimonial en el dormitorio y sofá cama en el living: hasta 3 personas.'
 
 description:
   pt: |
@@ -61,38 +57,38 @@ description:
 
     Se sube por escalera, no hay ascensor. La cochera está en el edificio y no se paga aparte, y la arena queda al final del pasaje de adoquines. Las instrucciones del self check-in te las mandamos por WhatsApp.
 
-highlights:                          # 3 a 6 itens, ≤ 80 cada
+highlights: # 3 a 6 itens, ≤ 80 cada
   pt:
-    - "Varanda com mesa, cadeiras e vista para o mar"
-    - "A 50 m da praia de Jurerê"
-    - "Cama de casal e sofá-cama: até 3 pessoas"
-    - "Wi-Fi e mesa de trabalho"
-    - "Garagem no prédio, sem custo"
-    - "Ar split quente e frio"
+    - 'Varanda com mesa, cadeiras e vista para o mar'
+    - 'A 50 m da praia de Jurerê'
+    - 'Cama de casal e sofá-cama: até 3 pessoas'
+    - 'Wi-Fi e mesa de trabalho'
+    - 'Garagem no prédio, sem custo'
+    - 'Ar split quente e frio'
   en:
-    - "Balcony with a table, chairs and a sea view"
-    - "50 m from Jurerê beach"
-    - "Double bed plus sofa bed: sleeps 3"
-    - "Wi-Fi and a work desk"
-    - "Free parking in the building"
-    - "Split AC that heats and cools"
+    - 'Balcony with a table, chairs and a sea view'
+    - '50 m from Jurerê beach'
+    - 'Double bed plus sofa bed: sleeps 3'
+    - 'Wi-Fi and a work desk'
+    - 'Free parking in the building'
+    - 'Split AC that heats and cools'
   es:
-    - "Balcón con mesa, sillas y vista al mar"
-    - "A 50 m de la playa de Jurerê"
-    - "Cama matrimonial y sofá cama: hasta 3 personas"
-    - "Wi-Fi y mesa para trabajar"
-    - "Cochera en el edificio, sin cargo"
-    - "Aire split frío/calor"
+    - 'Balcón con mesa, sillas y vista al mar'
+    - 'A 50 m de la playa de Jurerê'
+    - 'Cama matrimonial y sofá cama: hasta 3 personas'
+    - 'Wi-Fi y mesa para trabajar'
+    - 'Cochera en el edificio, sin cargo'
+    - 'Aire split frío/calor'
 
-seo:                                 # T12 §6.3; "garaje" trocado por "cochera" (decisão T05)
-  title:                             # ≤ 60
-    pt: "Apartamento com varanda e vista para o mar em Jurerê"
-    en: "Jurerê Apartment with Balcony and Sea View"
-    es: "Departamento con balcón y vista al mar en Jurerê"
-  description:                       # 70 a 155
-    pt: "Apartamento para até 3 pessoas com varanda e vista para o mar, a 50 m da praia em Jurerê. 1 quarto, garagem e Wi-Fi. Mínimo de 4 noites."
-    en: "Apartment for up to 3 guests with a balcony and sea view, 50 m from the beach in Jurerê. 1 bedroom, free parking, Wi-Fi. 4-night minimum."
-    es: "Departamento para hasta 3 personas con balcón y vista al mar, a 50 m de la playa en Jurerê. 1 dormitorio, cochera y Wi-Fi. Mínimo 4 noches."
+seo: # T12 §6.3; "garaje" trocado por "cochera" (decisão T05)
+  title: # ≤ 60
+    pt: 'Apartamento com varanda e vista para o mar em Jurerê'
+    en: 'Jurerê Apartment with Balcony and Sea View'
+    es: 'Departamento con balcón y vista al mar en Jurerê'
+  description: # 70 a 155
+    pt: 'Apartamento para até 3 pessoas com varanda e vista para o mar, a 50 m da praia em Jurerê. 1 quarto, garagem e Wi-Fi. Mínimo de 4 noites.'
+    en: 'Apartment for up to 3 guests with a balcony and sea view, 50 m from the beach in Jurerê. 1 bedroom, free parking, Wi-Fi. 4-night minimum.'
+    es: 'Departamento para hasta 3 personas con balcón y vista al mar, a 50 m de la playa en Jurerê. 1 dormitorio, cochera y Wi-Fi. Mínimo 4 noches.'
 
 capacity:
   maxGuests: 3
@@ -107,7 +103,7 @@ sleepingAreas:
 floor: upper
 views: [sea, mountain]
 
-amenities:                           # somadas às do prédio (wifi, freeParking, privateEntrance, beachGear, fireExtinguisher)
+amenities: # somadas às do prédio (wifi, freeParking, privateEntrance, beachGear, fireExtinguisher)
   - airConditioning
   - heating
   - fan
@@ -132,8 +128,8 @@ amenities:                           # somadas às do prédio (wifi, freeParking
   - stairsOnly
 
 rules:
-  checkIn: { from: "14:00" }
-  checkOut: { until: "11:00" }
+  checkIn: { from: '14:00' }
+  checkOut: { until: '11:00' }
   minNights: 4
   smoking: false
   pets: false
@@ -149,17 +145,17 @@ rules:
   #       No se puede fumar en ningún ambiente · No se aceptan mascotas · Los chicos son bienvenidos · No hay cuna ni cama extra
   notes:
     pt:
-      - "Avise pelo WhatsApp, com antecedência, a que horas pretende chegar."
-      - "O apartamento fica no andar de cima e o acesso é só por escada."
-      - "Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva."   # TODO: tirar se a T19 puser essa frase na UI
+      - 'Avise pelo WhatsApp, com antecedência, a que horas pretende chegar.'
+      - 'O apartamento fica no andar de cima e o acesso é só por escada.'
+      - 'Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva.' # TODO: tirar se a T19 puser essa frase na UI
     en:
       - "Let us know on WhatsApp, ahead of time, roughly when you'll arrive."
-      - "The apartment is upstairs and reached by stairs only."
-      - "Payment and cancellation are agreed on WhatsApp before we confirm your stay."
+      - 'The apartment is upstairs and reached by stairs only.'
+      - 'Payment and cancellation are agreed on WhatsApp before we confirm your stay.'
     es:
-      - "Avisanos por WhatsApp, con tiempo, a qué hora pensás llegar."
-      - "El depto está en la planta alta y se llega solo por escalera."
-      - "Pago y cancelación: lo arreglamos por WhatsApp antes de confirmar la reserva."
+      - 'Avisanos por WhatsApp, con tiempo, a qué hora pensás llegar.'
+      - 'El depto está en la planta alta y se llega solo por escalera.'
+      - 'Pago y cancelación: lo arreglamos por WhatsApp antes de confirmar la reserva.'
 
 # Fotos do Booking (assets/booking/photos/varanda), provisórias. Ordem = ordem sugerida da galeria
 # (varanda → sala → cozinha → quarto → banheiro → acesso).
@@ -171,9 +167,9 @@ images:
     cover: true
     provisional: true
     alt:
-      pt: "Varanda do Apto 4 com cadeiras e mesinha redonda, o mar e os barcos ao fundo"
-      en: "Apt 4 balcony with chairs and a small round table, the sea and boats beyond"
-      es: "Balcón del depto 4 con sillas y mesita redonda, el mar y los barcos al fondo"
+      pt: 'Varanda do Apto 4 com cadeiras e mesinha redonda, o mar e os barcos ao fundo'
+      en: 'Apt 4 balcony with chairs and a small round table, the sea and boats beyond'
+      es: 'Balcón del depto 4 con sillas y mesita redonda, el mar y los barcos al fondo'
     fileName:
       pt: apto-4-jurere-varanda-vista-mar
       en: apt-4-jurere-balcony-sea-view
@@ -183,9 +179,9 @@ images:
     category: balcony
     provisional: true
     alt:
-      pt: "Varanda comprida do Apto 4, com guarda-corpo de vidro e o mar no fim"
-      en: "The long Apt 4 balcony, with a glass railing and the sea at the end"
-      es: "El balcón largo del depto 4, con baranda de vidrio y el mar al final"
+      pt: 'Varanda comprida do Apto 4, com guarda-corpo de vidro e o mar no fim'
+      en: 'The long Apt 4 balcony, with a glass railing and the sea at the end'
+      es: 'El balcón largo del depto 4, con baranda de vidrio y el mar al final'
     fileName:
       pt: apto-4-varanda-comprida
       en: apt-4-long-balcony
@@ -195,9 +191,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sala do Apto 4 com sofá marrom e porta de correr aberta para a varanda"
-      en: "Apt 4 living room with a brown sofa and a sliding door open to the balcony"
-      es: "Living del depto 4 con sillón marrón y puerta corrediza abierta al balcón"
+      pt: 'Sala do Apto 4 com sofá marrom e porta de correr aberta para a varanda'
+      en: 'Apt 4 living room with a brown sofa and a sliding door open to the balcony'
+      es: 'Living del depto 4 con sillón marrón y puerta corrediza abierta al balcón'
     fileName:
       pt: apto-4-sala-porta-varanda
       en: apt-4-living-room-balcony-door
@@ -207,9 +203,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sala do Apto 4 em foto horizontal: sofá, luminária, ar split e saída para a varanda"
-      en: "Wide view of the Apt 4 living room: sofa, floor lamp, split AC and the balcony door"
-      es: "Vista amplia del living del depto 4: sillón, lámpara, aire split y salida al balcón"
+      pt: 'Sala do Apto 4 em foto horizontal: sofá, luminária, ar split e saída para a varanda'
+      en: 'Wide view of the Apt 4 living room: sofa, floor lamp, split AC and the balcony door'
+      es: 'Vista amplia del living del depto 4: sillón, lámpara, aire split y salida al balcón'
     fileName:
       pt: apto-4-sala-visao-geral
       en: apt-4-living-room-wide
@@ -219,9 +215,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sala do Apto 4 vista do fundo, com sofá, tapete listrado e a varanda adiante"
-      en: "Apt 4 living room from the back, with sofa, striped rug and the balcony ahead"
-      es: "Living del depto 4 desde el fondo, con sillón, alfombra rayada y el balcón adelante"
+      pt: 'Sala do Apto 4 vista do fundo, com sofá, tapete listrado e a varanda adiante'
+      en: 'Apt 4 living room from the back, with sofa, striped rug and the balcony ahead'
+      es: 'Living del depto 4 desde el fondo, con sillón, alfombra rayada y el balcón adelante'
     fileName:
       pt: apto-4-sala-tapete
       en: apt-4-living-room-rug
@@ -231,9 +227,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Canto da sala do Apto 4 com sofá, janela e ar split na parede"
-      en: "Corner of the Apt 4 living room with sofa, window and wall-mounted split AC"
-      es: "Rincón del living del depto 4 con sillón, ventana y aire split en la pared"
+      pt: 'Canto da sala do Apto 4 com sofá, janela e ar split na parede'
+      en: 'Corner of the Apt 4 living room with sofa, window and wall-mounted split AC'
+      es: 'Rincón del living del depto 4 con sillón, ventana y aire split en la pared'
     fileName:
       pt: apto-4-sala-ar-split
       en: apt-4-living-room-split-ac
@@ -243,9 +239,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sofá-cama do Apto 4 com o assento puxado, ao lado da janela"
-      en: "The Apt 4 sofa bed with its seat pulled out, next to the window"
-      es: "El sofá cama del depto 4 con el asiento extendido, junto a la ventana"
+      pt: 'Sofá-cama do Apto 4 com o assento puxado, ao lado da janela'
+      en: 'The Apt 4 sofa bed with its seat pulled out, next to the window'
+      es: 'El sofá cama del depto 4 con el asiento extendido, junto a la ventana'
     fileName:
       pt: apto-4-sofa-cama
       en: apt-4-sofa-bed
@@ -256,9 +252,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sofá com almofadas listradas sob a janela da sala do Apto 4"
-      en: "Sofa with striped cushions under the Apt 4 living-room window"
-      es: "Sillón con almohadones rayados bajo la ventana del living del depto 4"
+      pt: 'Sofá com almofadas listradas sob a janela da sala do Apto 4'
+      en: 'Sofa with striped cushions under the Apt 4 living-room window'
+      es: 'Sillón con almohadones rayados bajo la ventana del living del depto 4'
     fileName:
       pt: apto-4-sofa-janela
       en: apt-4-sofa-window
@@ -268,9 +264,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "TV na parede da sala do Apto 4, com um carrinho de apoio embaixo"
-      en: "Wall-mounted TV in the Apt 4 living room, with a small side cart below"
-      es: "Tele en la pared del living del depto 4, con un carrito auxiliar abajo"
+      pt: 'TV na parede da sala do Apto 4, com um carrinho de apoio embaixo'
+      en: 'Wall-mounted TV in the Apt 4 living room, with a small side cart below'
+      es: 'Tele en la pared del living del depto 4, con un carrito auxiliar abajo'
     fileName:
       pt: apto-4-sala-tv
       en: apt-4-living-room-tv
@@ -280,9 +276,9 @@ images:
     category: living
     provisional: true
     alt:
-      pt: "Sala e cozinha integradas no Apto 4, vistas da entrada"
-      en: "Open-plan living room and kitchen in Apt 4, seen from the entrance"
-      es: "Living y cocina integrados en el depto 4, vistos desde la entrada"
+      pt: 'Sala e cozinha integradas no Apto 4, vistas da entrada'
+      en: 'Open-plan living room and kitchen in Apt 4, seen from the entrance'
+      es: 'Living y cocina integrados en el depto 4, vistos desde la entrada'
     fileName:
       pt: apto-4-sala-e-cozinha
       en: apt-4-open-plan-living-kitchen
@@ -292,9 +288,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Mesa de granito posta no Apto 4, com a cozinha e a sala ao fundo"
-      en: "Granite table set for a meal in Apt 4, with the kitchen and living room behind"
-      es: "Mesa de granito puesta en el depto 4, con la cocina y el living atrás"
+      pt: 'Mesa de granito posta no Apto 4, com a cozinha e a sala ao fundo'
+      en: 'Granite table set for a meal in Apt 4, with the kitchen and living room behind'
+      es: 'Mesa de granito puesta en el depto 4, con la cocina y el living atrás'
     fileName:
       pt: apto-4-mesa-de-jantar
       en: apt-4-dining-table
@@ -304,9 +300,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Mesa com cadeiras vermelhas e a bancada da cozinha do Apto 4"
-      en: "Table with red chairs and the kitchen counter in Apt 4"
-      es: "Mesa con sillas rojas y la mesada de la cocina del depto 4"
+      pt: 'Mesa com cadeiras vermelhas e a bancada da cozinha do Apto 4'
+      en: 'Table with red chairs and the kitchen counter in Apt 4'
+      es: 'Mesa con sillas rojas y la mesada de la cocina del depto 4'
     fileName:
       pt: apto-4-cozinha-mesa
       en: apt-4-kitchen-table
@@ -316,9 +312,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Mesa posta com jogo americano xadrez, perto da pia da cozinha do Apto 4"
-      en: "Table laid with checked placemats, next to the Apt 4 kitchen sink"
-      es: "Mesa puesta con individuales a cuadros, junto a la pileta de la cocina del depto 4"
+      pt: 'Mesa posta com jogo americano xadrez, perto da pia da cozinha do Apto 4'
+      en: 'Table laid with checked placemats, next to the Apt 4 kitchen sink'
+      es: 'Mesa puesta con individuales a cuadros, junto a la pileta de la cocina del depto 4'
     fileName:
       pt: apto-4-mesa-posta
       en: apt-4-table-set
@@ -328,9 +324,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Cozinha em corredor do Apto 4, com bancada, cooktop e janela no fim"
-      en: "Apt 4 galley kitchen, with counter, stovetop and a window at the end"
-      es: "Cocina tipo pasillo del depto 4, con mesada, anafe y ventana al fondo"
+      pt: 'Cozinha em corredor do Apto 4, com bancada, cooktop e janela no fim'
+      en: 'Apt 4 galley kitchen, with counter, stovetop and a window at the end'
+      es: 'Cocina tipo pasillo del depto 4, con mesada, anafe y ventana al fondo'
     fileName:
       pt: apto-4-cozinha-corredor
       en: apt-4-galley-kitchen
@@ -340,9 +336,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Outra vista da cozinha do Apto 4, com mesinha e cadeiras vermelhas"
-      en: "Another view of the Apt 4 kitchen, with a small table and red chairs"
-      es: "Otra vista de la cocina del depto 4, con mesita y sillas rojas"
+      pt: 'Outra vista da cozinha do Apto 4, com mesinha e cadeiras vermelhas'
+      en: 'Another view of the Apt 4 kitchen, with a small table and red chairs'
+      es: 'Otra vista de la cocina del depto 4, con mesita y sillas rojas'
     fileName:
       pt: apto-4-cozinha-mesinha
       en: apt-4-kitchen-small-table
@@ -352,9 +348,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Pia de inox na bancada de granito do Apto 4, sob a janela"
-      en: "Stainless sink in the granite counter of Apt 4, under the window"
-      es: "Pileta de acero en la mesada de granito del depto 4, bajo la ventana"
+      pt: 'Pia de inox na bancada de granito do Apto 4, sob a janela'
+      en: 'Stainless sink in the granite counter of Apt 4, under the window'
+      es: 'Pileta de acero en la mesada de granito del depto 4, bajo la ventana'
     fileName:
       pt: apto-4-pia-cozinha
       en: apt-4-kitchen-sink
@@ -364,9 +360,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Geladeira inox, micro-ondas e forno elétrico nos armários do Apto 4"
-      en: "Stainless fridge, microwave and electric oven in the Apt 4 cabinets"
-      es: "Heladera de acero, microondas y horno eléctrico en el mueble del depto 4"
+      pt: 'Geladeira inox, micro-ondas e forno elétrico nos armários do Apto 4'
+      en: 'Stainless fridge, microwave and electric oven in the Apt 4 cabinets'
+      es: 'Heladera de acero, microondas y horno eléctrico en el mueble del depto 4'
     fileName:
       pt: apto-4-geladeira-micro-ondas-forno
       en: apt-4-fridge-microwave-oven
@@ -376,9 +372,9 @@ images:
     category: kitchen
     provisional: true
     alt:
-      pt: "Armário alto do Apto 4 com geladeira, micro-ondas, forno e copos"
-      en: "Tall Apt 4 cabinet with fridge, microwave, oven and glassware"
-      es: "Mueble alto del depto 4 con heladera, microondas, horno y vasos"
+      pt: 'Armário alto do Apto 4 com geladeira, micro-ondas, forno e copos'
+      en: 'Tall Apt 4 cabinet with fridge, microwave, oven and glassware'
+      es: 'Mueble alto del depto 4 con heladera, microondas, horno y vasos'
     fileName:
       pt: apto-4-armario-cozinha
       en: apt-4-kitchen-cabinet
@@ -388,9 +384,9 @@ images:
     category: bedroom
     provisional: true
     alt:
-      pt: "Quarto do Apto 4 com cama de casal e porta aberta para a varanda"
-      en: "Apt 4 bedroom with a double bed and a door open to the balcony"
-      es: "Dormitorio del depto 4 con cama matrimonial y puerta abierta al balcón"
+      pt: 'Quarto do Apto 4 com cama de casal e porta aberta para a varanda'
+      en: 'Apt 4 bedroom with a double bed and a door open to the balcony'
+      es: 'Dormitorio del depto 4 con cama matrimonial y puerta abierta al balcón'
     fileName:
       pt: apto-4-quarto-porta-varanda
       en: apt-4-bedroom-balcony-door
@@ -400,9 +396,9 @@ images:
     category: bedroom
     provisional: true
     alt:
-      pt: "Quarto do Apto 4: cama de casal com toalhas dobradas, ventilador e TV na parede"
-      en: "Apt 4 bedroom: double bed with folded towels, a fan and a wall-mounted TV"
-      es: "Dormitorio del depto 4: cama matrimonial con toallas dobladas, ventilador y tele"
+      pt: 'Quarto do Apto 4: cama de casal com toalhas dobradas, ventilador e TV na parede'
+      en: 'Apt 4 bedroom: double bed with folded towels, a fan and a wall-mounted TV'
+      es: 'Dormitorio del depto 4: cama matrimonial con toallas dobladas, ventilador y tele'
     fileName:
       pt: apto-4-quarto-cama-de-casal
       en: apt-4-bedroom-double-bed
@@ -412,9 +408,9 @@ images:
     category: bedroom
     provisional: true
     alt:
-      pt: "Cama de casal do Apto 4 com colcha clara e um quadro de flores na parede"
-      en: "Apt 4 double bed with a light bedspread and a flower painting on the wall"
-      es: "Cama matrimonial del depto 4 con cubrecama claro y un cuadro de flores"
+      pt: 'Cama de casal do Apto 4 com colcha clara e um quadro de flores na parede'
+      en: 'Apt 4 double bed with a light bedspread and a flower painting on the wall'
+      es: 'Cama matrimonial del depto 4 con cubrecama claro y un cuadro de flores'
     fileName:
       pt: apto-4-quarto-quadro
       en: apt-4-bedroom-painting
@@ -424,9 +420,9 @@ images:
     category: bathroom
     provisional: true
     alt:
-      pt: "Banheiro do Apto 4 com cuba redonda sobre bancada, vaso e box de vidro"
-      en: "Apt 4 bathroom with a round vessel basin, toilet and glass shower"
-      es: "Baño del depto 4 con bacha redonda, inodoro y ducha con mampara"
+      pt: 'Banheiro do Apto 4 com cuba redonda sobre bancada, vaso e box de vidro'
+      en: 'Apt 4 bathroom with a round vessel basin, toilet and glass shower'
+      es: 'Baño del depto 4 con bacha redonda, inodoro y ducha con mampara'
     fileName:
       pt: apto-4-banheiro
       en: apt-4-bathroom
@@ -436,9 +432,9 @@ images:
     category: bathroom
     provisional: true
     alt:
-      pt: "Box de vidro e gabinete de madeira clara no banheiro do Apto 4"
-      en: "Glass shower and light-wood vanity in the Apt 4 bathroom"
-      es: "Mampara de vidrio y vanitory de madera clara en el baño del depto 4"
+      pt: 'Box de vidro e gabinete de madeira clara no banheiro do Apto 4'
+      en: 'Glass shower and light-wood vanity in the Apt 4 bathroom'
+      es: 'Mampara de vidrio y vanitory de madera clara en el baño del depto 4'
     fileName:
       pt: apto-4-banheiro-box
       en: apt-4-bathroom-shower
@@ -448,9 +444,9 @@ images:
     category: bathroom
     provisional: true
     alt:
-      pt: "Cuba branca e espelho com prateleira no banheiro do Apto 4"
-      en: "White basin and a mirror with a shelf in the Apt 4 bathroom"
-      es: "Bacha blanca y espejo con estante en el baño del depto 4"
+      pt: 'Cuba branca e espelho com prateleira no banheiro do Apto 4'
+      en: 'White basin and a mirror with a shelf in the Apt 4 bathroom'
+      es: 'Bacha blanca y espejo con estante en el baño del depto 4'
     fileName:
       pt: apto-4-banheiro-cuba
       en: apt-4-bathroom-basin
@@ -460,9 +456,9 @@ images:
     category: bathroom
     provisional: true
     alt:
-      pt: "Banheiro do Apto 4 visto da porta, com cuba, vaso e espelho"
-      en: "Apt 4 bathroom seen from the door, with basin, toilet and mirror"
-      es: "Baño del depto 4 visto desde la puerta, con bacha, inodoro y espejo"
+      pt: 'Banheiro do Apto 4 visto da porta, com cuba, vaso e espelho'
+      en: 'Apt 4 bathroom seen from the door, with basin, toilet and mirror'
+      es: 'Baño del depto 4 visto desde la puerta, con bacha, inodoro y espejo'
     fileName:
       pt: apto-4-banheiro-vista-da-porta
       en: apt-4-bathroom-from-door
@@ -472,9 +468,9 @@ images:
     category: other
     provisional: true
     alt:
-      pt: "Escada interna que leva ao andar de cima, onde fica o Apto 4"
-      en: "Indoor staircase up to the top floor, where Apt 4 is"
-      es: "Escalera interna que sube a la planta alta, donde está el depto 4"
+      pt: 'Escada interna que leva ao andar de cima, onde fica o Apto 4'
+      en: 'Indoor staircase up to the top floor, where Apt 4 is'
+      es: 'Escalera interna que sube a la planta alta, donde está el depto 4'
     fileName:
       pt: apto-4-escada-de-acesso
       en: apt-4-stairs
