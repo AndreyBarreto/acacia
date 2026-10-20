@@ -28,26 +28,15 @@ Rua Luiz Rampa, 70, Jurerê, Florianópolis/SC, 88053-682.
 
 [Abrir no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
-## Melhor época, mês a mês
+## Melhor época
 
-O mar fica acima dos 24 °C de dezembro a abril e perto dos 19 °C em agosto e setembro. A alta temporada vai de dezembro a fevereiro, e janeiro e fevereiro são os meses de maior procura. O mínimo é de 4 noites o ano todo, inclusive no Réveillon e no Carnaval.
+Verão (dezembro a março): água entre 24 e 25,7 °C.
 
-| Mês | Água (média estimada) | O que esperar |
-|---|---|---|
-| Janeiro | ~25,7 °C | Alta temporada, praia cheia. |
-| Fevereiro | ~25,7 °C | Alta temporada e Carnaval. |
-| Março | ~25,5 °C | Ar com média de 24,4 °C (máximas perto de 29 °C); um dos meses mais chuvosos, com 180 mm na média. |
-| Abril | ~24,5 °C | Mar ainda morno, fora da alta temporada. |
-| Maio | ~22,4 °C | A água começa a esfriar. |
-| Junho | – | Inverno. O ar split dos apartamentos também aquece. |
-| Julho | – | Inverno. |
-| Agosto | ~18,5 °C | Água fria para banho longo. |
-| Setembro | ~18,9 °C | Água ainda fria. |
-| Outubro | ~21 °C | A água volta a esquentar. |
-| Novembro | ~22,4 °C | Mar quase no ponto do verão. |
-| Dezembro | ~24 °C | Começa a alta temporada. Ar com média de 24,2 °C e 177 mm de chuva na média. Réveillon com as festas dos beach clubs de Jurerê. |
+Meia-estação (abril, maio, outubro e novembro): água entre 21 e 24,5 °C.
 
-Fontes: temperatura da água em temperaturadomar.pt (médias estimadas, não medição); ar e chuva de março e dezembro nas normais 1991–2020 do INMET.
+Inverno (junho a setembro): em agosto e setembro a água fica perto de 18,5 a 19 °C, fria para banho longo.
+
+Fontes: temperatura da água em temperaturadomar.pt (médias estimadas, não medição).
 
 ## Dicas práticas
 

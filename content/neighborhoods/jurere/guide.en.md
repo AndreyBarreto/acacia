@@ -28,26 +28,15 @@ Rua Luiz Rampa, 70, Jurerê, Florianópolis, SC, Brazil, 88053-682.
 
 [Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
-## When to come, month by month
+## When to come
 
-The southern hemisphere seasons apply: summer is December to February. The sea stays above 24 °C (75 °F) from December to April and drops to about 19 °C (66 °F) in August and September. High season runs from December to February, with January and February the busiest. The minimum stay is 4 nights all year, New Year's and Carnival included.
+Summer (December to March): water between 24 and 25.7 °C (75 to 78 °F).
 
-| Month | Water (estimated average) | What to expect |
-|---|---|---|
-| January | ~26 °C / 78 °F | High season, busy beach. |
-| February | ~26 °C / 78 °F | High season and Carnival. |
-| March | ~25.5 °C / 78 °F | Air averages 24.4 °C (76 °F), highs near 29 °C (84 °F); one of the rainier months, around 180 mm. |
-| April | ~24.5 °C / 76 °F | Sea still warm, outside high season. |
-| May | ~22.4 °C / 72 °F | The water starts to cool. |
-| June | – | Winter. The split air conditioning in the apartments also heats. |
-| July | – | Winter. |
-| August | ~18.5 °C / 65 °F | Cold for a long swim. |
-| September | ~18.9 °C / 66 °F | Water still cold. |
-| October | ~21 °C / 70 °F | The water warms up again. |
-| November | ~22.4 °C / 72 °F | Sea close to summer levels. |
-| December | ~24 °C / 75 °F | High season begins. Air averages 24.2 °C (76 °F), about 177 mm of rain. New Year's Eve parties at the Jurerê beach clubs. |
+Mid-season (April, May, October and November): water between 21 and 24.5 °C (70 to 76 °F).
 
-Sources: water temperature from temperaturadomar.pt (estimated averages, not measurements); March and December air and rain from INMET 1991–2020 normals.
+Winter (June to September): in August and September the water is around 18.5 to 19 °C (65 to 66 °F), cold for a long swim.
+
+Sources: water temperature from temperaturadomar.pt (estimated averages, not measurements).
 
 ## Practical tips
 

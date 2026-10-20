@@ -28,26 +28,15 @@ Rua Luiz Rampa, 70, Jurerê, Florianópolis, SC, Brasil, 88053-682.
 
 [Abrir en Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
-## Cuándo ir, mes por mes
+## Cuándo ir
 
-El mar está por encima de 24 °C de diciembre a abril y ronda los 19 °C en agosto y septiembre. La temporada alta va de diciembre a febrero; el consulado argentino recomienda reservar con tiempo para enero y febrero, porque la demanda es muy alta. El mínimo es de 4 noches todo el año, también en Año Nuevo y Carnaval.
+Verano (diciembre a marzo): agua entre 24 y 25,7 °C.
 
-| Mes | Agua (promedio estimado) | Qué esperar |
-|---|---|---|
-| Enero | ~25,7 °C | Temporada alta, playa llena. |
-| Febrero | ~25,7 °C | Temporada alta y Carnaval. |
-| Marzo | ~25,5 °C | Aire con promedio de 24,4 °C (máximas cerca de 29 °C); uno de los meses más lluviosos, con 180 mm de promedio. |
-| Abril | ~24,5 °C | El mar sigue tibio, ya fuera de la temporada alta. |
-| Mayo | ~22,4 °C | El agua empieza a enfriarse. |
-| Junio | – | Invierno. El aire split de los deptos también da calor. |
-| Julio | – | Invierno. |
-| Agosto | ~18,5 °C | Agua fría para quedarse mucho. |
-| Septiembre | ~18,9 °C | El agua sigue fría. |
-| Octubre | ~21 °C | El agua vuelve a templarse. |
-| Noviembre | ~22,4 °C | El mar casi como en verano. |
-| Diciembre | ~24 °C | Empieza la temporada alta. Aire con promedio de 24,2 °C y 177 mm de lluvia. Año Nuevo con las fiestas de los beach clubs de Jurerê. |
+Media estación (abril, mayo, octubre y noviembre): agua entre 21 y 24,5 °C.
 
-Fuentes: temperatura del agua en temperaturadomar.pt (promedios estimados, no mediciones); aire y lluvia de marzo y diciembre en las normales 1991–2020 del INMET.
+Invierno (junio a septiembre): en agosto y septiembre el agua ronda los 18,5 a 19 °C, fría para quedarse mucho.
+
+Fuentes: temperatura del agua en temperaturadomar.pt (promedios estimados, no mediciones).
 
 ## Datos prácticos
 
