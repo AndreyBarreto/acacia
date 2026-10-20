@@ -54,5 +54,5 @@ Sources: water temperature from temperaturadomar.pt (estimated averages, not mea
 - **Minimum stay:** 4 nights, all year.
 - **Car:** free parking at the building. The beach is a walk.
 - **In the sea:** swim near a lifeguard post and stay out where there is a red flag. With children, ask at the post for an ID wristband. That is the advice of the Santa Catarina fire and rescue service (CBMSC).
-- **Fortaleza de São José da Ponta Grossa:** reached via Servidão da Carioca, on Praia do Forte. In 2026, entry is free on the last Sunday of each month, through November.
+- **Fortaleza de São José da Ponta Grossa:** reached via Servidão da Carioca, on Praia do Forte.
 - **Payment and cancellation:** we agree on them over WhatsApp.

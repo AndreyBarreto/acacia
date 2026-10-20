@@ -54,5 +54,5 @@ Fontes: temperatura da água em temperaturadomar.pt (médias estimadas, não med
 - **Estadia mínima:** 4 noites, o ano todo.
 - **Carro:** fica na garagem do prédio, sem custo. A praia é a pé.
 - **No mar:** nade perto do posto de guarda-vidas e não entre onde houver bandeira vermelha. Com criança, peça no posto a pulseira de identificação. Essas são as orientações do Corpo de Bombeiros de Santa Catarina.
-- **Fortaleza de São José da Ponta Grossa:** o acesso é pela Servidão da Carioca, na Praia do Forte. Em 2026, a entrada é gratuita no último domingo de cada mês, até novembro.
+- **Fortaleza de São José da Ponta Grossa:** o acesso é pela Servidão da Carioca, na Praia do Forte.
 - **Pagamento e cancelamento:** combinamos pelo WhatsApp.

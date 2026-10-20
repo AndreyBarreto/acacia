@@ -54,5 +54,5 @@ Fuentes: temperatura del agua en temperaturadomar.pt (promedios estimados, no me
 - **Estadía mínima:** 4 noches, todo el año.
 - **Auto:** queda en la cochera del edificio, sin cargo. A la playa vas caminando.
 - **En el mar:** metete cerca del puesto de guardavidas y no entres donde haya bandera roja. Con chicos, pedí en el puesto la pulsera de identificación. Son las indicaciones de los Bomberos de Santa Catarina (CBMSC).
-- **Fortaleza de São José da Ponta Grossa:** se llega por la Servidão da Carioca, en la Praia do Forte. En 2026 la entrada es gratis el último domingo de cada mes, hasta noviembre.
+- **Fortaleza de São José da Ponta Grossa:** se llega por la Servidão da Carioca, en la Praia do Forte.
 - **Pago y cancelación:** lo combinamos por WhatsApp.
