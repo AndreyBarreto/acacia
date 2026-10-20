@@ -2,9 +2,6 @@
 // No i18n import on purpose: the mini form script imports this file, and the catalog would ship with it.
 import type { Locale } from './i18n/locales';
 
-/** The single site number (CLAUDE.md). A property may override it with `contact.whatsapp`. */
-export const siteWhatsApp = '+5548999442015';
-
 /** Reads a key of the `whatsapp` i18n namespace, e.g. (key, vars) => t(locale, `whatsapp.${key}`, vars). */
 export type WhatsAppText = (key: string, vars?: Record<string, string>) => string;
 
@@ -19,7 +16,7 @@ export interface Stay {
 
 export function whatsappUrl(phone: string, message: string): string {
   if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
-    throw new Error(`WhatsApp number "${phone}" is not in E.164 format (+5548999442015)`);
+    throw new Error(`WhatsApp number "${phone}" is not in E.164 format ("+" and digits only)`);
   }
   return `https://wa.me/${phone.slice(1)}?text=${encodeURIComponent(message)}`;
 }

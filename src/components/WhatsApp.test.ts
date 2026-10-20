@@ -14,6 +14,9 @@ async function render(component: Component, props: Record<string, unknown>): Pro
   return container.renderToString(component, { props });
 }
 
+// The site number lives in content/site.yaml; pages read it with loadContent() and pass it down.
+const phone = '+5548999442015';
+
 const hrefs = (html: string) => [...html.matchAll(/href="([^"]+)"/g)].map(([, href]) => href);
 const decoded = (href: string) =>
   decodeURIComponent(href.replaceAll('&amp;', '&').replace(/^[^?]+\?text=/, ''));
@@ -26,7 +29,7 @@ describe('WhatsAppFab', () => {
       es: '¡Hola! Vengo del sitio de Acácia y quiero consultar por los deptos. ¿Tienen lugar del __/__ al __/__ para __ personas?',
     };
     for (const [locale, message] of Object.entries(expected)) {
-      const [href] = hrefs(await render(WhatsAppFab, { locale }));
+      const [href] = hrefs(await render(WhatsAppFab, { locale, phone }));
 
       expect(href).toMatch(/^https:\/\/wa\.me\/5548999442015\?text=/);
       expect(decoded(href)).toBe(message);
@@ -34,10 +37,30 @@ describe('WhatsAppFab', () => {
   });
 
   it('shows "WhatsApp" and names the link for screen readers', async () => {
-    const html = await render(WhatsAppFab, { locale: 'es' });
+    const html = await render(WhatsAppFab, { locale: 'es', phone });
 
     expect(html).toMatch(/<a[^>]*aria-label="Escribirle a Acácia por WhatsApp"/);
     expect(html).toMatch(/>WhatsApp<\/span>/);
+  });
+
+  it('uses the number it is given', async () => {
+    const [href] = hrefs(await render(WhatsAppFab, { locale: 'pt', phone: '+5548988887777' }));
+
+    expect(href).toMatch(/^https:\/\/wa\.me\/5548988887777\?text=/);
+  });
+
+  it('on a property page, cites the property and names it for screen readers', async () => {
+    const html = await render(WhatsAppFab, {
+      locale: 'es',
+      phone,
+      context: { page: 'property', name: 'Depto 4', code: 'acacia-4' },
+    });
+    const [href] = hrefs(html);
+
+    expect(decoded(href)).toBe(
+      '¡Hola! Vi el Depto 4 (código acacia-4) en el sitio de Acácia. ¿Tienen lugar del __/__ al __/__ para __ personas?',
+    );
+    expect(html).toMatch(/<a[^>]*aria-label="Consultar por el Depto 4 en WhatsApp"/);
   });
 
   it('positions itself with the layer, safe-area and cookie banner tokens', () => {
@@ -53,7 +76,12 @@ describe('WhatsAppFab', () => {
 
 describe('WhatsAppCta', () => {
   it('cites the property name and code in the page language', async () => {
-    const html = await render(WhatsAppCta, { locale: 'en', name: 'Apt 4', code: 'acacia-4' });
+    const html = await render(WhatsAppCta, {
+      locale: 'en',
+      name: 'Apt 4',
+      code: 'acacia-4',
+      phone,
+    });
     const [href] = hrefs(html);
 
     expect(href).toMatch(/^https:\/\/wa\.me\/5548999442015\?text=/);
@@ -76,7 +104,14 @@ describe('WhatsAppCta', () => {
 });
 
 describe('WhatsAppForm', () => {
-  const props = { locale: 'pt', name: 'Apto 4', code: 'acacia-4', minNights: 4, maxGuests: 3 };
+  const props = {
+    locale: 'pt',
+    name: 'Apto 4',
+    code: 'acacia-4',
+    minNights: 4,
+    maxGuests: 3,
+    phone,
+  };
 
   it('has labelled date fields and a guests select from 1 to maxGuests', async () => {
     const html = await render(WhatsAppForm, props);
