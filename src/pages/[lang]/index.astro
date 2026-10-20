@@ -1,15 +1,132 @@
 ---
-// Placeholder home, replaced by E10 (T27).
+// Home (E10, T27): the distance and a large photo, the two apartments, one line on remote work
+// and one on the neighborhood. The WhatsApp button is the fixed one from the layout.
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeHero from '../../components/home/HomeHero.astro';
+import HomeProperty from '../../components/home/HomeProperty.astro';
+import { loadContent } from '../../lib/content/load';
 import { locales, type Locale } from '../../lib/i18n/locales';
+import { t } from '../../lib/i18n/t';
+import { routePath } from '../../lib/routes';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
 
 const locale = Astro.params.lang as Locale;
+const text = (key: string, vars?: Record<string, string>) => t(locale, `home.${key}`, vars);
+
+const { buildings, properties } = await loadContent();
+const sorted = [...properties].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+// The hero is the cover of the first apartment, so its mosaic starts from the next photo.
+const heroImage = sorted[0]?.data.images.find((image) => image.cover);
+const heroBuilding = buildings.find((b) => b.id === sorted[0]?.data.building?.id) ?? buildings[0];
+
+// One photo per room (the first of each category), so the mosaic never shows the same room twice.
+function onePerCategory<T extends { category: string }>(images: T[]): T[] {
+  const seen = new Set<string>();
+  return images.filter((image) => !seen.has(image.category) && seen.add(image.category));
+}
+
+const cards = sorted.map((property) => ({
+  name: property.data.name[locale],
+  subtitle: property.data.subtitle?.[locale],
+  href: routePath({ id: 'property', slug: property.id }, locale),
+  photos: onePerCategory(property.data.images.filter((image) => image !== heroImage))
+    .slice(0, 3)
+    .map((image) => ({ src: image.src, alt: image.alt[locale] })),
+}));
 ---
 
-<BaseLayout locale={locale} page={{ id: 'home' }} title="Acácia">
-  <h1>Acácia</h1>
+<BaseLayout locale={locale} page={{ id: 'home' }} title={text('seo.title')}>
+  <HomeHero
+    locale={locale}
+    distance={heroBuilding.data.beachDistanceMeters}
+    photo={heroImage && { src: heroImage.src, alt: heroImage.alt[locale] }}
+  />
+
+  <section class="properties" aria-labelledby="properties-title">
+    <h2 id="properties-title">{text('properties.title')}</h2>
+    <div class="pair">
+      {cards.map((card, index) => (
+        <HomeProperty
+          {...card}
+          linkText={text('properties.view', { name: card.name })}
+          mirrored={index % 2 === 1}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="notes">
+    <p class="remote">{text('remote')}</p>
+    <p class="neighborhood">
+      {text('neighborhood.text')}{' '}
+      <a href={routePath({ id: 'neighborhood' }, locale)}>{text('neighborhood.link')}</a>
+    </p>
+  </section>
 </BaseLayout>
+
+<style>
+  .properties,
+  .notes {
+    max-inline-size: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block-start: var(--space-section);
+  }
+
+  .properties h2 {
+    margin-block-end: var(--space-6);
+  }
+
+  .pair {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .notes {
+    display: grid;
+    gap: var(--space-5);
+    padding-block-end: var(--space-section);
+  }
+
+  .notes p {
+    margin: 0;
+  }
+
+  .remote {
+    padding: var(--space-6) var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    background: var(--color-surface-tint);
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    line-height: var(--leading-heading);
+    max-inline-size: none;
+  }
+
+  /* A link inside a sentence: WCAG 2.5.8 exempts inline targets from the minimum size. */
+  .neighborhood a {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (min-width: 56.25em) {
+    .pair {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: var(--space-7);
+      align-items: start;
+    }
+
+    .notes {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: var(--space-7);
+      align-items: center;
+    }
+
+    .remote {
+      margin-inline: 0;
+      padding: var(--space-7);
+    }
+  }
+</style>

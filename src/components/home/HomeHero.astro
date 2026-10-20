@@ -1,0 +1,193 @@
+---
+// Home opening (direction 2 · Régua): the distance as the H1, a short intro and a large photo
+// with the 50 m ruler drawn over it, from the gate (bottom) to the sand (top). The ruler is the
+// one use of the signature element on the home (docs/brand.md §5); it repeats the H1, so it is
+// hidden from assistive technology.
+import Photo from '../Photo.astro';
+import type { Locale } from '../../lib/i18n/locales';
+import { t } from '../../lib/i18n/t';
+
+interface Props {
+  locale: Locale;
+  distance: number;
+  photo?: { src: ImageMetadata; alt: string };
+}
+
+const { locale, distance, photo } = Astro.props;
+const text = (key: string) => t(locale, `home.${key}`);
+const meters = `${distance} m`;
+---
+
+<section class="hero">
+  <div class="text">
+    <h1>
+      <span class="distance">{meters}</span> {text('hero.place')}
+    </h1>
+    <p class="intro">{text('intro')}</p>
+  </div>
+  {photo && (
+    <figure class="photo">
+      <Photo src={photo.src} alt={photo.alt} cover sizes="(min-width: 56.25em) 45vw, 100vw" />
+      <div class="ruler" aria-hidden="true">
+        <span class="line" />
+        <span class="label sand">
+          {meters} · {text('ruler.sand')}
+        </span>
+        <span class="label gate">0 · {text('ruler.gate')}</span>
+      </div>
+    </figure>
+  )}
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    gap: var(--space-6);
+    max-inline-size: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block-start: var(--space-4);
+  }
+
+  .text {
+    display: grid;
+    align-content: end;
+    gap: var(--space-5);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    max-inline-size: var(--measure-heading);
+  }
+
+  .distance {
+    display: block;
+    /* The number is the page's one oversized element: 6.5rem on a 320 px phone, up to 16rem. */
+    font-size: clamp(6.5rem, 2rem + 24vw, 16rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    /* Room for the descender of the "5" in Young Serif. */
+    margin-block-end: 0.12em;
+    white-space: nowrap;
+  }
+
+  .intro {
+    font-size: var(--text-lg);
+    max-inline-size: var(--measure-lede);
+  }
+
+  .photo {
+    position: relative;
+    margin: 0;
+    margin-inline: calc(var(--gutter) * -1);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-surface-tint);
+  }
+
+  .photo :global(picture),
+  .photo :global(img) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .photo :global(img) {
+    object-fit: cover;
+  }
+
+  .ruler {
+    position: absolute;
+    inset-block: 12% 8%;
+    inset-inline-start: var(--space-4);
+  }
+
+  .line {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: 2px;
+    background: var(--color-surface);
+    transform-origin: bottom;
+  }
+
+  .label {
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    translate: 0 -50%;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-label);
+    line-height: var(--leading-ui);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sand {
+    inset-block-start: 0;
+  }
+
+  .gate {
+    inset-block-start: 100%;
+  }
+
+  /* The sand end is the only yellow on the ruler. */
+  .sand::before {
+    content: '';
+    display: inline-block;
+    inline-size: 0.6em;
+    block-size: 0.6em;
+    margin-inline-end: var(--space-2);
+    border-radius: var(--radius-round);
+    background: var(--color-accent);
+    outline: 1.5px solid var(--color-text);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .line {
+      animation: draw var(--duration-draw) var(--ease-out) both;
+    }
+
+    .sand {
+      animation: appear var(--duration-base) var(--ease-out) var(--duration-draw) both;
+    }
+  }
+
+  @keyframes draw {
+    from {
+      scale: 1 0;
+    }
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @media (min-width: 56.25em) {
+    .hero {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      column-gap: var(--space-7);
+      block-size: clamp(36rem, calc(100svh - 5rem), 54rem);
+    }
+
+    .text {
+      padding-block-end: var(--space-6);
+    }
+
+    .photo {
+      margin-inline: 0;
+      aspect-ratio: auto;
+      min-block-size: 0;
+    }
+
+    .ruler {
+      inset-inline-start: var(--space-5);
+    }
+  }
+</style>
