@@ -85,8 +85,85 @@ function distanceKm(a: Geo, b: Geo): number {
 const maxDistanceKm = 5;
 const minImages = 8;
 
-export function contentIssues(content: Content): string[] {
+// docs/brand.md §8 and CLAUDE.md: it is always "a 50 m da praia", and no generic praise.
+const forbiddenTerms = [
+  'beira-mar',
+  'pé na areia',
+  'frente para o mar',
+  'frente al mar',
+  'beachfront',
+  'paraíso',
+  'paradise',
+  'inesquecível',
+  'inolvidable',
+  'unforgettable',
+  'exclusivo',
+  'exclusive',
+  'luxo',
+  'lujo',
+  'luxury',
+  'sofisticado',
+  'sophisticated',
+  'experiência',
+  'experiencia',
+  'experience',
+  'dos sonhos',
+  'refúgio',
+  'refugio',
+  'sanctuary',
+  'breathtaking',
+  'imperdible',
+];
+// Allowed only in the neighborhood page ("Tradicional × Internacional").
+const neighborhoodOnlyTerms = ['jurerê internacional'];
+// Case matters: "todo" is a Portuguese and Spanish word.
+const placeholders = [
+  /xxxx/i,
+  /exemplo\.com/i,
+  /example\.com/i,
+  /lorem ipsum/i,
+  /\bTODO\b/,
+  /\bPENDENTE\b/,
+];
+
+/** Lowercase, without accents, so "Pe na Areia" matches "pé na areia". */
+const plain = (text: string) => text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+
+const hasTerm = (text: string, term: string) =>
+  new RegExp(
+    `(^|[^a-z0-9])${plain(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^a-z0-9])`,
+  ).test(plain(text));
+
+/** Every string in `value` with its dotted path ("images.1.alt.es"). */
+function* texts(value: unknown, path: string[] = []): Generator<[string, string]> {
+  if (typeof value === 'string') yield [path.join('.'), value];
+  else if (value && typeof value === 'object') {
+    for (const [key, child] of Object.entries(value)) yield* texts(child, [...path, key]);
+  }
+}
+
+function wordingIssues(collection: string, { id, data }: Entry<unknown>): string[] {
+  const terms =
+    collection === 'neighborhoods' ? forbiddenTerms : [...forbiddenTerms, ...neighborhoodOnlyTerms];
   const issues: string[] = [];
+  for (const [path, text] of texts(data)) {
+    for (const term of terms) {
+      if (hasTerm(text, term)) {
+        issues.push(`${collection}/${id}: ${path} has the forbidden term "${term}"`);
+      }
+    }
+    for (const placeholder of placeholders) {
+      const found = text.match(placeholder);
+      if (found) issues.push(`${collection}/${id}: ${path} has the placeholder "${found[0]}"`);
+    }
+  }
+  return issues;
+}
+
+export function contentIssues(content: Content): string[] {
+  const issues: string[] = Object.entries(content).flatMap(([collection, entries]) =>
+    (entries as Entry<unknown>[]).flatMap((entry) => wordingIssues(collection, entry)),
+  );
   const cities = new Set(content.cities.map((entry) => entry.id));
   const neighborhoods = new Map(content.neighborhoods.map((entry) => [entry.id, entry.data]));
   const buildings = new Map(content.buildings.map((entry) => [entry.id, entry.data]));

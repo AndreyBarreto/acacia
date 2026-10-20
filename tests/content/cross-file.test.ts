@@ -186,7 +186,63 @@ describe('cross-file rules', () => {
       change: (raw: Raw) => (apto4(raw).images[2].src = './photos/beach.jpg'),
       error: 'properties/apto-4: images: ./photos/beach.jpg is also a building photo',
     },
+    {
+      rule: 'terms',
+      case: 'a text says beachfront (it is always "50 m from the beach")',
+      change: (raw: Raw) => (apto4(raw).summary.pt = 'Apartamento beira-mar, até 3 pessoas.'),
+      error: 'properties/apto-4: summary.pt has the forbidden term "beira-mar"',
+    },
+    {
+      rule: 'terms',
+      case: 'a forbidden term written without accents or in capitals',
+      change: (raw: Raw) => (apto4(raw).highlights.pt[0] = 'Pe na Areia em Jurerê'),
+      error: 'properties/apto-4: highlights.pt.0 has the forbidden term "pé na areia"',
+    },
+    {
+      rule: 'terms',
+      case: 'a forbidden term inside an image alt',
+      change: (raw: Raw) => (apto4(raw).images[1].alt.es = 'Living del depto frente al mar'),
+      error: 'properties/apto-4: images.1.alt.es has the forbidden term "frente al mar"',
+    },
+    {
+      rule: 'terms',
+      case: 'Jurerê Internacional in a property text',
+      change: (raw: Raw) => (apto4(raw).seo.title.en = 'Apartment near Jurerê Internacional beach'),
+      error: 'properties/apto-4: seo.title.en has the forbidden term "jurerê internacional"',
+    },
+    {
+      rule: 'placeholders',
+      case: 'the site URL is still the example domain',
+      change: (raw: Raw) => (raw.site[0].data.siteUrl = 'https://exemplo.com.br'),
+      error: 'site/site: siteUrl has the placeholder "exemplo.com"',
+    },
+    {
+      rule: 'placeholders',
+      case: 'a TODO left in a text',
+      change: (raw: Raw) => (apto4(raw).rules.notes.en[0] = 'TODO: arrival note'),
+      error: 'properties/apto-4: rules.notes.en.0 has the placeholder "TODO"',
+    },
+    {
+      rule: 'placeholders',
+      case: 'a coordinate-like xxxx in a text',
+      change: (raw: Raw) => (raw.buildings[0].data.address.street = 'Rua xxxx, 70'),
+      error: 'buildings/residencial-acacia: address.street has the placeholder "xxxx"',
+    },
   ])('$rule: $case', ({ change, error }) => {
     expect(contentIssues(contentWith(change))).toContain(error);
+  });
+});
+
+describe('words that are not forbidden', () => {
+  it('accepts the Spanish "todo el año", Jurerê Internacional in the neighborhood and "fluxo"', () => {
+    const issues = contentIssues(
+      contentWith((raw) => {
+        apto4(raw).description.es += 'La estadía mínima es de 4 noches, todo el año.\n';
+        raw.neighborhoods[0].data.seo.description.pt =
+          'Praias, onde comer e como chegar em Jurerê Tradicional, e a diferença para Jurerê Internacional.';
+        apto4(raw).description.pt += 'O fluxo de carros na rua é pequeno.\n';
+      }),
+    );
+    expect(issues).toEqual([]);
   });
 });
