@@ -74,7 +74,7 @@ Ambas SIL OFL 1.1, uso livre no site. Cobrem acentos do português e ñ, ¿ e ¡
 
 ### Escala (mobile first)
 
-Os valores abaixo partem do celular de 390 px e crescem com `clamp()`. Texto corrido nunca abaixo de 17 px; o menor texto do site (legenda) é 14 px.
+Os valores abaixo partem do celular de 390 px e crescem com `clamp()`. Texto corrido nunca abaixo de 16 px; o menor texto do site (legenda) é 14 px.
 
 | Estilo | Fonte | Mobile | Desktop (máx.) | Entrelinha | Observação |
 |---|---|---|---|---|---|
@@ -83,7 +83,7 @@ Os valores abaixo partem do celular de 390 px e crescem com `clamp()`. Texto cor
 | H3 | Young Serif | 22 px | 28 px | 1,2 | |
 | Frase do CTA | Young Serif | 26 px | 40 px | 1,15 | `clamp(26px, 4vw, 40px)`, até 22 caracteres por linha |
 | Lede (abertura) | Hanken Grotesk 400 | 19 px | 21 px | 1,45 | Até 34 caracteres por linha no hero |
-| Texto corrido | Hanken Grotesk 400 | 17 px | 18 px | 1,6 | Até 65 caracteres por linha |
+| Texto corrido | Hanken Grotesk 400 | 16 px | 18 px | 1,6 | Até 65 caracteres por linha |
 | Rótulo / menu | Hanken Grotesk 500 | 15 px | 15 px | 1,4 | Em caixa alta só na régua, com espaçamento de .06em |
 | Botão | Hanken Grotesk 600 | 17 px | 17 px | 1 | Altura mínima 48 px |
 | Legenda | Hanken Grotesk 400 | 14 px | 14 px | 1,4 | Cor Folha, até 30 caracteres por linha |

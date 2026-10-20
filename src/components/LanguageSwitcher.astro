@@ -26,15 +26,9 @@ const urls = alternates(page);
             {t(locale, `common.lang.short.${l}`)}
           </span>
         ) : (
-          <a
-            href={urls[l]}
-            hreflang={l}
-            lang={l}
-            aria-label={t(locale, 'common.lang.switchTo.aria', {
-              language: t(locale, `common.lang.name.${l}`),
-            })}
-          >
+          <a href={urls[l]} hreflang={l} lang={l}>
             {t(locale, `common.lang.short.${l}`)}
+            <span class="visually-hidden">{t(l, `common.lang.name.${l}`)}</span>
           </a>
         )}
       </li>
@@ -49,5 +43,13 @@ const urls = alternates(page);
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 </style>

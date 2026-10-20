@@ -1,6 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from './fixtures';
 
+// A Portuguese browser keeps the language suggestion banner out of these layout checks.
+test.use({ locale: 'pt-BR' });
+
 const locales = ['pt', 'en', 'es'];
 
 for (const locale of locales) {

@@ -7,14 +7,18 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SeoHead from '../components/SeoHead.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
+import LanguageBanner from '../components/LanguageBanner.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { htmlLang, type Locale } from '../lib/i18n/locales';
+import type { PageRef } from '../lib/routes';
 
 interface Props {
   locale: Locale;
+  page: PageRef;
   title: string;
 }
 
-const { locale, title } = Astro.props;
+const { locale, page, title } = Astro.props;
 ---
 
 <html lang={htmlLang(locale)}>
@@ -24,7 +28,10 @@ const { locale, title } = Astro.props;
     <SeoHead locale={locale} title={title} />
   </head>
   <body>
-    <Header locale={locale} />
+    <LanguageBanner locale={locale} page={page} />
+    <Header locale={locale}>
+      <LanguageSwitcher slot="language-switcher" locale={locale} page={page} />
+    </Header>
     <main>
       <slot />
     </main>

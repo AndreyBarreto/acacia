@@ -1,6 +1,7 @@
 ---
 import logo from '../../assets/brand/logo/logo-horizontal-light.svg';
 import type { Locale } from '../lib/i18n/locales';
+import { routePath } from '../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -10,10 +11,9 @@ const { locale } = Astro.props;
 const logoHeight = 40;
 const logoWidth = Math.round((logo.width / logo.height) * logoHeight);
 
-// TODO(E5): build these URLs with the route helpers from src/lib/routes.ts once they exist.
 // "Jurerê" is the same label in pt, en and es (CLAUDE.md, T19), so it needs no translation.
-const homeHref = `/${locale}/`;
-const neighborhoodHref = `/${locale}/jurere/`;
+const homeHref = routePath({ id: 'home' }, locale);
+const neighborhoodHref = routePath({ id: 'neighborhood' }, locale);
 ---
 
 <header class="site-header">
