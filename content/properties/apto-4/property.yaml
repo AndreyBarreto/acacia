@@ -3,12 +3,10 @@
 #   subtitle            -> o tipo do apto como detalhe do título ("Apto 4" + "Com varanda e vista
 #                          para o mar"), conforme a decisão da T05.
 #   images[].fileName   -> nome público sugerido por idioma, sem extensão (T26).
-#
-# Tudo o que depende de confirmação está marcado com TODO.
 # Diferença para o apto 6 (anti-canibalização, T12 §5): aqui o principal é varanda + vista para o mar.
 
 identifier: acacia-4 # nunca muda (schema.org, GA4, iCal)
-status: draft # vira published quando os TODOs fecharem
+status: published
 order: 1
 neighborhood: jurere
 building: residencial-acacia
@@ -157,10 +155,9 @@ rules:
       - 'El depto está en la planta alta y se llega solo por escalera.'
       - 'Pago y cancelación: lo arreglamos por WhatsApp antes de confirmar la reserva.'
 
-# Fotos do Booking (assets/booking/photos/varanda), provisórias. Ordem = ordem sugerida da galeria
-# (varanda → sala → cozinha → quarto → banheiro → acesso).
-# TODO (curadoria, T28): há fotos quase repetidas (4 de banheiro, 3 da cozinha em corredor, 3 do quarto
-# com roupa de cama diferente); escolher 1 ou 2 de cada antes de publicar.
+# Fotos do Booking (assets/booking/photos/varanda), provisórias, 1 ou 2 por ambiente (curadoria da T28).
+# Ordem = ordem da galeria: varanda → sala → quarto → banheiro → escada → cozinha (a foto horizontal
+# da mesa fecha o mosaico).
 images:
   - src: ../../../assets/booking/photos/varanda/08-427001353.jpg
     category: balcony
@@ -187,18 +184,6 @@ images:
       en: apt-4-long-balcony
       es: depto-4-balcon-largo
 
-  - src: ../../../assets/booking/photos/varanda/14-513747967.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sala do Apto 4 com sofá marrom e porta de correr aberta para a varanda'
-      en: 'Apt 4 living room with a brown sofa and a sliding door open to the balcony'
-      es: 'Living del depto 4 con sillón marrón y puerta corrediza abierta al balcón'
-    fileName:
-      pt: apto-4-sala-porta-varanda
-      en: apt-4-living-room-balcony-door
-      es: depto-4-living-puerta-al-balcon
-
   - src: ../../../assets/booking/photos/varanda/21-338482206.jpg
     category: living
     provisional: true
@@ -211,30 +196,6 @@ images:
       en: apt-4-living-room-wide
       es: depto-4-living-vista-amplia
 
-  - src: ../../../assets/booking/photos/varanda/17-513746487.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sala do Apto 4 vista do fundo, com sofá, tapete listrado e a varanda adiante'
-      en: 'Apt 4 living room from the back, with sofa, striped rug and the balcony ahead'
-      es: 'Living del depto 4 desde el fondo, con sillón, alfombra rayada y el balcón adelante'
-    fileName:
-      pt: apto-4-sala-tapete
-      en: apt-4-living-room-rug
-      es: depto-4-living-alfombra
-
-  - src: ../../../assets/booking/photos/varanda/19-513746373.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Canto da sala do Apto 4 com sofá, janela e ar split na parede'
-      en: 'Corner of the Apt 4 living room with sofa, window and wall-mounted split AC'
-      es: 'Rincón del living del depto 4 con sillón, ventana y aire split en la pared'
-    fileName:
-      pt: apto-4-sala-ar-split
-      en: apt-4-living-room-split-ac
-      es: depto-4-living-aire-split
-
   - src: ../../../assets/booking/photos/varanda/15-125316471.jpg
     category: living
     provisional: true
@@ -246,138 +207,6 @@ images:
       pt: apto-4-sofa-cama
       en: apt-4-sofa-bed
       es: depto-4-sofa-cama
-
-  - src: ../../../assets/booking/photos/varanda/16-513747657.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sofá com almofadas listradas sob a janela da sala do Apto 4'
-      en: 'Sofa with striped cushions under the Apt 4 living-room window'
-      es: 'Sillón con almohadones rayados bajo la ventana del living del depto 4'
-    fileName:
-      pt: apto-4-sofa-janela
-      en: apt-4-sofa-window
-      es: depto-4-sillon-ventana
-
-  - src: ../../../assets/booking/photos/varanda/20-513747569.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'TV na parede da sala do Apto 4, com um carrinho de apoio embaixo'
-      en: 'Wall-mounted TV in the Apt 4 living room, with a small side cart below'
-      es: 'Tele en la pared del living del depto 4, con un carrito auxiliar abajo'
-    fileName:
-      pt: apto-4-sala-tv
-      en: apt-4-living-room-tv
-      es: depto-4-living-tele
-
-  - src: ../../../assets/booking/photos/varanda/18-513747501.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sala e cozinha integradas no Apto 4, vistas da entrada'
-      en: 'Open-plan living room and kitchen in Apt 4, seen from the entrance'
-      es: 'Living y cocina integrados en el depto 4, vistos desde la entrada'
-    fileName:
-      pt: apto-4-sala-e-cozinha
-      en: apt-4-open-plan-living-kitchen
-      es: depto-4-living-y-cocina
-
-  - src: ../../../assets/booking/photos/varanda/29-338482613.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Mesa de granito posta no Apto 4, com a cozinha e a sala ao fundo'
-      en: 'Granite table set for a meal in Apt 4, with the kitchen and living room behind'
-      es: 'Mesa de granito puesta en el depto 4, con la cocina y el living atrás'
-    fileName:
-      pt: apto-4-mesa-de-jantar
-      en: apt-4-dining-table
-      es: depto-4-mesa-para-comer
-
-  - src: ../../../assets/booking/photos/varanda/22-513747936.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Mesa com cadeiras vermelhas e a bancada da cozinha do Apto 4'
-      en: 'Table with red chairs and the kitchen counter in Apt 4'
-      es: 'Mesa con sillas rojas y la mesada de la cocina del depto 4'
-    fileName:
-      pt: apto-4-cozinha-mesa
-      en: apt-4-kitchen-table
-      es: depto-4-cocina-mesa
-
-  - src: ../../../assets/booking/photos/varanda/26-513746884.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Mesa posta com jogo americano xadrez, perto da pia da cozinha do Apto 4'
-      en: 'Table laid with checked placemats, next to the Apt 4 kitchen sink'
-      es: 'Mesa puesta con individuales a cuadros, junto a la pileta de la cocina del depto 4'
-    fileName:
-      pt: apto-4-mesa-posta
-      en: apt-4-table-set
-      es: depto-4-mesa-puesta
-
-  - src: ../../../assets/booking/photos/varanda/25-513747739.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Cozinha em corredor do Apto 4, com bancada, cooktop e janela no fim'
-      en: 'Apt 4 galley kitchen, with counter, stovetop and a window at the end'
-      es: 'Cocina tipo pasillo del depto 4, con mesada, anafe y ventana al fondo'
-    fileName:
-      pt: apto-4-cozinha-corredor
-      en: apt-4-galley-kitchen
-      es: depto-4-cocina-pasillo
-
-  - src: ../../../assets/booking/photos/varanda/28-513746436.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Outra vista da cozinha do Apto 4, com mesinha e cadeiras vermelhas'
-      en: 'Another view of the Apt 4 kitchen, with a small table and red chairs'
-      es: 'Otra vista de la cocina del depto 4, con mesita y sillas rojas'
-    fileName:
-      pt: apto-4-cozinha-mesinha
-      en: apt-4-kitchen-small-table
-      es: depto-4-cocina-mesita
-
-  - src: ../../../assets/booking/photos/varanda/23-513747876.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Pia de inox na bancada de granito do Apto 4, sob a janela'
-      en: 'Stainless sink in the granite counter of Apt 4, under the window'
-      es: 'Pileta de acero en la mesada de granito del depto 4, bajo la ventana'
-    fileName:
-      pt: apto-4-pia-cozinha
-      en: apt-4-kitchen-sink
-      es: depto-4-pileta-cocina
-
-  - src: ../../../assets/booking/photos/varanda/24-513747794.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Geladeira inox, micro-ondas e forno elétrico nos armários do Apto 4'
-      en: 'Stainless fridge, microwave and electric oven in the Apt 4 cabinets'
-      es: 'Heladera de acero, microondas y horno eléctrico en el mueble del depto 4'
-    fileName:
-      pt: apto-4-geladeira-micro-ondas-forno
-      en: apt-4-fridge-microwave-oven
-      es: depto-4-heladera-microondas-horno
-
-  - src: ../../../assets/booking/photos/varanda/27-513746580.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Armário alto do Apto 4 com geladeira, micro-ondas, forno e copos'
-      en: 'Tall Apt 4 cabinet with fridge, microwave, oven and glassware'
-      es: 'Mueble alto del depto 4 con heladera, microondas, horno y vasos'
-    fileName:
-      pt: apto-4-armario-cozinha
-      en: apt-4-kitchen-cabinet
-      es: depto-4-mueble-cocina
 
   - src: ../../../assets/booking/photos/varanda/30-513747032.jpg
     category: bedroom
@@ -403,18 +232,6 @@ images:
       en: apt-4-bedroom-double-bed
       es: depto-4-dormitorio-cama-matrimonial
 
-  - src: ../../../assets/booking/photos/varanda/32-513747000.jpg
-    category: bedroom
-    provisional: true
-    alt:
-      pt: 'Cama de casal do Apto 4 com colcha clara e um quadro de flores na parede'
-      en: 'Apt 4 double bed with a light bedspread and a flower painting on the wall'
-      es: 'Cama matrimonial del depto 4 con cubrecama claro y un cuadro de flores'
-    fileName:
-      pt: apto-4-quarto-quadro
-      en: apt-4-bedroom-painting
-      es: depto-4-dormitorio-cuadro
-
   - src: ../../../assets/booking/photos/varanda/10-513747472.jpg
     category: bathroom
     provisional: true
@@ -427,42 +244,6 @@ images:
       en: apt-4-bathroom
       es: depto-4-bano
 
-  - src: ../../../assets/booking/photos/varanda/09-125314921.jpg
-    category: bathroom
-    provisional: true
-    alt:
-      pt: 'Box de vidro e gabinete de madeira clara no banheiro do Apto 4'
-      en: 'Glass shower and light-wood vanity in the Apt 4 bathroom'
-      es: 'Mampara de vidrio y vanitory de madera clara en el baño del depto 4'
-    fileName:
-      pt: apto-4-banheiro-box
-      en: apt-4-bathroom-shower
-      es: depto-4-bano-ducha
-
-  - src: ../../../assets/booking/photos/varanda/12-145621109.jpg
-    category: bathroom
-    provisional: true
-    alt:
-      pt: 'Cuba branca e espelho com prateleira no banheiro do Apto 4'
-      en: 'White basin and a mirror with a shelf in the Apt 4 bathroom'
-      es: 'Bacha blanca y espejo con estante en el baño del depto 4'
-    fileName:
-      pt: apto-4-banheiro-cuba
-      en: apt-4-bathroom-basin
-      es: depto-4-bano-bacha
-
-  - src: ../../../assets/booking/photos/varanda/11-125314804.jpg
-    category: bathroom
-    provisional: true
-    alt:
-      pt: 'Banheiro do Apto 4 visto da porta, com cuba, vaso e espelho'
-      en: 'Apt 4 bathroom seen from the door, with basin, toilet and mirror'
-      es: 'Baño del depto 4 visto desde la puerta, con bacha, inodoro y espejo'
-    fileName:
-      pt: apto-4-banheiro-vista-da-porta
-      en: apt-4-bathroom-from-door
-      es: depto-4-bano-desde-la-puerta
-
   - src: ../../../assets/booking/photos/varanda/13-513748022.jpg
     category: other
     provisional: true
@@ -474,6 +255,30 @@ images:
       pt: apto-4-escada-de-acesso
       en: apt-4-stairs
       es: depto-4-escalera
+
+  - src: ../../../assets/booking/photos/varanda/25-513747739.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: 'Cozinha em corredor do Apto 4, com bancada, cooktop e janela no fim'
+      en: 'Apt 4 galley kitchen, with counter, stovetop and a window at the end'
+      es: 'Cocina tipo pasillo del depto 4, con mesada, anafe y ventana al fondo'
+    fileName:
+      pt: apto-4-cozinha-corredor
+      en: apt-4-galley-kitchen
+      es: depto-4-cocina-pasillo
+
+  - src: ../../../assets/booking/photos/varanda/29-338482613.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: 'Mesa de granito posta no Apto 4, com a cozinha e a sala ao fundo'
+      en: 'Granite table set for a meal in Apt 4, with the kitchen and living room behind'
+      es: 'Mesa de granito puesta en el depto 4, con la cocina y el living atrás'
+    fileName:
+      pt: apto-4-mesa-de-jantar
+      en: apt-4-dining-table
+      es: depto-4-mesa-para-comer
 
 # contact:            # sem override: usa o WhatsApp global
 # Futuro (não implementado): pricing, calendar

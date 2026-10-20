@@ -5,13 +5,21 @@ test.use({ locale: 'pt-BR' });
 
 const copy = {
   pt: {
+    short: 'Usamos cookies de estatística só se você aceitar.',
     accept: 'Aceitar',
     decline: 'Recusar',
     prefs: 'Preferências de cookies',
     link: 'Política de privacidade',
   },
-  en: { accept: 'Accept', decline: 'Decline', prefs: 'Cookie preferences', link: 'Privacy policy' },
+  en: {
+    short: 'We only use analytics cookies if you accept.',
+    accept: 'Accept',
+    decline: 'Decline',
+    prefs: 'Cookie preferences',
+    link: 'Privacy policy',
+  },
   es: {
+    short: 'Solo usamos cookies de estadística si aceptás.',
     accept: 'Aceptar',
     decline: 'Rechazar',
     prefs: 'Preferencias de cookies',
@@ -24,6 +32,20 @@ for (const locale of ['pt', 'en', 'es'] as const) {
   const banner = (page: import('@playwright/test').Page) => page.locator('[data-consent-banner]');
 
   test.describe(`/${locale}/ consent`, () => {
+    test('keeps the banner to one short sentence', async ({ page }) => {
+      await page.goto(`/${locale}/`);
+      await expect(banner(page).locator('p')).toHaveText(`${c.short} ${c.link}`);
+    });
+
+    test('spaces section headings on the privacy page', async ({ page }) => {
+      await page.goto(`/${locale}/privacidade/`);
+      const gap = await page
+        .locator('main h2')
+        .nth(1)
+        .evaluate((h) => parseFloat(getComputedStyle(h).marginBlockStart));
+      expect(gap).toBeGreaterThanOrEqual(24);
+    });
+
     test('shows the banner on the first visit with equal buttons', async ({ page }) => {
       await page.goto(`/${locale}/`);
       await expect(banner(page)).toBeVisible();

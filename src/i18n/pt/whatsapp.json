@@ -1,6 +1,7 @@
 {
   "fab.label": "WhatsApp",
   "fab.aria": "Falar com a Acácia no WhatsApp",
+  "fab.aria.property": "Perguntar sobre o {name} no WhatsApp",
   "cta.property": "Consultar minhas datas no WhatsApp",
   "intro.home": "Olá! Vi o site da Acácia e quero saber dos apartamentos em Jurerê.",
   "intro.property": "Olá! Vi o {name} (código {code}) no site da Acácia.",

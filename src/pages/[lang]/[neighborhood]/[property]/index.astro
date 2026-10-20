@@ -1,0 +1,598 @@
+---
+// Property page (E9, T28): photos → highlights → beds and rooms → amenities → rules → WhatsApp
+// → the other apartment. Layout "Régua" (docs/design/directions.md, direction 2).
+import Photo from '../../../../components/Photo.astro';
+import WhatsAppCta from '../../../../components/WhatsAppCta.astro';
+import WhatsAppForm from '../../../../components/WhatsAppForm.astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { loadContent } from '../../../../lib/content/load';
+import { propertyPaths } from '../../../../lib/content/pages';
+import type { Locale } from '../../../../lib/i18n/locales';
+import { t } from '../../../../lib/i18n/t';
+import {
+  amenityGroups,
+  bedLines,
+  bedSummary,
+  detailRows,
+  ruleNotes,
+  ruleRows,
+} from '../../../../lib/property';
+import { routePath } from '../../../../lib/routes';
+
+export async function getStaticPaths() {
+  const { properties } = await loadContent();
+  return propertyPaths(properties);
+}
+
+type Ref = string | { id: string };
+const idOf = (ref: Ref | undefined) => (typeof ref === 'string' ? ref : ref?.id);
+
+const locale = Astro.params.lang as Locale;
+const { property } = Astro.props;
+const { data } = property;
+const { site, buildings, properties } = await loadContent();
+const building = buildings.find((entry) => entry.id === idOf(data.building))?.data;
+const text = (key: string, vars?: Record<string, string>) => t(locale, `property.${key}`, vars);
+
+const name = data.name[locale];
+const phone = data.contact?.whatsapp ?? site.contact.whatsapp;
+const details = detailRows(locale, data);
+const [capacity, ...rooms] = details;
+const facts = [capacity.value, bedSummary(locale, data.sleepingAreas)];
+if (building) {
+  facts.push(text('beachDistance', { meters: String(building.beachDistanceMeters) }));
+}
+const amenities = amenityGroups(locale, [...(building?.amenities ?? []), ...data.amenities]);
+const others = properties
+  .filter(
+    (entry) =>
+      entry.id !== property.id && idOf(entry.data.neighborhood) === idOf(data.neighborhood),
+  )
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+// The photo that closes the mosaic spans the whole row (see the grid rules below), so it needs
+// a larger source: on phones when the count is even, on desktop when it leaves 1 in the last row.
+const imageCount = data.images.length;
+const sizesOf = (index: number, cover?: boolean) => {
+  if (cover) return '(min-width: 56.25em) 50vw, 100vw';
+  const last = index === imageCount - 1;
+  const desktop = last && imageCount > 5 && imageCount % 4 === 2 ? '100vw' : '25vw';
+  const phone = last && imageCount % 2 === 0 ? '100vw' : '50vw';
+  return `(min-width: 56.25em) ${desktop}, ${phone}`;
+};
+const otherPlural = new Intl.PluralRules(locale).select(others.length) === 'one' ? 'one' : 'other';
+---
+
+<BaseLayout
+  locale={locale}
+  page={{ id: 'property', slug: property.id }}
+  title={name}
+  whatsapp={{ context: { page: 'property', name, code: data.identifier }, phone }}
+>
+  <article class="property">
+    <header class="title wrap">
+      <nav class="crumbs" aria-label={text('breadcrumb.aria')}>
+        <ol>
+          <li>
+            <a href={routePath({ id: 'home' }, locale)}>{text('breadcrumb.home')}</a>
+          </li>
+          <li>
+            <a href={routePath({ id: 'neighborhood' }, locale)}>
+              {text('breadcrumb.neighborhood')}
+            </a>
+          </li>
+          <li aria-current="page">{name}</li>
+        </ol>
+      </nav>
+      <h1>{name}</h1>
+      <div class="lede">
+        {data.subtitle && <p class="subtitle">{data.subtitle[locale]}</p>}
+        <p class="facts">{facts.join(' · ')}</p>
+      </div>
+    </header>
+
+    <section class="wrap" aria-label={text('section.gallery')}>
+      <ul class="mosaic" role="list">
+        {data.images.map((image, index) => (
+          <li class:list={{ cover: image.cover }}>
+            <Photo
+              src={image.src}
+              alt={image.alt[locale]}
+              cover={image.cover}
+              sizes={sizesOf(index, image.cover)}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="highlights">
+      <h2 id="highlights">{text('section.highlights')}</h2>
+      <ul class="marks" role="list">
+        {data.highlights[locale].map((highlight) => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="wrap section" aria-labelledby="details">
+      <h2 id="details">{text('section.details')}</h2>
+      <div class="split">
+        <div>
+          <p class="capacity">{capacity.value}</p>
+          <dl class="beds">
+            {bedLines(locale, data.sleepingAreas).map((line) => (
+              <div>
+                <dt>{line.room}</dt>
+                <dd>{line.beds}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <dl class="rows">
+          {rooms.map((row) => (
+            <div>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="amenities">
+      <h2 id="amenities">{text('section.amenities')}</h2>
+      <div class="groups">
+        {amenities.map((group) => (
+          <div class="group">
+            <h3>{group.title}</h3>
+            <ul role="list">
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="rules">
+      <h2 id="rules">{text('section.rules')}</h2>
+      <div class="rules">
+        <dl class="rows">
+          {ruleRows(locale, data.rules).map((row) => (
+            <div>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <ul class="notes" role="list">
+          {ruleNotes(locale, data.rules).map((note) => (
+            <li>{note}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="ask">
+      <div class="band-text">
+        <h2 id="ask">{text('cta.title', { name })}</h2>
+        <p>{text('cta.text')}</p>
+        <WhatsAppCta locale={locale} name={name} code={data.identifier} phone={phone} />
+      </div>
+      <div class="panel">
+        <WhatsAppForm
+          locale={locale}
+          name={name}
+          code={data.identifier}
+          minNights={data.rules.minNights}
+          maxGuests={data.capacity.maxGuests}
+          phone={phone}
+        />
+      </div>
+    </section>
+
+    {others.length > 0 && (
+      <nav class="wrap others" aria-labelledby="others">
+        <h2 id="others" class="others-label">
+          {text(`other_${otherPlural}`)}
+        </h2>
+        <ul role="list">
+          {others.map((other) => {
+            const cover = other.data.images.find((image) => image.cover);
+            return (
+              <li>
+                <a href={routePath({ id: 'property', slug: other.id }, locale)}>
+                  {cover && <Photo src={cover.src} alt="" sizes="6rem" />}
+                  <span>
+                    <strong>{other.data.name[locale]}</strong>
+                    {other.data.subtitle && <span> · {other.data.subtitle[locale]}</span>}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-inline: max(var(--gutter), var(--safe-left), (100% - var(--container-max)) / 2)
+      max(var(--gutter), var(--safe-right), (100% - var(--container-max)) / 2);
+  }
+
+  .section {
+    margin-block-start: var(--space-section);
+  }
+
+  .section h2 {
+    margin-block-end: var(--space-6);
+  }
+
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Title: breadcrumb, the number big, the type and the facts beside it. */
+  .title {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .crumbs li + li::before {
+    content: '/';
+    margin-inline-end: var(--space-2);
+  }
+
+  .crumbs a {
+    color: inherit;
+  }
+
+  h1 {
+    font-size: calc(var(--text-3xl) * 1.5);
+    line-height: 0.95;
+  }
+
+  .subtitle {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    line-height: var(--leading-heading);
+  }
+
+  .lede .facts {
+    margin-block-start: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  /* Photos: the cover big, the others in a tight mosaic. */
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 9rem;
+    gap: var(--space-1);
+  }
+
+  .mosaic li {
+    grid-row: span 2;
+    min-inline-size: 0;
+    background: var(--color-surface-tint);
+  }
+
+  .mosaic .cover {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
+  /* An odd number of photos after the cover: the last one closes the row. */
+  .mosaic li:last-child:nth-child(even) {
+    grid-column: span 2;
+  }
+
+  .mosaic :global(picture),
+  .mosaic :global(img) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .mosaic :global(img) {
+    object-fit: cover;
+  }
+
+  /* Highlights hang from a ruler, like the 50 m one of the brand. */
+  .marks {
+    display: grid;
+    gap: var(--space-5);
+    padding-inline-start: var(--space-6);
+    border-inline-start: var(--border-width) solid var(--color-text);
+  }
+
+  .marks li {
+    position: relative;
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: var(--leading-heading);
+  }
+
+  .marks li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--space-6));
+    inset-block-start: 0.65em;
+    inline-size: var(--space-4);
+    border-block-start: var(--border-width) solid var(--color-text);
+  }
+
+  /* Beds and rooms. */
+  .split {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .capacity {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-tight);
+  }
+
+  .beds {
+    display: grid;
+    gap: var(--space-1);
+    margin-block-start: var(--space-4);
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+  }
+
+  .beds div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-2);
+  }
+
+  .beds dt {
+    color: var(--color-text-muted);
+  }
+
+  .beds dt::after {
+    content: ' ·';
+  }
+
+  .rows > div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 1fr) 2fr;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .rows dt {
+    color: var(--color-text-muted);
+  }
+
+  /* Amenities by category, as plain lists. */
+  .groups {
+    columns: 15rem auto;
+    column-gap: var(--space-7);
+  }
+
+  .group {
+    break-inside: avoid;
+    margin-block-end: var(--space-5);
+  }
+
+  .group h3 {
+    margin-block-end: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .group ul {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  /* Rules: label/value rows and the sentences, on the Mar raso block. */
+  .rules {
+    max-inline-size: 55rem;
+    padding: var(--space-5);
+    background: var(--color-surface-tint);
+  }
+
+  .rules .rows > div {
+    border-color: var(--color-border-strong);
+  }
+
+  .rules .rows > div:first-child {
+    border-block-start: 0;
+    padding-block-start: 0;
+  }
+
+  .rules dt {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .notes {
+    display: grid;
+    gap: var(--space-2);
+    margin-block-start: var(--space-4);
+    padding-block-start: var(--space-4);
+    border-block-start: var(--border-width) solid var(--color-border-strong);
+  }
+
+  /* WhatsApp: the green band, with the mini form on a light panel. */
+  .band {
+    display: grid;
+    gap: var(--space-6);
+    margin-block-start: var(--space-section);
+    padding-block: var(--space-8);
+    padding-inline: max(var(--gutter), var(--safe-left), (100% - var(--container-max)) / 2)
+      max(var(--gutter), var(--safe-right), (100% - var(--container-max)) / 2);
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+  }
+
+  .band-text {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+    justify-items: start;
+  }
+
+  .band h2 {
+    font-size: var(--text-cta);
+    max-inline-size: var(--measure-heading);
+  }
+
+  .band-text p {
+    margin: 0;
+    color: var(--color-text-inverse-muted);
+  }
+
+  .band-text :global(:focus-visible) {
+    outline-color: var(--color-focus-ring-inverse);
+  }
+
+  .panel {
+    padding: var(--space-5);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  /* The other apartment. */
+  .others {
+    padding-block: var(--space-6);
+    border-block-end: var(--border-width) solid var(--color-border);
+  }
+
+  .others-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .others ul {
+    display: grid;
+    gap: var(--space-3);
+    margin-block-start: var(--space-2);
+  }
+
+  .others a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .others a :global(picture),
+  .others a :global(img) {
+    flex: none;
+    inline-size: 5.5rem;
+    block-size: 5.5rem;
+    object-fit: cover;
+  }
+
+  .others strong {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .others a:hover strong,
+  .others a:focus-visible strong {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 56.25em) {
+    .title {
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      column-gap: var(--space-7);
+    }
+
+    .crumbs {
+      grid-column: 1 / -1;
+    }
+
+    .mosaic {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 8.5rem;
+    }
+
+    .mosaic .cover {
+      grid-row: span 4;
+    }
+
+    .mosaic li:last-child:nth-child(even) {
+      grid-column: auto;
+    }
+
+    /* Fill the last row: 1 photo left spans 4 columns; 2 or 3 left, the last ones span 2. */
+    .mosaic li:last-child:nth-child(4n + 2) {
+      grid-column: span 4;
+    }
+
+    .mosaic li:last-child:nth-child(4n + 3),
+    .mosaic li:nth-last-child(2):nth-child(4n + 2),
+    .mosaic li:last-child:nth-child(4n):not(:nth-child(4)) {
+      grid-column: span 2;
+    }
+
+    /* Highlights: the ruler turns horizontal, one segment per row, the marks drop from it. */
+    .marks {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 0;
+      padding-inline-start: 0;
+      border-inline-start: 0;
+    }
+
+    .marks li {
+      padding-block-start: var(--space-5);
+      padding-inline-end: var(--space-6);
+      border-block-start: var(--border-width) solid var(--color-text);
+    }
+
+    .marks li::before {
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      inline-size: 0;
+      block-size: var(--space-4);
+      border-block-start: 0;
+      border-inline-start: var(--border-width) solid var(--color-text);
+    }
+
+    .split {
+      grid-template-columns: 1fr 2fr;
+      column-gap: var(--space-8);
+    }
+
+    .band {
+      grid-template-columns: 1fr minmax(0, 28rem);
+      column-gap: var(--space-8);
+    }
+  }
+</style>

@@ -26,3 +26,6 @@ tasks/
 docs/plan/
 docs/plan.md
 docs/research/
+
+# Claude Code local permissions
+.claude/settings.local.json

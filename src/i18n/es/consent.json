@@ -1,7 +1,6 @@
 {
   "banner.aria": "Aviso de cookies",
-  "banner.title": "Cookies",
-  "banner.text": "Usamos una cookie necesaria para recordar tu elección. Si nos das permiso, también usamos Google Analytics para saber qué páginas y departamentos interesan. Rechazar no cambia nada en el sitio, y podés cambiar de opinión cuando quieras en \"Preferencias de cookies\", en el pie de página.",
+  "banner.text": "Solo usamos cookies de estadística si aceptás.",
   "banner.policy": "Política de privacidad",
   "banner.accept": "Aceptar",
   "banner.decline": "Rechazar",
