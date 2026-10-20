@@ -1,0 +1,122 @@
+---
+// One apartment on the home: a 3-photo mosaic (one large, two small), the type as a detail
+// above the name, and a link to its page. The second apartment mirrors the mosaic and sits
+// lower on wide screens, so the two never read as identical cards (direction 2 · Régua).
+import Photo from '../Photo.astro';
+
+interface Props {
+  name: string;
+  subtitle?: string;
+  href: string;
+  linkText: string;
+  photos: { src: ImageMetadata; alt: string }[];
+  mirrored?: boolean;
+}
+
+const { name, subtitle, href, linkText, photos, mirrored = false } = Astro.props;
+const [large, ...small] = photos;
+---
+
+<article class:list={['property', { mirrored }]}>
+  {large && (
+    <div class="mosaic">
+      <figure class="large">
+        <Photo src={large.src} alt={large.alt} sizes="(min-width: 56.25em) 32vw, 66vw" />
+      </figure>
+      {small.slice(0, 2).map((photo) => (
+        <figure>
+          <Photo src={photo.src} alt={photo.alt} sizes="(min-width: 56.25em) 16vw, 33vw" />
+        </figure>
+      ))}
+    </div>
+  )}
+  {subtitle && <p class="subtitle">{subtitle}</p>}
+  <h3>{name}</h3>
+  <a class="go" href={href}>
+    {linkText} <span aria-hidden="true">→</span>
+  </a>
+</article>
+
+<style>
+  .property {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+  }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-2);
+    aspect-ratio: 4 / 3.4;
+    margin-block-end: var(--space-3);
+  }
+
+  .mosaic figure {
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-surface-tint);
+  }
+
+  .mosaic :global(picture),
+  .mosaic :global(img) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .mosaic :global(img) {
+    object-fit: cover;
+  }
+
+  .large {
+    grid-row: 1 / 3;
+  }
+
+  .mirrored .mosaic {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .mirrored .large {
+    grid-column: 2;
+  }
+
+  .mirrored .mosaic figure:not(.large) {
+    grid-column: 1;
+  }
+
+  .subtitle {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-label);
+    line-height: var(--leading-ui);
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+  }
+
+  /* global.css spaces a p that follows a heading; here the grid gap does that. */
+  .property > * {
+    margin: 0;
+  }
+
+  .go {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    justify-self: start;
+    min-block-size: var(--tap-min);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (min-width: 56.25em) {
+    .mirrored {
+      margin-block-start: var(--space-9);
+    }
+  }
+</style>
