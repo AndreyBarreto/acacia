@@ -47,7 +47,7 @@ const image = (src: string, category: string, alt: { pt: string; en: string; es:
 export const building = {
   name: 'Residencial Acacia',
   neighborhood: 'jurere',
-  address: { street: 'Rua Acácio Melo, 70', postalCode: '88053-682' },
+  address: { street: 'Rua Luiz Rampa, 70', postalCode: '88053-682' },
   geo: { latitude: '-27.43812', longitude: '-48.49587' },
   beachDistanceMeters: 50,
   amenities: ['wifi', 'freeParking'],

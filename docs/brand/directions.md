@@ -13,7 +13,7 @@ Duas direções bem diferentes, ambas tiradas do próprio lugar. As duas cumprem
 | Títulos | Young Serif (serifa macia, arredondada) | Zilla Slab (serifa grossa, de placa) |
 | Texto | Hanken Grotesk | Libre Franklin |
 | Símbolo | Ramo com 3 flores-pompom amarelas | Flor de acácia dentro de um sextavado |
-| Elemento-assinatura | Régua "portão → 50 m → areia" | Placa de rua "R. Acácio Melo, 70 · 50 m praia →" |
+| Elemento-assinatura | Régua "portão → 50 m → areia" | Placa de rua "R. Luiz Rampa, 70 · 50 m praia →" |
 | Voz | Frases completas e calmas | Frases curtas, número primeiro |
 
 Mocks descartáveis (abra no navegador; as fotos são as provisórias do Booking e as fontes vêm do Google Fonts, então precisa de internet):

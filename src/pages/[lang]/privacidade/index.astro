@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { locales, type Locale } from '../../../lib/i18n/locales';
+import { t } from '../../../lib/i18n/t';
+import * as pt from '../../../content-pages/privacy/pt.md';
+import * as en from '../../../content-pages/privacy/en.md';
+import * as es from '../../../content-pages/privacy/es.md';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
+const { Content } = { pt, en, es }[locale];
+const title = t(locale, 'consent.privacy.title');
+---
+
+<BaseLayout locale={locale} page={{ id: 'privacy' }} title={title}>
+  <article class="policy">
+    <h1>{title}</h1>
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .policy {
+    max-inline-size: 48rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .policy :global(table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    overflow-wrap: anywhere;
+  }
+
+  .policy :global(th),
+  .policy :global(td) {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    text-align: start;
+    vertical-align: top;
+  }
+</style>

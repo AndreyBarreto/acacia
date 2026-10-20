@@ -105,7 +105,7 @@ Os nomes dos idiomas ficam **sempre no próprio idioma** (não traduzir), e o se
 | `footer.contact.heading` | Contato | Contact | Contacto |
 | `footer.contact.whatsapp` | WhatsApp: {phone} | WhatsApp: {phone} | WhatsApp: {phone} |
 | `footer.address.label` | Endereço | Address | Dirección |
-| `footer.address.value` | Rua Acácio Melo, 70 · Jurerê, Florianópolis/SC | Rua Acácio Melo, 70 · Jurerê, Florianópolis/SC | Rua Acácio Melo, 70 · Jurerê, Florianópolis/SC |
+| `footer.address.value` | Rua Luiz Rampa, 70 · Jurerê, Florianópolis/SC | Rua Luiz Rampa, 70 · Jurerê, Florianópolis/SC | Rua Luiz Rampa, 70 · Jurerê, Florianópolis/SC |
 | `footer.privacy` | Política de privacidade | Privacy policy | Política de privacidad |
 | `footer.cookiePreferences` | Preferências de cookies | Cookie preferences | Preferencias de cookies |
 | `footer.language.heading` | Idioma | Language | Idioma |

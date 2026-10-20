@@ -1,6 +1,7 @@
 ---
 import logo from '../../assets/brand/logo/logo-horizontal-light.svg';
 import type { Locale } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
 
 interface Props {
   locale: Locale;
@@ -20,6 +21,9 @@ const homeHref = `/${locale}/`;
   </a>
   <slot name="language-switcher" />
   <slot />
+  <button type="button" class="cookie-prefs" data-consent-open>
+    {t(locale, 'consent.preferences')}
+  </button>
 </footer>
 
 <style>
@@ -47,5 +51,16 @@ const homeHref = `/${locale}/`;
   .brand img {
     inline-size: auto;
     block-size: 2rem;
+  }
+
+  .cookie-prefs {
+    min-block-size: var(--tap-min);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>

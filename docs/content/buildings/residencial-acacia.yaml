@@ -12,11 +12,11 @@
 name: Residencial Acacia          # uso interno; não é o nome exibido de nenhum apto
 neighborhood: jurere
 address:
-  street: Rua Acácio Melo, 70
+  street: Rua Luiz Rampa, 70
   postalCode: 88053-682
-geo:                              # TODO: pino do prédio no Google Maps, 5 casas decimais (a V30 falha até lá)
-  latitude: "-27.4xxxx"
-  longitude: "-48.4xxxx"
+geo:                              # pino do Google Maps enviado pelo usuário (2026-10-20)
+  latitude: "-27.43779"
+  longitude: "-48.48270"
 beachDistanceMeters: 50
 amenities:
   - wifi

@@ -1,5 +1,7 @@
 # Dados do Booking
 
+> **Correção (2026-10-20):** o endereço certo é **Rua Luiz Rampa, 70**, Jurerê Leste (confirmado pelo usuário; pino em -27.43779, -48.48270). O Booking mostra "Rua Acácio Melo, 70", que fica abaixo só como registro do anúncio.
+
 Coleta automática (Playwright, Chromium headless) de 2026-10-19. Base para T02 (perguntas), T11 (modelo de dados), T18 (textos) e T26 (imagens). As descrições do Booking servem só de referência: o texto final é escrito na T18. Os textos de avaliações não foram copiados.
 
 - Página salva em texto: [assets/booking/page-snapshot-2026-10-19.txt](../assets/booking/page-snapshot-2026-10-19.txt)
