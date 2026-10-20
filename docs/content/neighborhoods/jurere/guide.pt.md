@@ -7,13 +7,13 @@ O H1 está aqui para revisão; a T29 decide se ele vem do Markdown ou do templat
 
 # Jurerê Tradicional: praias, como chegar e melhor época
 
-Os dois apartamentos ficam na Rua Acácio Melo, 70, em Jurerê Tradicional, no norte da Ilha de Santa Catarina, em Florianópolis. A areia está a 50 m, no fim da rua. Aqui juntamos o que ajuda a planejar a viagem: as praias, o caminho desde o aeroporto e pela estrada, onde comer e o que esperar de cada mês.
+Os dois apartamentos ficam na Rua Luiz Rampa, 70, em Jurerê Tradicional, no norte da Ilha de Santa Catarina, em Florianópolis. A areia está a 50 m, no fim da rua. Aqui juntamos o que ajuda a planejar a viagem: as praias, o caminho desde o aeroporto e pela estrada, onde comer e o que esperar de cada mês.
 
 ## As praias
 
 ### Jurerê Tradicional, no fim da rua
 
-Do portão do prédio até a areia são 50 m, a pé. Os guias descrevem a água de Jurerê como calma, morna e rasa, boa para crianças pequenas. <!-- TODO confirmar: a fonte (Habitasul, loteador) fala da praia de Jurerê em geral; checar o trecho Tradicional, em frente à Acácio Melo. -->
+Do portão do prédio até a areia são 50 m, a pé. Os guias descrevem a água de Jurerê como calma, morna e rasa, boa para crianças pequenas. <!-- TODO confirmar: a fonte (Habitasul, loteador) fala da praia de Jurerê em geral; checar o trecho Tradicional, em frente à Luiz Rampa. -->
 
 Os apartamentos têm garagem, então o carro pode ficar em casa durante a estadia: até a praia você vai caminhando, com as cadeiras e o guarda-sol que deixamos no apartamento.
 
@@ -42,20 +42,20 @@ A Daniela é descrita como uma praia mais tranquila, de águas rasas e calmas, c
 
 ## Como chegar
 
-Rua Acácio Melo, 70, Jurerê, Florianópolis/SC, 88053-682.
+Rua Luiz Rampa, 70, Jurerê, Florianópolis/SC, 88053-682.
 
-[Abrir no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Ac%C3%A1cio%20Melo%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
+[Abrir no Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
 ## Onde comer e comprar
 
 Na mesma rua, no número 78, fica a Toca do Jurerê, restaurante de peixes e frutos do mar que os guias citam na praia desde 1986. <!-- TODO confirmar: se segue aberto, horário atual, telefone (fontes de 2012 e com números conflitantes) e se abre fora do verão. -->
 
 <!-- TODO confirmar: "Paulista" (200 m) e "Nice Restaurante" (400 m), citados pelo Booking, não foram identificados; não publicar até achar no Google Maps. -->
-<!-- TODO confirmar: mercado, padaria e farmácia mais próximos da Rua Acácio Melo, 70 (nome, endereço, distância a pé). Candidato a mercado: Mercado Braulio, citado em anúncios da região. Rascunho quando houver dados: "Para o dia a dia, o mercado X fica a N m e a farmácia Y a N m." -->
+<!-- TODO confirmar: mercado, padaria e farmácia mais próximos da Rua Luiz Rampa, 70 (nome, endereço, distância a pé). Candidato a mercado: Mercado Braulio, citado em anúncios da região. Rascunho quando houver dados: "Para o dia a dia, o mercado X fica a N m e a farmácia Y a N m." -->
 
 Para mais opções, o Jurerê Open Shopping, no lado vizinho, reúne restaurantes e cafés, e o setor de alimentação abre de segunda a sábado das 10h às 20h e aos domingos e feriados das 12h às 20h. <!-- TODO confirmar: endereço (Av. dos Búzios, 1800 ou Av. das Raias, 400), horários atuais e distância a partir do apartamento. -->
 
-<!-- TODO confirmar: supermercado maior (Angeloni) e distância a partir da Acácio Melo. -->
+<!-- TODO confirmar: supermercado maior (Angeloni) e distância a partir da Luiz Rampa. -->
 
 ## Melhor época, mês a mês
 

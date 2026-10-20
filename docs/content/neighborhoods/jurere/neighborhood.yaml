@@ -10,7 +10,7 @@ name:
   es: Jurerê
 
 geo:
-  # TODO confirmar: pin at the centre of Jurerê (Tradicional) beach, near Rua Acácio Melo, on Google Maps,
+  # TODO confirmar: pin at the centre of Jurerê (Tradicional) beach, near Rua Luiz Rampa, on Google Maps,
   # 5 decimal places. While it stays like this, V30 fails on purpose.
   latitude: "-27.4xxxx"
   longitude: "-48.4xxxx"

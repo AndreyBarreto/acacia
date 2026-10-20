@@ -8,13 +8,13 @@ El H1 está acá para revisión; la T29 decide si sale del Markdown o del templa
 
 # Jurerê Tradicional: playas, cómo llegar y cuándo ir
 
-Los dos deptos están en la Rua Acácio Melo, 70, en Jurerê Tradicional, en el norte de la Isla de Santa Catarina, Florianópolis. La arena está a 50 m, al final de la calle. Acá juntamos lo que sirve para armar el viaje: las playas, la ruta desde Buenos Aires o Montevideo, el aeropuerto, dónde comer, qué esperar de cada mes y los papeles para cruzar.
+Los dos deptos están en la Rua Luiz Rampa, 70, en Jurerê Tradicional, en el norte de la Isla de Santa Catarina, Florianópolis. La arena está a 50 m, al final de la calle. Acá juntamos lo que sirve para armar el viaje: las playas, la ruta desde Buenos Aires o Montevideo, el aeropuerto, dónde comer, qué esperar de cada mes y los papeles para cruzar.
 
 ## Las playas
 
 ### Jurerê Tradicional, al final de la calle
 
-Desde el portón del edificio hasta la arena hay 50 m, caminando. Las guías describen el agua de Jurerê como tranquila, tibia y baja, buena para chicos chiquitos. <!-- TODO confirmar: la fuente (Habitasul, el desarrollador) habla de la playa de Jurerê en general; chequear el tramo Tradicional, frente a la Acácio Melo. -->
+Desde el portón del edificio hasta la arena hay 50 m, caminando. Las guías describen el agua de Jurerê como tranquila, tibia y baja, buena para chicos chiquitos. <!-- TODO confirmar: la fuente (Habitasul, el desarrollador) habla de la playa de Jurerê en general; chequear el tramo Tradicional, frente a la Luiz Rampa. -->
 
 Cada depto tiene cochera sin cargo, así que el auto puede quedarse guardado toda la estadía. A la playa vas a pie, con las reposeras y la sombrilla que dejamos en el depto.
 
@@ -43,9 +43,9 @@ La Daniela aparece descrita como una playa más tranquila, de agua baja y calma,
 
 ## Cómo llegar
 
-Rua Acácio Melo, 70, Jurerê, Florianópolis, SC, Brasil, 88053-682.
+Rua Luiz Rampa, 70, Jurerê, Florianópolis, SC, Brasil, 88053-682.
 
-[Abrir en Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Ac%C3%A1cio%20Melo%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
+[Abrir en Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
 ## Si venís de Argentina o Uruguay
 
@@ -76,11 +76,11 @@ Rua Acácio Melo, 70, Jurerê, Florianópolis, SC, Brasil, 88053-682.
 En la misma calle, en el número 78, está la Toca do Jurerê, restaurante de pescados y mariscos que las guías ubican en la playa desde 1986. <!-- TODO confirmar: si sigue abierto, horario actual, teléfono (fuentes de 2012 con números distintos) y si abre fuera del verano. -->
 
 <!-- TODO confirmar: "Paulista" (200 m) y "Nice Restaurante" (400 m), citados por Booking, no se identificaron; no publicar hasta encontrarlos en Google Maps. -->
-<!-- TODO confirmar: súper, panadería y farmacia más cercanos a la Rua Acácio Melo, 70 (nombre, dirección, distancia a pie). Candidato a súper: Mercado Braulio, citado en avisos de la zona. Borrador cuando haya datos: "Para el día a día, el súper X está a N m y la farmacia Y a N m." -->
+<!-- TODO confirmar: súper, panadería y farmacia más cercanos a la Rua Luiz Rampa, 70 (nombre, dirección, distancia a pie). Candidato a súper: Mercado Braulio, citado en avisos de la zona. Borrador cuando haya datos: "Para el día a día, el súper X está a N m y la farmacia Y a N m." -->
 
 Para más opciones, el Jurerê Open Shopping, del lado vecino, tiene restaurantes y cafés; el patio de comidas abre de lunes a sábado de 10 a 20 y domingos y feriados de 12 a 20. <!-- TODO confirmar: dirección (Av. dos Búzios, 1800 o Av. das Raias, 400), horarios actuales y distancia desde el depto. -->
 
-<!-- TODO confirmar: supermercado grande (Angeloni) y distancia desde la Acácio Melo. -->
+<!-- TODO confirmar: supermercado grande (Angeloni) y distancia desde la Luiz Rampa. -->
 
 ## Cuándo ir, mes por mes
 

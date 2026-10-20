@@ -12,7 +12,7 @@ Tarefas e protocolo para agentes: [`tasks/README.md`](tasks/README.md).
 ## Contexto
 
 - **Marca:** Acácia (o prédio é o "Residencial Acacia").
-- **Imóveis no lançamento:** 2 apartamentos na Rua Acácio Melo, 70, **Jurerê (Tradicional)**, Florianópolis/SC, a 50 m da praia. Apto 4 = com varanda e vista para o mar; apto 6 = térreo. Até 3 pessoas cada (cama de casal + sofá-cama). Dados em [`docs/booking-data.md`](docs/booking-data.md) e [`docs/project-info.md`](docs/project-info.md).
+- **Imóveis no lançamento:** 2 apartamentos na Rua Luiz Rampa, 70, **Jurerê (Tradicional)**, Florianópolis/SC, a 50 m da praia. Apto 4 = com varanda e vista para o mar; apto 6 = térreo. Até 3 pessoas cada (cama de casal + sofá-cama). Dados em [`docs/booking-data.md`](docs/booking-data.md) e [`docs/project-info.md`](docs/project-info.md).
 - **Público:** casais, famílias pequenas, argentinos/uruguaios e trabalho remoto/estadias longas.
 - **Posicionamento:** intermediário, pé na areia. Marca acolhedora, direta e tranquila; nunca ostentosa, genérica nem festeira.
 - **Sem CNPJ** por enquanto; atendimento remoto (self check-in).
@@ -42,6 +42,7 @@ Formato: decisão — motivo (data, tarefa de origem).
 - **"Pé na areia" é só posicionamento interno, nunca aparece no site** — sugere frente para a praia (2026-10-20, T16).
 - O **texto da home** fica com a T18; os nomes são "Apto 4"/"Depto 4"/"Apartment 4" (idem 6) (proposta da T16, aguardando a aprovação do plano).
 - **"Como chegar" na página do bairro é só o endereço + link "Abrir no Google Maps"** (link externo, sem mapa embutido): sem rotas de carro, ônibus nem aeroporto (2026-10-20, T17).
+- **Endereço: Rua Luiz Rampa, 70, Jurerê Leste**, Florianópolis/SC, CEP 88053-682. O Booking dizia "Rua Acácio Melo, 70", mas o endereço certo foi confirmado pelo usuário; pino do prédio em -27.43779, -48.48270 (2026-10-20, E4).
 - **Não mostrar horário nem tempo de resposta** perto do botão do WhatsApp (2026-10-19, T02/T19).
 
 ### Marca

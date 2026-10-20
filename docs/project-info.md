@@ -11,7 +11,7 @@ Respostas do usuário de 2026-10-19 para as lacunas de [booking-data.md](booking
 | Camas | 1 casal + 1 sofá-cama | 1 casal + 1 sofá-cama |
 | Banheiros | 1 | 1 |
 
-- **Endereço:** Rua Acácio Melo, 70, Jurerê (Tradicional), Florianópolis/SC, CEP 88053-682.
+- **Endereço:** Rua Luiz Rampa, 70, Jurerê (Tradicional), Florianópolis/SC, CEP 88053-682.
 - **Distância da praia:** 50 m.
 - **Comuns às duas unidades:** garagem privativa grátis, Wi-Fi, ar split quente/frio, cozinha completa.
 - **Regras:** proibido fumar em todo o imóvel; estadia mínima de 4 noites o ano todo.

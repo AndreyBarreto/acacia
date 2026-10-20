@@ -8,13 +8,13 @@ The H1 is here for review; T29 decides whether it comes from Markdown or the tem
 
 # Jurerê Tradicional: beaches, getting here and when to come
 
-Both apartments are at Rua Acácio Melo, 70, in Jurerê Tradicional, on the north side of Santa Catarina Island in Florianópolis. The sand is 50 m away, at the end of the street. This page covers what helps you plan: the beaches, the trip from the airport, where to eat and what each month is like.
+Both apartments are at Rua Luiz Rampa, 70, in Jurerê Tradicional, on the north side of Santa Catarina Island in Florianópolis. The sand is 50 m away, at the end of the street. This page covers what helps you plan: the beaches, the trip from the airport, where to eat and what each month is like.
 
 ## The beaches
 
 ### Jurerê Tradicional, at the end of the street
 
-From the building's gate to the sand is a 50 m walk. Travel guides describe the water at Jurerê as calm, warm and shallow, good for small children. <!-- TODO confirmar: the source (Habitasul, the developer) describes Jurerê beach in general; check the Tradicional stretch in front of Rua Acácio Melo. -->
+From the building's gate to the sand is a 50 m walk. Travel guides describe the water at Jurerê as calm, warm and shallow, good for small children. <!-- TODO confirmar: the source (Habitasul, the developer) describes Jurerê beach in general; check the Tradicional stretch in front of Rua Luiz Rampa. -->
 
 Each apartment comes with free parking, so the car can stay put for your whole stay. You walk to the beach, carrying the chairs and umbrella we leave in the apartment.
 
@@ -43,20 +43,20 @@ Daniela is described as a quieter beach, with shallow, calm water and vegetation
 
 ## Getting here
 
-Rua Acácio Melo, 70, Jurerê, Florianópolis, SC, Brazil, 88053-682.
+Rua Luiz Rampa, 70, Jurerê, Florianópolis, SC, Brazil, 88053-682.
 
-[Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Ac%C3%A1cio%20Melo%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
+[Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Rua%20Luiz%20Rampa%2C%2070%2C%20Jurer%C3%AA%2C%20Florian%C3%B3polis%20-%20SC%2C%2088053-682)
 
 ## Where to eat and shop
 
 On the same street, at number 78, is Toca do Jurerê, a fish and seafood restaurant that guides list on the beach since 1986. <!-- TODO confirmar: still open, current hours, phone (2012 sources, conflicting numbers) and whether it opens outside summer. -->
 
 <!-- TODO confirmar: "Paulista" (200 m) and "Nice Restaurante" (400 m), listed by Booking, were not identified; do not publish until found on Google Maps. -->
-<!-- TODO confirmar: nearest grocery store, bakery and pharmacy to Rua Acácio Melo, 70 (name, address, walking distance). Grocery candidate: Mercado Braulio, mentioned in local listings. Draft when there is data: "For everyday shopping, X is N m away and the pharmacy Y is N m away." -->
+<!-- TODO confirmar: nearest grocery store, bakery and pharmacy to Rua Luiz Rampa, 70 (name, address, walking distance). Grocery candidate: Mercado Braulio, mentioned in local listings. Draft when there is data: "For everyday shopping, X is N m away and the pharmacy Y is N m away." -->
 
 For more choice, the Jurerê Open Shopping centre, on the neighbouring side, has restaurants and cafés; the food area opens Monday to Saturday from 10 am to 8 pm, and Sundays and holidays from noon to 8 pm. <!-- TODO confirmar: address (Av. dos Búzios, 1800 or Av. das Raias, 400), current hours and distance from the apartment. -->
 
-<!-- TODO confirmar: larger supermarket (Angeloni) and distance from Rua Acácio Melo. -->
+<!-- TODO confirmar: larger supermarket (Angeloni) and distance from Rua Luiz Rampa. -->
 
 ## When to come, month by month
 

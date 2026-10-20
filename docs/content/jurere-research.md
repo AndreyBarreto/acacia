@@ -2,7 +2,7 @@
 
 Data de acesso de todas as fontes: **2026-10-19**. Só fatos e fontes; o texto final (Etapa B) vem depois do `docs/brand.md` (T07).
 
-**Foco (decisões em [CLAUDE.md](../../CLAUDE.md)):** os imóveis ficam na Rua Acácio Melo, 70, **Jurerê (Tradicional)**, a 50 m da praia. Jurerê Internacional, Forte e Daniela entram como **vizinhança**. Estadia mínima de **4 noites o ano todo**. A família não tem lista própria de recomendações: usamos os pontos próximos do Booking, verificados na web.
+**Foco (decisões em [CLAUDE.md](../../CLAUDE.md)):** os imóveis ficam na Rua Luiz Rampa, 70, **Jurerê (Tradicional)**, a 50 m da praia. Jurerê Internacional, Forte e Daniela entram como **vizinhança**. Estadia mínima de **4 noites o ano todo**. A família não tem lista própria de recomendações: usamos os pontos próximos do Booking, verificados na web.
 
 Legenda de confiança:
 - **ok**: fonte oficial ou duas fontes coerentes.
@@ -19,11 +19,11 @@ Limite desta pesquisa: o agente não acessa o Google Maps e alguns sites bloquea
 
 | Fato | Fonte | Confiança |
 |---|---|---|
-| Endereço dos imóveis: Rua Acácio Melo, 70, CEP 88053-682. Booking: 50 m da praia de Jurerê e 100 m de Jurerê Tradicional; o anfitrião diz 45 m. O site usa **50 m**. | `docs/booking-data.md`; `docs/project-info.md` | ok (dado da família) |
+| Endereço dos imóveis: Rua Luiz Rampa, 70, CEP 88053-682. Booking: 50 m da praia de Jurerê e 100 m de Jurerê Tradicional; o anfitrião diz 45 m. O site usa **50 m**. | `docs/booking-data.md`; `docs/project-info.md` | ok (dado da família) |
 | Jurerê Tradicional é o lado das famílias e dos moradores mais antigos, em contraste com a Jurerê Internacional, de fama "Miami Beach". | resultados de busca (blogs e anúncios; ex.: [Viagens e Caminhos](https://www.viagensecaminhos.com/praia-jurere-florianopolis/)), sem trecho citável | **confirmar** (fonte fraca; buscar fonte própria sobre a praia: mar, estrutura, quiosques, guarda-vidas) |
-| A Rua Acácio Melo aparece em anúncios como "região Tradicional"; o Booking descreve a localização com nota 9,6 (9 avaliações). | [Chaves na Mão](https://www.chavesnamao.com.br/imovel/apartamento-a-venda-1-quarto-sc-florianopolis-jurere-RS750000/id-30384807/); `docs/booking-data.md` | confirmar (não usar a nota no site, ver CLAUDE.md) |
+| A Rua Luiz Rampa aparece em anúncios como "região Tradicional"; o Booking descreve a localização com nota 9,6 (9 avaliações). | [Chaves na Mão](https://www.chavesnamao.com.br/imovel/apartamento-a-venda-1-quarto-sc-florianopolis-jurere-RS750000/id-30384807/); `docs/booking-data.md` | confirmar (não usar a nota no site, ver CLAUDE.md) |
 | Água da praia de Jurerê: calma, morna e rasa, boa para crianças (descrição da praia de Jurerê em geral, não só do trecho Internacional). | [Habitasul](https://jurerein.com.br/habitasul/onde-fica-jurere/) (loteador, interesse comercial) | **confirmar** para o trecho Tradicional |
-| Balneabilidade oficial do trecho da Acácio Melo: não consultada. | IMA-SC | **pendente** |
+| Balneabilidade oficial do trecho da Luiz Rampa: não consultada. | IMA-SC | **pendente** |
 | Guarda-vidas, quiosques, bandeiras no trecho Tradicional: não achei fonte. | n/a | **pendente** |
 
 ### 1.2 Vizinhança (como contexto)
@@ -77,17 +77,17 @@ Av. Beira Mar Norte até o trevo do CIC, Av. da Saudade, SC-401, até o primeiro
 
 ## 3. Onde comer e comprar (pontos próximos do Booking, verificados)
 
-Origem: seção "Localização" do Booking (`docs/booking-data.md`, coleta anterior): Toca do Jurerê 100 m, Paulista 200 m, Nice Restaurante 400 m (distâncias do Booking, em linha reta; a pé pode ser um pouco mais; **confirmar** no Google Maps a partir da Rua Acácio Melo, 70). Verificação feita em 2026-10-19 por buscas na web; nenhuma fonte tem horário atual.
+Origem: seção "Localização" do Booking (`docs/booking-data.md`, coleta anterior): Toca do Jurerê 100 m, Paulista 200 m, Nice Restaurante 400 m (distâncias do Booking, em linha reta; a pé pode ser um pouco mais; **confirmar** no Google Maps a partir da Rua Luiz Rampa, 70). Verificação feita em 2026-10-19 por buscas na web; nenhuma fonte tem horário atual.
 
 | Lugar | Ainda existe? | O que é | Distância a pé (aprox.) | Horário e sazonalidade | Fonte | Situação |
 |---|---|---|---|---|---|---|
-| **Toca do Jurerê** (Toca de Jurerê) | Existe em listagens; **sem confirmação recente** | Restaurante de frutos do mar e peixes, na praia desde 1986; especialidade citada: bacalhau à moda. Endereço no guia: **Rua Acácio Melo, 78** (mesma rua dos imóveis, a poucos números de distância). | ~100 m (Booking); pelo número da rua, cerca de 1 a 2 minutos a pé | Guia de **2012**: alta temporada diariamente 12h–15h e 18h30–0h; baixa 12h–15h e 19h–23h30. Outro guia: seg–qui almoço e jantar; sex–dom 12h–0h (texto com erro de digitação). Telefones conflitantes: (48) 3282-1188 e (48) 3282-0795. | [Guia da Semana](https://www.guiadasemana.com.br/florianopolis/restaurantes/estabelecimento/toca-de-jurere) (via busca; a página deu 403 no acesso direto); [Guia da Semana, onde comer](https://www.guiadasemana.com.br/turismo/noticia/onde-comer-jurere-internacional) | **confirmar** (horário, telefone, se segue aberto e se abre na baixa temporada) |
+| **Toca do Jurerê** (Toca de Jurerê) | Existe em listagens; **sem confirmação recente** | Restaurante de frutos do mar e peixes, na praia desde 1986; especialidade citada: bacalhau à moda. Endereço no guia: **Rua Luiz Rampa, 78** (mesma rua dos imóveis, a poucos números de distância). | ~100 m (Booking); pelo número da rua, cerca de 1 a 2 minutos a pé | Guia de **2012**: alta temporada diariamente 12h–15h e 18h30–0h; baixa 12h–15h e 19h–23h30. Outro guia: seg–qui almoço e jantar; sex–dom 12h–0h (texto com erro de digitação). Telefones conflitantes: (48) 3282-1188 e (48) 3282-0795. | [Guia da Semana](https://www.guiadasemana.com.br/florianopolis/restaurantes/estabelecimento/toca-de-jurere) (via busca; a página deu 403 no acesso direto); [Guia da Semana, onde comer](https://www.guiadasemana.com.br/turismo/noticia/onde-comer-jurere-internacional) | **confirmar** (horário, telefone, se segue aberto e se abre na baixa temporada) |
 | **Paulista** | **Não consegui identificar.** Buscas por pizzaria, padaria e bar "Paulista" em Jurerê não retornaram nada. Pode ser a "Forneria Paulistana" (pizzaria), mas essa fica em Jurerê Internacional, Av. das Raias, 261, longe de 200 m. | Desconhecido | 200 m (Booking) | n/a | buscas web sem resultado; [Forneria Paulistana na listagem de busca](https://www.telelistas.net/sc/florianopolis/pizzarias) | **confirmar** (abrir o Booking/Google Maps e ver o que é; **não publicar** até identificar) |
 | **Nice Restaurante** | **Não confirmado.** Nenhuma fonte retornou o nome. | Desconhecido | 400 m (Booking) | n/a | busca web sem resultado | **confirmar** (não publicar até achar no Google Maps) |
 | Mercado Braulio | Citado como ponto de referência em anúncios de imóveis da "região Tradicional" (ex.: Galeria 50, Santorini Residence, Terroir). Sem endereço, horário ou distância. | Mercado de bairro (**confirmar**: tipo e tamanho) | **pendente** | **pendente** | [Chaves na Mão, Galeria 50](https://www.chavesnamao.com.br/imovel/ponto-comercial-a-venda-sc-florianopolis-jurere-RS650000/id-39842844/) (anúncios) | **confirmar** (candidato a "mercado mais próximo") |
 | Padaria | Jurere Padaria e Café, Av. das Raias, 803 (Jurerê Internacional), pelo registro CNPJ. Fica no lado Internacional; **não é próxima** (distância a medir). | Padaria/confeitaria | **pendente** (provavelmente alguns km) | **pendente** | [CNPJá](https://cnpja.com/office/43935359000163) | **confirmar**; achar padaria no Tradicional |
-| Farmácia | Nenhuma identificada. A única menção: Panvel abriu 2 unidades em Jurerê em 2008 (reportagem antiga, sem endereço). Anúncios da Rua Acácio Melo dizem só que há farmácia "por perto". | n/a | **pendente** | **pendente** | [Baguete, Panvel SC](https://www.baguete.com.br/noticias/panvel-sc-r-1-mi-em-novas-filiais); anúncios no Chaves na Mão | **confirmar** (Google Maps: "farmácia" a partir do endereço) |
-| Supermercado maior | Angeloni abriu loja em Jurerê Internacional, e outra está prevista para 2029 (Unique Magno). Proximidade com a Acácio Melo incerta. | Rede de supermercados | **pendente** | **pendente** | [Giro News](https://gironews.com/tag/jurere-internacional/) | **confirmar** |
+| Farmácia | Nenhuma identificada. A única menção: Panvel abriu 2 unidades em Jurerê em 2008 (reportagem antiga, sem endereço). Anúncios da Rua Luiz Rampa dizem só que há farmácia "por perto". | n/a | **pendente** | **pendente** | [Baguete, Panvel SC](https://www.baguete.com.br/noticias/panvel-sc-r-1-mi-em-novas-filiais); anúncios no Chaves na Mão | **confirmar** (Google Maps: "farmácia" a partir do endereço) |
+| Supermercado maior | Angeloni abriu loja em Jurerê Internacional, e outra está prevista para 2029 (Unique Magno). Proximidade com a Luiz Rampa incerta. | Rede de supermercados | **pendente** | **pendente** | [Giro News](https://gironews.com/tag/jurere-internacional/) | **confirmar** |
 
 ### Vizinhança: Jurerê Internacional (opcionais, só como contexto; lado do Open Shopping e beach clubs)
 
@@ -175,7 +175,7 @@ Resumo prático (derivado das tabelas, a validar na Etapa B): mar agradável de 
 | Celular: roaming caro; checar com a operadora. Mesma fonte. | mesma | ok |
 | Demanda: o Brasil espera ~2 milhões de argentinos na temporada de verão (artigo; ano a verificar). | [La Voz de San Justo](https://www.lavozdesanjusto.com.ar/brasil-espera-2-millones-de-turistas-argentinos-para-esta-temporada-de-verano-31265) | **confirmar** ano |
 
-## 7. Distâncias a partir da Rua Acácio Melo, 70
+## 7. Distâncias a partir da Rua Luiz Rampa, 70
 
 Fonte: Booking (`docs/booking-data.md`, seção Localização), distâncias do próprio Booking, não medidas por nós. Todas **confirmar** no Google Maps (a pé e de carro) antes de publicar.
 
@@ -195,7 +195,7 @@ Fonte: Booking (`docs/booking-data.md`, seção Localização), distâncias do p
 ## 8. Lacunas para fechar antes da Etapa B
 
 - Identificar Paulista e Nice Restaurante (Google Maps / Booking) e confirmar Toca do Jurerê (aberto? horário?).
-- Mercado, padaria e farmácia mais próximos da Rua Acácio Melo, 70, com nome, endereço e distância verificáveis.
+- Mercado, padaria e farmácia mais próximos da Rua Luiz Rampa, 70, com nome, endereço e distância verificáveis.
 - Jurerê Tradicional: fonte própria sobre a praia (mar, estrutura, guarda-vidas), balneabilidade (IMA-SC).
 - Lista oficial de Bandeira Azul 2026/27 (Daniela), se for citada.
 - Rota real de Montevidéu (pelo Chuy), documentos do veículo para uruguaios, passo a passo do Pix para estrangeiro.
