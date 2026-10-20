@@ -94,3 +94,12 @@ for (const locale of ['pt', 'en', 'es'] as const) {
     });
   });
 }
+
+test('spaces consecutive paragraphs in the guide', async ({ page }) => {
+  await page.goto('/pt/jurere/');
+  const gap = await page
+    .locator('main p + p')
+    .first()
+    .evaluate((p) => parseFloat(getComputedStyle(p).marginBlockStart));
+  expect(gap).toBeGreaterThanOrEqual(16);
+});

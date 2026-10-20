@@ -1,6 +1,6 @@
 # Jurerê Tradicional: beaches, getting here and when to come
 
-Both apartments are at Rua Luiz Rampa, 70, in Jurerê Tradicional, on the north side of Santa Catarina Island in Florianópolis. The sand is 50 m away, at the end of the street. This page covers what helps you plan: the beaches, how to get here and what each month is like.
+Both apartments are at Rua Luiz Rampa, 70, in Jurerê Tradicional, on the north side of Santa Catarina Island in Florianópolis. The sand is 50 m away, at the end of the street. This page covers what helps you plan: the beaches, how to get here and what each season is like.
 
 ## The beaches
 

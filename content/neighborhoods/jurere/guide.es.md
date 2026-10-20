@@ -1,6 +1,6 @@
 # Jurerê Tradicional: playas, cómo llegar y cuándo ir
 
-Los dos deptos están en la Rua Luiz Rampa, 70, en Jurerê Tradicional, en el norte de la Isla de Santa Catarina, Florianópolis. La arena está a 50 m, al final de la calle. Acá juntamos lo que sirve para armar el viaje: las playas, cómo llegar y qué esperar de cada mes.
+Los dos deptos están en la Rua Luiz Rampa, 70, en Jurerê Tradicional, en el norte de la Isla de Santa Catarina, Florianópolis. La arena está a 50 m, al final de la calle. Acá juntamos lo que sirve para armar el viaje: las playas, cómo llegar y qué esperar de cada época.
 
 ## Las playas
 

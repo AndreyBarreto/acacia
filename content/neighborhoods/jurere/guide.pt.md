@@ -1,6 +1,6 @@
 # Jurerê Tradicional: praias, como chegar e melhor época
 
-Os dois apartamentos ficam na Rua Luiz Rampa, 70, em Jurerê Tradicional, no norte da Ilha de Santa Catarina, em Florianópolis. A areia está a 50 m, no fim da rua. Aqui juntamos o que ajuda a planejar a viagem: as praias, como chegar e o que esperar de cada mês.
+Os dois apartamentos ficam na Rua Luiz Rampa, 70, em Jurerê Tradicional, no norte da Ilha de Santa Catarina, em Florianópolis. A areia está a 50 m, no fim da rua. Aqui juntamos o que ajuda a planejar a viagem: as praias, como chegar e o que esperar de cada época.
 
 ## As praias
 

@@ -66,7 +66,7 @@ p {
   margin-block-start: var(--space-6);
 }
 
-:where(h1, h2, h3, p, ul, ol) + :where(p, ul, ol) {
+:is(h1, h2, h3, p, ul, ol) + :is(p, ul, ol) {
   margin-block-start: var(--space-4);
 }
 
