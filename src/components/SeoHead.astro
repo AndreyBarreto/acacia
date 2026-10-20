@@ -1,0 +1,13 @@
+---
+// Stub owned by E13 (T32): canonical, hreflang, Open Graph and JSON-LD go here.
+import type { Locale } from '../lib/i18n/locales';
+
+interface Props {
+  locale: Locale;
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<title>{title}</title>
