@@ -248,7 +248,7 @@ describe('space, radius, breakpoints and layers', () => {
 
   it('has a single shadow token and no literal box-shadow in src/', () => {
     expect(names.filter((name) => name.startsWith('--shadow-'))).toEqual(['--shadow-float']);
-    expect(offending(/box-shadow:\s*(?!var\(--shadow-|none)[^;]+/g)).toEqual([]);
+    expect(offending(/box-shadow:\s*(?!var\(--shadow-|none)(?!\s)[^;]+/g)).toEqual([]);
   });
 
   it('declares increasing em breakpoints used by every min-width media query', () => {
