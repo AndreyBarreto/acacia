@@ -29,6 +29,7 @@ const og = source && (await getOgImage(source));
 
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="robots" content="max-image-preview:large" />
 <link rel="canonical" href={canonical} />
 {hreflangLinks(site.siteUrl, page).map((link) => (
   <link rel="alternate" hreflang={link.hreflang} href={link.href} />

@@ -83,6 +83,7 @@ test.describe('head of every page', () => {
         { pt: 'pt_BR', en: 'en_US', es: 'es_AR' }[locale],
       );
       expect(await meta(page, 'name', 'twitter:card')).toBe('summary_large_image');
+      expect(await meta(page, 'name', 'robots')).toBe('max-image-preview:large');
 
       const image = await meta(page, 'property', 'og:image');
       expect(image).toMatch(new RegExp(`^${siteUrl}/_astro/.+\\.jpe?g$`));
