@@ -1,0 +1,9 @@
+{
+  "meta.title": "Page not found",
+  "heading": "We couldn't find that page",
+  "text": "The address may have changed or have a typo. From here you can get where you were going:",
+  "link.home": "Back to the home page",
+  "link.neighborhood": "Explore Jurerê",
+  "link.property": "See {name}",
+  "cta": "Or just ask us on WhatsApp"
+}

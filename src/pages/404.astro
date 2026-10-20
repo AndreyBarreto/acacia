@@ -1,0 +1,98 @@
+---
+// One 404 for the whole site (decision T16): the 3 texts, pt shown by default; a tiny inline
+// script shows the language of the URL prefix. The real 404 status comes from the hosting (E16).
+import '../styles/tokens.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
+import { loadContent } from '../lib/content/load';
+import { defaultLocale, htmlLang, locales } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
+import { routePath } from '../lib/routes';
+import { whatsappMessage, whatsappUrl } from '../lib/whatsapp';
+
+const { site, properties } = await loadContent();
+const sorted = [...properties].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const blocks = locales.map((locale) => {
+  const text = (key: string, vars?: Record<string, string>) => t(locale, `notFound.${key}`, vars);
+  const wa = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
+  return {
+    locale,
+    lang: htmlLang(locale),
+    title: text('meta.title'),
+    heading: text('heading'),
+    text: text('text'),
+    links: [
+      { href: routePath({ id: 'home' }, locale), label: text('link.home') },
+      { href: routePath({ id: 'neighborhood' }, locale), label: text('link.neighborhood') },
+      ...sorted.map((p) => ({
+        href: routePath({ id: 'property', slug: p.id }, locale),
+        label: text('link.property', { name: p.data.name[locale] }),
+      })),
+    ],
+    cta: {
+      href: whatsappUrl(site.contact.whatsapp, whatsappMessage(wa, locale, { page: 'generic' })),
+      label: text('cta'),
+    },
+  };
+});
+const titles = Object.fromEntries(blocks.map((b) => [b.locale, b.title]));
+const langs = Object.fromEntries(blocks.map((b) => [b.locale, b.lang]));
+---
+
+<html lang={htmlLang(defaultLocale)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex" />
+    <title>{titles[defaultLocale]}</title>
+  </head>
+  <body>
+    <main>
+      {blocks.map((block) => (
+        <section
+          lang={block.lang}
+          data-locale={block.locale}
+          hidden={block.locale !== defaultLocale}
+        >
+          <h1>{block.heading}</h1>
+          <p>{block.text}</p>
+          <ul>
+            {block.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+          <p>
+            <a href={block.cta.href}>{block.cta.label}</a>
+          </p>
+        </section>
+      ))}
+    </main>
+    <script is:inline define:vars={{ titles, langs }}>
+      const locale = location.pathname.split('/')[1];
+      if (locale in titles) {
+        for (const section of document.querySelectorAll('section[data-locale]')) {
+          section.hidden = section.dataset.locale !== locale;
+        }
+        document.documentElement.lang = langs[locale];
+        document.title = titles[locale];
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  main {
+    max-inline-size: 48rem;
+    margin-inline: auto;
+    padding: var(--space-section) var(--gutter);
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-2);
+    padding-inline-start: var(--space-5);
+  }
+</style>
