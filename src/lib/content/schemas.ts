@@ -9,7 +9,20 @@ interface Helpers<I extends z.ZodType, R extends z.ZodType> {
   reference: (collection: 'cities' | 'neighborhoods' | 'buildings') => R;
 }
 
-const text = z.string().trim().min(1, 'must not be empty');
+const text = z.string().trim().min(1, { error: 'must not be empty', abort: true });
+
+/** Text with a length range, reporting the actual length (V61). */
+const sized = (min: number, max: number) =>
+  text
+    .min(min, { error: (issue) => `is ${String(issue.input).length} chars (min ${min})` })
+    .max(max, { error: (issue) => `is ${String(issue.input).length} chars (max ${max})` });
+
+/** Whole number from `min`, up to `max` if given (V34, V36). */
+function whole(min: number, max?: number) {
+  const range = max === undefined ? `must be at least ${min}` : `must be between ${min} and ${max}`;
+  const number = z.number().int('must be a whole number').min(min, range);
+  return max === undefined ? number : number.max(max, range);
+}
 
 /** L<T>: the value in pt, en and es, all required, no other language (V10, V11). */
 export function localized<T extends z.ZodType>(value: T) {
@@ -71,7 +84,7 @@ const geo = z.object({ latitude: coordinate(90), longitude: coordinate(180) });
 
 const whatsapp = z.string().regex(/^\+[1-9]\d{7,14}$/, 'must be in +5548999442015 format');
 
-const seo = z.object({ title: translated(text), description: translated(text) });
+const seo = z.object({ title: translated(sized(1, 60)), description: translated(sized(70, 155)) });
 
 export const amenityKeys = [
   'wifi',
@@ -179,64 +192,127 @@ export function buildingSchema<I extends z.ZodType, R extends z.ZodType>({
       postalCode: z.string().regex(/^\d{5}-\d{3}$/, 'must look like 88053-682'),
     }),
     geo,
-    beachDistanceMeters: z.number(),
+    beachDistanceMeters: whole(1),
     amenities: amenities.optional(),
     images: z.array(imageSchema(image)).optional(),
   });
 }
 
-const timeRange = z.object({ from: z.string().optional(), until: z.string().optional() });
+const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'must be a time like 14:00');
+
+/** Guests each bed sleeps (data-model §4.5; a sofa bed counts as 1). */
+const bedPlaces = { double: 2, queen: 2, king: 2, single: 1, sofaBed: 1, bunkBed: 2 } as const;
+
+const highlights = z
+  .array(sized(1, 80))
+  .min(3, { error: (issue) => `has ${(issue.input as unknown[]).length} items (min 3)` })
+  .max(6, { error: (issue) => `has ${(issue.input as unknown[]).length} items (max 6)` });
+
+// Check-in and check-out ranges (V35). The texts only show when check-in starts and check-out ends.
+const rules = z
+  .object({
+    checkIn: z.object({ from: time, until: time.optional() }),
+    checkOut: z.object({ from: time.optional(), until: time }),
+    minNights: whole(1, 90),
+    smoking: z.boolean(),
+    pets: z.boolean(),
+    children: z.boolean(),
+    crib: z.boolean().optional(),
+    selfCheckIn: z.boolean().optional(),
+    notes: localized(z.array(text)).optional(),
+  })
+  .superRefine(({ checkIn, checkOut }, ctx) => {
+    if (checkIn.until && checkIn.until < checkIn.from) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['checkIn', 'until'],
+        message: `is before checkIn.from (${checkIn.from})`,
+      });
+    }
+    if (checkOut.from && checkOut.until < checkOut.from) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['checkOut', 'until'],
+        message: `is before checkOut.from (${checkOut.from})`,
+      });
+    }
+    if (checkOut.until > checkIn.from) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['checkOut', 'until'],
+        message: `is after checkIn.from (${checkIn.from})`,
+      });
+    }
+  });
 
 export function propertySchema<I extends z.ZodType, R extends z.ZodType>({
   image,
   reference,
 }: Helpers<I, R>) {
-  return z.object({
-    identifier: z.string().regex(/^[a-z0-9-]+$/, 'must use only a-z, 0-9 and hyphens'),
-    status: z.enum(['published', 'draft']).default('published'),
-    order: z.number().int().optional(),
-    neighborhood: reference('neighborhoods'),
-    building: reference('buildings').optional(),
-    unitLabel: text.optional(),
-    showUnitPublicly: z.boolean().default(false),
-    propertyType: z.enum(['Apartment', 'House', 'Cottage', 'Villa', 'Bungalow', 'Cabin', 'Chalet']),
-    name: localized(text),
-    subtitle: localized(text).optional(),
-    summary: translated(text),
-    description: translated(text),
-    highlights: translated(z.array(text)),
-    seo,
-    capacity: z.object({ maxGuests: z.number() }),
-    bedrooms: z.number(),
-    bathrooms: z.number(),
-    floorSizeM2: z.number().optional(),
-    sleepingAreas: z.array(
-      z.object({
-        room: z.enum(['bedroom', 'livingRoom', 'other']),
-        beds: z.array(
-          z.object({
-            type: z.enum(['double', 'queen', 'king', 'single', 'sofaBed', 'bunkBed']),
-            count: z.number(),
-          }),
-        ),
-      }),
-    ),
-    floor: z.enum(['ground', 'upper']).optional(),
-    views: z.array(z.enum(['sea', 'mountain', 'garden', 'courtyard', 'street'])).optional(),
-    amenities,
-    rules: z.object({
-      checkIn: timeRange,
-      checkOut: timeRange,
-      minNights: z.number(),
-      smoking: z.boolean(),
-      pets: z.boolean(),
-      children: z.boolean(),
-      crib: z.boolean().optional(),
-      selfCheckIn: z.boolean().optional(),
-      notes: localized(z.array(text)).optional(),
-    }),
-    images: z.array(imageSchema(image)),
-    ogImage: image().optional(),
-    contact: z.object({ whatsapp }).optional(),
-  });
+  return z
+    .object({
+      identifier: z.string().regex(/^[a-z0-9-]+$/, 'must use only a-z, 0-9 and hyphens'),
+      status: z.enum(['published', 'draft']).default('published'),
+      order: z.number().int().optional(),
+      neighborhood: reference('neighborhoods'),
+      building: reference('buildings').optional(),
+      unitLabel: text.optional(),
+      showUnitPublicly: z.boolean().default(false),
+      propertyType: z.enum([
+        'Apartment',
+        'House',
+        'Cottage',
+        'Villa',
+        'Bungalow',
+        'Cabin',
+        'Chalet',
+      ]),
+      name: localized(sized(3, 60)),
+      subtitle: localized(text).optional(),
+      summary: translated(sized(1, 160)),
+      description: translated(text),
+      highlights: translated(highlights),
+      seo,
+      capacity: z.object({ maxGuests: whole(1, 20) }),
+      bedrooms: whole(0),
+      bathrooms: whole(1),
+      floorSizeM2: whole(1).optional(),
+      sleepingAreas: z.array(
+        z.object({
+          room: z.enum(['bedroom', 'livingRoom', 'other']),
+          beds: z.array(
+            z.object({
+              type: z.enum(['double', 'queen', 'king', 'single', 'sofaBed', 'bunkBed']),
+              count: whole(1),
+            }),
+          ),
+        }),
+      ),
+      floor: z.enum(['ground', 'upper']).optional(),
+      views: z.array(z.enum(['sea', 'mountain', 'garden', 'courtyard', 'street'])).optional(),
+      amenities,
+      rules,
+      images: z.array(imageSchema(image)),
+      ogImage: image().optional(),
+      contact: z.object({ whatsapp }).optional(),
+    })
+    .superRefine((property, ctx) => {
+      const beds = property.sleepingAreas.flatMap((area) => area.beds);
+      const places = beds.reduce((sum, bed) => sum + bedPlaces[bed.type] * bed.count, 0);
+      if (places < property.capacity.maxGuests) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['sleepingAreas'],
+          message: `sleep ${places} guests but capacity.maxGuests is ${property.capacity.maxGuests}`,
+        });
+      }
+      const bedrooms = property.sleepingAreas.filter((area) => area.room === 'bedroom').length;
+      if (bedrooms !== property.bedrooms) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['bedrooms'],
+          message: `is ${property.bedrooms} but sleepingAreas has ${bedrooms} bedroom${bedrooms === 1 ? '' : 's'}`,
+        });
+      }
+    });
 }
