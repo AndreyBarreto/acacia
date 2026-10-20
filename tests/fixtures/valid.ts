@@ -57,6 +57,11 @@ export const building = {
       en: 'Front of the two-storey building',
       es: 'Frente del edificio de dos pisos',
     }),
+    image('./photos/beach.jpg', 'beach', {
+      pt: 'Praia de Jurerê no fim da rua',
+      en: 'Jurerê beach at the end of the lane',
+      es: 'Playa de Jurerê al final del pasaje',
+    }),
   ],
 };
 
@@ -142,5 +147,39 @@ export const property = {
         es: 'depto-4-jurere-balcon',
       },
     },
+    image('./photos/living.jpg', 'living', {
+      pt: 'Sala com sofá e porta para a varanda',
+      en: 'Living room with a sofa and balcony door',
+      es: 'Living con sillón y puerta al balcón',
+    }),
+    image('./photos/kitchen.jpg', 'kitchen', {
+      pt: 'Cozinha com cooktop e micro-ondas',
+      en: 'Kitchen with a stovetop and microwave',
+      es: 'Cocina con anafe y microondas',
+    }),
+    image('./photos/table.jpg', 'kitchen', {
+      pt: 'Mesa de granito para as refeições',
+      en: 'Granite table for meals',
+      es: 'Mesa de granito para comer',
+    }),
+    image('./photos/bedroom.jpg', 'bedroom', {
+      pt: 'Quarto com cama de casal',
+      en: 'Bedroom with a double bed',
+      es: 'Dormitorio con cama matrimonial',
+    }),
+    image('./photos/bathroom.jpg', 'bathroom', {
+      pt: 'Banheiro com box de vidro',
+      en: 'Bathroom with a glass shower',
+      es: 'Baño con mampara de vidrio',
+    }),
   ],
+};
+
+/** A whole valid site, as Astro hands the entries over: an id (the folder name) and the data. */
+export const content = {
+  site: [{ id: 'site', data: site }],
+  cities: [{ id: 'florianopolis', data: city }],
+  neighborhoods: [{ id: 'jurere', data: neighborhood }],
+  buildings: [{ id: 'residencial-acacia', data: building }],
+  properties: [{ id: 'apto-4', data: property }],
 };
