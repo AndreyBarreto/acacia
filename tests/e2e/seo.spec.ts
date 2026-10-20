@@ -94,6 +94,18 @@ test.describe('head of every page', () => {
     });
   }
 
+  test('titles and descriptions are unique across the pages', async ({ page }) => {
+    const titles = new Set<string>();
+    const descriptions = new Set<string | null>();
+    for (const path of pages) {
+      await page.goto(path);
+      titles.add(await page.title());
+      descriptions.add(await meta(page, 'name', 'description'));
+    }
+    expect(titles.size).toBe(pages.length);
+    expect(descriptions.size).toBe(pages.length);
+  });
+
   test('alternates are reciprocal and the OG image is the same in the 3 languages', async ({
     page,
   }) => {
