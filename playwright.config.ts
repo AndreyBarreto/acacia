@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const isCI = !!process.env.CI;
-const port = 4321;
+// PORT lets parallel worktrees run their own preview server.
+const port = Number(process.env.PORT ?? 4321);
 
 export default defineConfig({
   testDir: 'tests/e2e',
