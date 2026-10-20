@@ -1,8 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const isCI = !!process.env.CI;
-// PORT lets parallel worktrees run their own preview server.
-const port = Number(process.env.PORT ?? 4321);
+// Tests own their port (never 4321, where `astro dev` runs). PORT lets parallel worktrees
+// run their own preview server.
+const port = Number(process.env.PORT ?? 4400);
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -28,6 +29,7 @@ export default defineConfig({
     // detects an AI agent, which makes Playwright think the server exited).
     command: `pnpm build && pnpm preview --port ${port} --ignore-lock`,
     url: `http://localhost:${port}/`,
-    reuseExistingServer: !isCI,
+    // Never reuse a running server: it could be a dev server instead of the production build.
+    reuseExistingServer: false,
   },
 });
