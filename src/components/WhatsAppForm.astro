@@ -1,0 +1,219 @@
+---
+// Mini form (E8, T31; microcopy §8): dates + guests build the WhatsApp message in the browser.
+// Not a booking: nothing is sent anywhere, the script only opens wa.me with the filled message.
+import type { Locale } from '../lib/i18n/locales';
+import { catalog, t } from '../lib/i18n/t';
+import { siteWhatsApp } from '../lib/whatsapp';
+
+export interface Props {
+  locale: Locale;
+  /** Short name in the page language: "Apto 4" / "Apt 4" / "Depto 4". */
+  name: string;
+  /** Property identifier, e.g. "acacia-4". Also prefixes the field ids. */
+  code: string;
+  minNights: number;
+  maxGuests: number;
+  /** property.contact.whatsapp, when it overrides the site number. */
+  phone?: string;
+}
+
+const { locale, name, code, minNights, maxGuests, phone = siteWhatsApp } = Astro.props;
+const text = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
+const plural = (n: number) => (new Intl.PluralRules(locale).select(n) === 'one' ? 'one' : 'other');
+const id = (field: string) => `${code}-${field}`;
+
+// Only the templates the script needs, in the page language.
+const strings = Object.fromEntries(
+  Object.entries(catalog[locale].whatsapp).filter(([key]) =>
+    /^(intro\.property|ask\.filled_|form\.errors\.)/.test(key),
+  ),
+);
+const guests = Array.from({ length: maxGuests }, (_, i) => i + 1);
+---
+
+<form
+  class="whatsapp-form"
+  novalidate
+  data-whatsapp-form
+  data-locale={locale}
+  data-phone={phone}
+  data-name={name}
+  data-code={code}
+  data-min-nights={minNights}
+  data-max-guests={maxGuests}
+  data-strings={JSON.stringify(strings)}
+>
+  <div class="field">
+    <label for={id('checkIn')}>{text('form.checkIn.label')}</label>
+    <input type="date" id={id('checkIn')} name="checkIn" required />
+    <p class="error" id={id('checkIn-error')} hidden></p>
+  </div>
+  <div class="field">
+    <label for={id('checkOut')}>{text('form.checkOut.label')}</label>
+    <input
+      type="date"
+      id={id('checkOut')}
+      name="checkOut"
+      required
+      aria-describedby={id('checkOut-hint')}
+    />
+    <p class="hint" id={id('checkOut-hint')}>
+      {text('form.hint.minNights', { minNights: String(minNights) })}
+    </p>
+    <p class="error" id={id('checkOut-error')} hidden></p>
+  </div>
+  <div class="field">
+    <label for={id('guests')}>{text('form.guests.label')}</label>
+    <select id={id('guests')} name="guests" required>
+      <option value="">{text('form.guests.placeholder')}</option>
+      {guests.map((n) => (
+        <option value={String(n)}>
+          {text(`form.guests.option_${plural(n)}`, { count: String(n) })}
+        </option>
+      ))}
+    </select>
+    <p class="error" id={id('guests-error')} hidden></p>
+  </div>
+  <button type="submit">{text('form.submit')}</button>
+</form>
+
+<script>
+  import type { Locale } from '../lib/i18n/locales';
+  import {
+    addDays,
+    formatStayDate,
+    validateStay,
+    whatsappMessage,
+    whatsappUrl,
+    type StayField,
+  } from '../lib/whatsapp';
+
+  const fields: StayField[] = ['checkIn', 'checkOut', 'guests'];
+
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-whatsapp-form]')) {
+    const data = form.dataset as Record<string, string>;
+    const locale = data.locale as Locale;
+    const strings: Record<string, string> = JSON.parse(data.strings);
+    const text = (key: string, vars: Record<string, string> = {}) =>
+      strings[key].replace(/\{(\w+)\}/g, (_, name: string) => vars[name]);
+    const rules = { minNights: Number(data.minNights), maxGuests: Number(data.maxGuests) };
+    let submitted = false;
+
+    const check = () => {
+      const values = new FormData(form);
+      const input = Object.fromEntries(fields.map((f) => [f, String(values.get(f) ?? '')]));
+      const now = new Date();
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      const result = validateStay(input as Record<StayField, string>, rules, today);
+
+      for (const field of fields) {
+        const control = form.elements.namedItem(field) as HTMLInputElement | HTMLSelectElement;
+        const error = document.getElementById(`${control.id}-error`)!;
+        const hint = document.getElementById(`${control.id}-hint`);
+        const key = result.errors[field];
+        error.hidden = !key;
+        error.textContent = key
+          ? text(`form.errors.${key}`, {
+              minNights: String(rules.minNights),
+              maxGuests: String(rules.maxGuests),
+              earliest: key.endsWith('minNights')
+                ? formatStayDate(locale, addDays(input.checkIn, rules.minNights))
+                : '',
+            })
+          : '';
+        control.toggleAttribute('aria-invalid', !!key);
+        control.setAttribute(
+          'aria-describedby',
+          [hint?.id, key ? error.id : ''].filter(Boolean).join(' '),
+        );
+      }
+      return result;
+    };
+
+    form.addEventListener('change', () => {
+      if (submitted) check();
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      submitted = true;
+      const { errors, stay } = check();
+      if (!stay) {
+        const first = fields.find((f) => errors[f]);
+        (form.elements.namedItem(first!) as HTMLElement).focus();
+        return;
+      }
+      const message = whatsappMessage(
+        text,
+        locale,
+        { page: 'property', name: data.name, code: data.code },
+        stay,
+      );
+      window.location.assign(whatsappUrl(data.phone, message));
+    });
+  }
+</script>
+
+<style>
+  .whatsapp-form {
+    display: grid;
+    gap: var(--space-4);
+    max-inline-size: 28rem;
+  }
+
+  .field {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  label {
+    font-weight: var(--font-weight-medium);
+  }
+
+  input,
+  select {
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-3);
+    border: var(--border-width) solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+  }
+
+  [aria-invalid] {
+    border-color: var(--color-danger);
+  }
+
+  .hint,
+  .error {
+    font-size: var(--text-sm);
+    line-height: var(--leading-ui);
+  }
+
+  .hint {
+    color: var(--color-text-muted);
+  }
+
+  .error {
+    color: var(--color-danger);
+  }
+
+  button {
+    justify-self: start;
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-5);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-cta-bg);
+    color: var(--color-cta-text);
+    font: inherit;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus-visible {
+    background: var(--color-cta-bg-hover);
+  }
+</style>

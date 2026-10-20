@@ -1,8 +1,102 @@
 ---
-// Stub owned by E8 (T31): fixed WhatsApp button. Must sit above --cookie-banner-offset.
+// Fixed WhatsApp button (E8, T31), always visible. On phones it is the bottom bar of the
+// "Régua" layout (docs/design/directions.md); from 56.25em it floats in the corner.
+// It moves up with --cookie-banner-offset, set by ConsentBanner (E12).
 import type { Locale } from '../lib/i18n/locales';
+import { t } from '../lib/i18n/t';
+import { siteWhatsApp, whatsappIconPath, whatsappMessage, whatsappUrl } from '../lib/whatsapp';
 
 export interface Props {
   locale: Locale;
 }
+
+const { locale } = Astro.props;
+const text = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
+const href = whatsappUrl(siteWhatsApp, whatsappMessage(text, locale, { page: 'generic' }));
 ---
+
+<aside class="whatsapp-fab" aria-label={text('fab.label')}>
+  <a class="button" href={href} aria-label={text('fab.aria')}>
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d={whatsappIconPath} />
+    </svg>
+    <span>{text('fab.label')}</span>
+  </a>
+</aside>
+
+<style>
+  /* Room for the bar, so it never covers the end of the page. */
+  :global(body) {
+    padding-block-end: calc(var(--fab-size) + var(--safe-bottom) + var(--cookie-banner-offset));
+  }
+
+  .whatsapp-fab {
+    position: fixed;
+    z-index: var(--z-whatsapp-fab);
+    inset-inline: 0;
+    bottom: var(--cookie-banner-offset);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-block-size: calc(var(--fab-size) + var(--safe-bottom));
+    padding-block: var(--space-1) calc(var(--space-1) + var(--safe-bottom));
+    padding-inline: max(var(--fab-offset), var(--safe-left))
+      max(var(--fab-offset), var(--safe-right));
+    background: var(--color-surface-inverse);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--tap-min);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--color-cta-bg);
+    color: var(--color-cta-text);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-ui);
+    text-decoration: none;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    background: var(--color-cta-bg-hover);
+    color: var(--color-cta-text);
+  }
+
+  .button:focus-visible {
+    outline-color: var(--color-focus-ring-inverse);
+  }
+
+  svg {
+    inline-size: 1.25em;
+    block-size: 1.25em;
+  }
+
+  @media (min-width: 56.25em) {
+    :global(body) {
+      padding-block-end: calc(
+        var(--fab-size) + 2 * var(--fab-offset) + var(--safe-bottom) + var(--cookie-banner-offset)
+      );
+    }
+
+    .whatsapp-fab {
+      inset-inline: auto max(var(--fab-offset), var(--safe-right));
+      bottom: calc(var(--fab-offset) + var(--safe-bottom) + var(--cookie-banner-offset));
+      min-block-size: 0;
+      padding: 0;
+      background: none;
+    }
+
+    .button {
+      min-block-size: var(--fab-size);
+      padding-inline: var(--space-5);
+      border: 2px solid var(--color-surface);
+    }
+
+    .button:focus-visible {
+      outline-color: var(--color-focus-ring);
+    }
+  }
+</style>
