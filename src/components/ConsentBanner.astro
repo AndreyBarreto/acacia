@@ -1,8 +1,126 @@
 ---
-// Stub owned by E12 (T30): cookie banner. Sets --cookie-banner-offset while visible.
+import { t } from '../lib/i18n/t';
 import type { Locale } from '../lib/i18n/locales';
+import { routePath } from '../lib/routes';
 
 export interface Props {
   locale: Locale;
 }
+
+const { locale } = Astro.props;
 ---
+
+<section class="consent" data-consent-banner aria-label={t(locale, 'consent.banner.aria')} hidden>
+  <p class="text">
+    <strong>{t(locale, 'consent.banner.title')}</strong>
+    {t(locale, 'consent.banner.text')}
+    <a href={routePath({ id: 'privacy' }, locale)}>{t(locale, 'consent.banner.policy')}</a>
+  </p>
+  <div class="actions">
+    <button type="button" data-consent="granted">
+      {t(locale, 'consent.banner.accept')}
+    </button>
+    <button type="button" data-consent="denied">
+      {t(locale, 'consent.banner.decline')}
+    </button>
+  </div>
+</section>
+
+<script>
+  import { getConsent, setConsent, type Consent } from '../lib/consent';
+
+  const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+  const root = document.documentElement;
+
+  if (banner) {
+    const setOffset = () => {
+      root.style.setProperty(
+        '--cookie-banner-offset',
+        banner.hidden ? '0px' : `${banner.offsetHeight}px`,
+      );
+    };
+    new ResizeObserver(setOffset).observe(banner);
+
+    const show = (focus: boolean) => {
+      banner.hidden = false;
+      setOffset();
+      if (focus) banner.querySelector<HTMLButtonElement>('[data-consent="granted"]')?.focus();
+    };
+
+    if (getConsent() === null) show(false);
+
+    banner.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) => {
+      button.addEventListener('click', () => {
+        setConsent(button.dataset.consent as Consent);
+        banner.hidden = true;
+        setOffset();
+      });
+    });
+
+    document.querySelectorAll('[data-consent-open]').forEach((opener) => {
+      opener.addEventListener('click', () => show(true));
+    });
+  }
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: var(--z-cookie-banner);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: var(--space-4) max(var(--space-4), var(--safe-bottom));
+    padding-inline: max(var(--gutter), var(--safe-left)) max(var(--gutter), var(--safe-right));
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    font-size: var(--text-sm);
+    line-height: var(--leading-ui);
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  .text {
+    flex: 1 1 24rem;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  /* Same shape and weight for both choices. */
+  button {
+    min-block-size: var(--tap-min);
+    min-inline-size: 7rem;
+    padding-inline: var(--space-4);
+    border: 2px solid var(--color-text-inverse);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--color-text-inverse);
+    color: var(--color-surface-inverse);
+  }
+
+  .consent :focus-visible {
+    outline-color: var(--color-focus-ring-inverse);
+  }
+</style>

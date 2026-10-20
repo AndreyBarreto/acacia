@@ -283,7 +283,7 @@ describe('space, radius, breakpoints and layers', () => {
     expect(layers.every(Number.isInteger)).toBe(true);
     expect(new Set(layers).size).toBe(layers.length);
     expect([...layers].sort((a, b) => a - b)).toEqual(layers);
-    expect(offending(/z-index:\s*(?!var\(--z-)[^;]+/g)).toEqual([]);
+    expect(offending(/z-index:\s*(?!var\(--z-)(?!\s)[^;]+/g)).toEqual([]);
   });
 
   it.each(['top', 'right', 'bottom', 'left'])(
