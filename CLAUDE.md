@@ -40,7 +40,8 @@ Formato: decisão — motivo (data, tarefa de origem).
 - **Recomendações locais partem dos pontos próximos listados no Booking**, mas **só entra no site o que for confirmado** (Paulista e Nice Restaurante não foram identificados); a família não tem lista própria (2026-10-19, T17).
 - **Textos da interface (T19, 2026-10-20):** o link do menu para o bairro é "Jurerê" nos 3 idiomas; em es, "Cochera sin cargo"; o mini formulário (datas + hóspedes) fica só nas páginas dos aptos, e a home tem CTA direto; a comodidade `amenity.stepFree` ("sem escada") entra na lista controlada; a TV dos aptos é Smart TV.
 - **"Pé na areia" é só posicionamento interno, nunca aparece no site** — sugere frente para a praia (2026-10-20, T16).
-- O **texto da home** fica com a T18; os nomes são "Apto 4"/"Depto 4"/"Apartment 4" (idem 6) (proposta da T16, aguardando a aprovação do plano).
+- **Home (E10, 2026-10-20):** a home é mínima, com foto, título "50 m da praia de Jurerê.", texto curto, os 2 aptos, uma linha sobre trabalho remoto e um link para Jurerê. A régua "portão → 50 m → areia" aparece só na home, sem animação. Ficam fora a tabela Apto 4 × Apto 6, o "O que fica perto" e a faixa de CTA. O texto foi aprovado sem a "rua de lajotas", que não está confirmada.
+- Os nomes dos aptos são "Apto 4" / "Depto 4" / "Apt 4" (idem 6).
 - **"Como chegar" na página do bairro é só o endereço + link "Abrir no Google Maps"** (link externo, sem mapa embutido): sem rotas de carro, ônibus nem aeroporto (2026-10-20, T17).
 - **Endereço: Rua Luiz Rampa, 70, Jurerê Leste**, Florianópolis/SC, CEP 88053-682. O Booking dizia "Rua Acácio Melo, 70", mas o endereço certo foi confirmado pelo usuário; pino do prédio em -27.43779, -48.48270 (2026-10-20, E4).
 - **Não mostrar horário nem tempo de resposta** perto do botão do WhatsApp (2026-10-19, T02/T19).

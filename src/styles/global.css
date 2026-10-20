@@ -62,6 +62,10 @@ p {
 }
 
 /* Vertical rhythm: consecutive text blocks are spaced, components decide the rest. */
+:is(p, ul, ol, table, h1, h2, h3) + :is(h2, h3) {
+  margin-block-start: var(--space-6);
+}
+
 :where(h1, h2, h3, p, ul, ol) + :where(p, ul, ol) {
   margin-block-start: var(--space-4);
 }

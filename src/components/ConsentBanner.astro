@@ -12,8 +12,7 @@ const { locale } = Astro.props;
 
 <section class="consent" data-consent-banner aria-label={t(locale, 'consent.banner.aria')} hidden>
   <p class="text">
-    <strong>{t(locale, 'consent.banner.title')}</strong>
-    {t(locale, 'consent.banner.text')}
+    {t(locale, 'consent.banner.text')}{' '}
     <a href={routePath({ id: 'privacy' }, locale)}>{t(locale, 'consent.banner.policy')}</a>
   </p>
   <div class="actions">
