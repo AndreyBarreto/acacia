@@ -30,6 +30,7 @@ export interface Content {
   buildings: Entry<{ neighborhood: Ref; geo: Geo; amenities?: string[]; images?: Image[] }>[];
   properties: Entry<{
     identifier: string;
+    status: 'draft' | 'published';
     neighborhood: Ref;
     building?: Ref;
     amenities: string[];
