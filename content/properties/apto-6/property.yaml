@@ -1,13 +1,11 @@
 # yaml-language-server: $schema=../../../.astro/collections/properties.schema.json
 # Textos da T18 no formato da T11 (docs/plan/data-model.md §4.5).
 # subtitle e images[].fileName: ver o cabeçalho de ../apto-4/property.yaml.
-#
-# Tudo o que depende de confirmação está marcado com TODO.
 # Diferença para o apto 4 (anti-canibalização, T12 §5): aqui o principal é térreo + 50 m da praia.
 # Nada de "vista para o mar" nem "varanda" neste arquivo.
 
 identifier: acacia-6 # nunca muda (schema.org, GA4, iCal)
-status: draft # vira published quando os TODOs fecharem
+status: published
 order: 2
 neighborhood: jurere
 building: residencial-acacia
@@ -146,10 +144,9 @@ rules:
       - 'Avisanos por WhatsApp, con tiempo, a qué hora pensás llegar.'
       - 'Pago y cancelación: lo arreglamos por WhatsApp antes de confirmar la reserva.'
 
-# Fotos do Booking (assets/booking/photos/terreo), provisórias. Ordem = ordem sugerida da galeria
-# (quarto → sala → cozinha → banheiro), boas primeiro e as de baixa resolução no fim.
+# Fotos do Booking (assets/booking/photos/terreo), provisórias, 1 ou 2 por ambiente (curadoria da T28).
+# Ordem = ordem da galeria: quarto → sala → cozinha → banheiro. As antigas de 960x1280 saíram.
 # Falta a foto mais importante deste apto: a entrada térrea, do portão até a porta (roteiro de fotos, brand.md §6).
-# TODO (curadoria, T28): as 9 fotos antigas de 960x1280 repetem os mesmos ângulos; tirar da galeria se possível.
 images:
   - src: ../../../assets/booking/photos/terreo/17-345300438.jpg
     category: bedroom
@@ -224,42 +221,6 @@ images:
       en: apt-6-stovetop-and-living-room
       es: depto-6-anafe-y-living
 
-  - src: ../../../assets/booking/photos/terreo/07-164487250.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Mesa de granito com cadeiras brancas e o sofá do Apto 6 logo atrás'
-      en: 'Granite table with white chairs and the Apt 6 sofa just behind'
-      es: 'Mesa de granito con sillas blancas y el sillón del depto 6 justo atrás'
-    fileName:
-      pt: apto-6-mesa-e-sofa
-      en: apt-6-table-and-sofa
-      es: depto-6-mesa-y-sillon
-
-  - src: ../../../assets/booking/photos/terreo/01-345300662.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Cozinha do Apto 6 com a mesa posta e uma cadeira de praia dobrada ao lado'
-      en: 'Apt 6 kitchen with the table set and a folded beach chair beside it'
-      es: 'Cocina del depto 6 con la mesa puesta y una reposera plegada al lado'
-    fileName:
-      pt: apto-6-cozinha-cadeira-de-praia
-      en: apt-6-kitchen-beach-chair
-      es: depto-6-cocina-reposera
-
-  - src: ../../../assets/booking/photos/terreo/06-164488494.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Vista da entrada do Apto 6, com a TV à esquerda e a cozinha ao fundo'
-      en: 'View from the Apt 6 entrance, the TV on the left and the kitchen beyond'
-      es: 'Vista desde la entrada del depto 6, con la tele a la izquierda y la cocina al fondo'
-    fileName:
-      pt: apto-6-vista-da-entrada
-      en: apt-6-view-from-entrance
-      es: depto-6-vista-desde-la-entrada
-
   - src: ../../../assets/booking/photos/terreo/19-164488359.jpg
     category: bathroom
     provisional: true
@@ -283,128 +244,6 @@ images:
       pt: apto-6-banheiro-cuba
       en: apt-6-bathroom-basin
       es: depto-6-bano-bacha
-
-  # Baixa resolução (960x1280, fotos antigas): só galeria pequena.
-  - src: ../../../assets/booking/photos/terreo/08-162391513.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sala e cozinha integradas do Apto 6, com mesa de granito e sofá'
-      en: 'Open-plan living room and kitchen in Apt 6, with granite table and sofa'
-      es: 'Living y cocina integrados del depto 6, con mesa de granito y sillón'
-    fileName:
-      pt: apto-6-sala-e-cozinha
-      en: apt-6-open-plan-living-kitchen
-      es: depto-6-living-y-cocina
-
-  - src: ../../../assets/booking/photos/terreo/09-162391090.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Cozinha do Apto 6 vista do corredor de entrada'
-      en: 'Apt 6 kitchen seen from the entrance hallway'
-      es: 'Cocina del depto 6 vista desde el pasillo de entrada'
-    fileName:
-      pt: apto-6-cozinha-vista-do-corredor
-      en: apt-6-kitchen-from-hallway
-      es: depto-6-cocina-desde-el-pasillo
-
-  - src: ../../../assets/booking/photos/terreo/10-162390956.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Visão geral do Apto 6, da mesa até a janela da sala'
-      en: 'Overview of Apt 6, from the table to the living-room window'
-      es: 'Vista general del depto 6, de la mesa a la ventana del living'
-    fileName:
-      pt: apto-6-visao-geral
-      en: apt-6-overview
-      es: depto-6-vista-general
-
-  - src: ../../../assets/booking/photos/terreo/11-162390879.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Cooktop de quatro bocas e mesa de granito do Apto 6'
-      en: 'Four-burner stovetop and granite table in Apt 6'
-      es: 'Anafe de cuatro hornallas y mesa de granito del depto 6'
-    fileName:
-      pt: apto-6-cooktop-quatro-bocas
-      en: apt-6-four-burner-stovetop
-      es: depto-6-anafe-cuatro-hornallas
-
-  - src: ../../../assets/booking/photos/terreo/12-162390851.jpg
-    category: other
-    provisional: true
-    alt:
-      pt: 'Corredor do Apto 6 com espelho na parede, levando à sala'
-      en: 'Apt 6 hallway with a wall mirror, leading to the living room'
-      es: 'Pasillo del depto 6 con espejo en la pared, que lleva al living'
-    fileName:
-      pt: apto-6-corredor
-      en: apt-6-hallway
-      es: depto-6-pasillo
-
-  - src: ../../../assets/booking/photos/terreo/13-162390805.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Bancada da cozinha do Apto 6 com micro-ondas e forno no armário de cima'
-      en: 'Apt 6 kitchen counter, with microwave and oven in the upper cabinet'
-      es: 'Mesada de la cocina del depto 6, con microondas y horno en el mueble de arriba'
-    fileName:
-      pt: apto-6-bancada-cozinha
-      en: apt-6-kitchen-counter
-      es: depto-6-mesada-cocina
-
-  - src: ../../../assets/booking/photos/terreo/14-162390751.jpg
-    category: kitchen
-    provisional: true
-    alt:
-      pt: 'Cozinha, mesa e o canto do sofá do Apto 6 na mesma peça'
-      en: 'Kitchen, table and the corner of the sofa in the open-plan Apt 6 space'
-      es: 'Cocina, mesa y la punta del sillón del depto 6 en el mismo ambiente'
-    fileName:
-      pt: apto-6-cozinha-mesa-sofa
-      en: apt-6-kitchen-table-sofa
-      es: depto-6-cocina-mesa-sillon
-
-  - src: ../../../assets/booking/photos/terreo/15-162390682.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sofá-cama cinza do Apto 6, fechado, com almofada listrada'
-      en: 'The grey Apt 6 sofa bed, closed, with a striped cushion'
-      es: 'El sofá cama gris del depto 6, cerrado, con almohadón rayado'
-    fileName:
-      pt: apto-6-sofa-cama
-      en: apt-6-sofa-bed
-      es: depto-6-sofa-cama
-
-  - src: ../../../assets/booking/photos/terreo/16-162390654.jpg
-    category: living
-    provisional: true
-    alt:
-      pt: 'Sala do Apto 6 vista da cozinha, com sofá e janela ao fundo'
-      en: 'Apt 6 living room seen from the kitchen, with sofa and window beyond'
-      es: 'Living del depto 6 visto desde la cocina, con sillón y ventana al fondo'
-    fileName:
-      pt: apto-6-sala-vista-da-cozinha
-      en: apt-6-living-room-from-kitchen
-      es: depto-6-living-desde-la-cocina
-
-  - src: ../../../assets/booking/photos/terreo/20-162391420.jpg
-    category: bathroom
-    provisional: true
-    alt:
-      pt: 'Box de vidro e vaso no banheiro do Apto 6, em foto antiga'
-      en: 'Glass shower and toilet in the Apt 6 bathroom, older photo'
-      es: 'Mampara de vidrio e inodoro en el baño del depto 6, foto anterior'
-    fileName:
-      pt: apto-6-banheiro-foto-antiga
-      en: apt-6-bathroom-older-photo
-      es: depto-6-bano-foto-anterior
-  # terreo/22-162391008.jpg ficou de fora: é a mesma cena da terreo/20 (V58 e galeria).
 
 # contact:            # sem override: usa o WhatsApp global
 # Futuro (não implementado): pricing, calendar

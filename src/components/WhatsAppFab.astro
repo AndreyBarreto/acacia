@@ -4,19 +4,32 @@
 // It moves up with --cookie-banner-offset, set by ConsentBanner (E12).
 import type { Locale } from '../lib/i18n/locales';
 import { t } from '../lib/i18n/t';
-import { siteWhatsApp, whatsappIconPath, whatsappMessage, whatsappUrl } from '../lib/whatsapp';
+import {
+  whatsappIconPath,
+  whatsappMessage,
+  whatsappUrl,
+  type MessageContext,
+} from '../lib/whatsapp';
 
 export interface Props {
   locale: Locale;
+  /** E.164 number: the site one, or property.contact.whatsapp on that property's page. */
+  phone: string;
+  /** Which message the button opens; a property page cites the property (microcopy §7). */
+  context?: MessageContext;
 }
 
-const { locale } = Astro.props;
+const { locale, phone, context = { page: 'generic' } } = Astro.props;
 const text = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
-const href = whatsappUrl(siteWhatsApp, whatsappMessage(text, locale, { page: 'generic' }));
+const href = whatsappUrl(phone, whatsappMessage(text, locale, context));
+const aria =
+  context.page === 'property'
+    ? text('fab.aria.property', { name: context.name })
+    : text('fab.aria');
 ---
 
 <aside class="whatsapp-fab" aria-label={text('fab.label')}>
-  <a class="button" href={href} aria-label={text('fab.aria')}>
+  <a class="button" href={href} aria-label={aria}>
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
       <path d={whatsappIconPath} />
     </svg>

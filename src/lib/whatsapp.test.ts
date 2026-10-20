@@ -1,11 +1,11 @@
 // docs/content/microcopy.md §0 (number, date formats), §7 (messages) and §8.2 (form validation).
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { Locale } from './i18n/locales';
 import { t } from './i18n/t';
 import {
   addDays,
   formatStayDate,
-  siteWhatsApp,
   validateStay,
   whatsappMessage,
   whatsappUrl,
@@ -33,7 +33,14 @@ describe('whatsappUrl', () => {
 
   it('uses the number it is given, so a property can override the site number', () => {
     expect(whatsappUrl('+5548988887777', 'Oi')).toBe('https://wa.me/5548988887777?text=Oi');
-    expect(siteWhatsApp).toBe('+5548999442015');
+  });
+
+  it('keeps no number of its own: the site number comes from content/site.yaml', () => {
+    const source = readFileSync(new URL('./whatsapp.ts', import.meta.url), 'utf8');
+    const layout = readFileSync(new URL('../layouts/BaseLayout.astro', import.meta.url), 'utf8');
+
+    expect(source).not.toMatch(/\+55\d{10,11}/);
+    expect(layout).toMatch(/site\.contact\.whatsapp/);
   });
 
   it('refuses a number that is not in E.164 format', () => {
@@ -42,7 +49,7 @@ describe('whatsappUrl', () => {
   });
 
   it('URL-encodes the whole message with encodeURIComponent', () => {
-    const url = whatsappUrl(siteWhatsApp, '¡Hola! ¿Del 12/11 al __/__ en Acácia?');
+    const url = whatsappUrl('+5548999442015', '¡Hola! ¿Del 12/11 al __/__ en Acácia?');
 
     expect(url).toBe(
       'https://wa.me/5548999442015?text=%C2%A1Hola!%20%C2%BFDel%2012%2F11%20al%20__%2F__%20en%20Ac%C3%A1cia%3F',
