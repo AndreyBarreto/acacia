@@ -1,0 +1,22 @@
+/*
+ * Self-hosted fonts (never a CDN: it would send the visitor's IP to Google before consent).
+ * Latin subset from Google Fonts (2026-10-20): Young Serif v2 and Hanken Grotesk v12.
+ * Licenses: public/fonts/OFL-*.txt (SIL OFL 1.1).
+ */
+
+@font-face {
+  font-family: 'Young Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/young-serif-400.woff2') format('woff2');
+}
+
+/* Variable font, weight axis limited to the weights the brand uses. */
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/hanken-grotesk-var.woff2') format('woff2');
+}
