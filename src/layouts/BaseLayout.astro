@@ -9,16 +9,22 @@ import SeoHead from '../components/SeoHead.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
 import LanguageBanner from '../components/LanguageBanner.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { loadContent } from '../lib/content/load';
 import { htmlLang, type Locale } from '../lib/i18n/locales';
 import type { PageRef } from '../lib/routes';
+import type { MessageContext } from '../lib/whatsapp';
 
 interface Props {
   locale: Locale;
   page: PageRef;
   title: string;
+  /** The fixed WhatsApp button of this page: a property page passes its context and number. */
+  whatsapp?: { context: MessageContext; phone?: string };
 }
 
-const { locale, page, title } = Astro.props;
+const { locale, page, title, whatsapp } = Astro.props;
+const { site } = await loadContent();
+const whatsappPhone = whatsapp?.phone ?? site.contact.whatsapp;
 ---
 
 <html lang={htmlLang(locale)}>
@@ -36,7 +42,7 @@ const { locale, page, title } = Astro.props;
       <slot />
     </main>
     <Footer locale={locale} />
-    <WhatsAppFab locale={locale} />
+    <WhatsAppFab locale={locale} phone={whatsappPhone} context={whatsapp?.context} />
     <ConsentBanner locale={locale} />
   </body>
 </html>

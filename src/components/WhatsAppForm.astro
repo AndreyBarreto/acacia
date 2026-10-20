@@ -3,7 +3,6 @@
 // Not a booking: nothing is sent anywhere, the script only opens wa.me with the filled message.
 import type { Locale } from '../lib/i18n/locales';
 import { catalog, t } from '../lib/i18n/t';
-import { siteWhatsApp } from '../lib/whatsapp';
 
 export interface Props {
   locale: Locale;
@@ -13,11 +12,11 @@ export interface Props {
   code: string;
   minNights: number;
   maxGuests: number;
-  /** property.contact.whatsapp, when it overrides the site number. */
-  phone?: string;
+  /** E.164 number: property.contact.whatsapp ?? site.contact.whatsapp. */
+  phone: string;
 }
 
-const { locale, name, code, minNights, maxGuests, phone = siteWhatsApp } = Astro.props;
+const { locale, name, code, minNights, maxGuests, phone } = Astro.props;
 const text = (key: string, vars?: Record<string, string>) => t(locale, `whatsapp.${key}`, vars);
 const plural = (n: number) => (new Intl.PluralRules(locale).select(n) === 'one' ? 'one' : 'other');
 const id = (field: string) => `${code}-${field}`;
