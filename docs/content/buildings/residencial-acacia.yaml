@@ -1,0 +1,160 @@
+# Rascunho T18 (textos) no formato da T11 (docs/plan/data-model.md §4.4 e §11).
+# Destino final (T24): content/buildings/residencial-acacia/building.yaml
+# Os caminhos ../../../assets/... funcionam nos dois lugares (os dois ficam 3 níveis abaixo da raiz).
+#
+# Campo PROPOSTO, fora do data-model:
+#   images[].fileName  -> sugestão de nome público por idioma (sem extensão; o pipeline da T26
+#                         acrescenta .avif/.webp). Se a T24/T26 preferir gerar a partir do alt,
+#                         basta apagar o campo.
+#
+# Fotos: todas do Booking, provisórias (faremos fotos novas). Os alts descrevem o que se vê.
+
+name: Residencial Acacia          # uso interno; não é o nome exibido de nenhum apto
+neighborhood: jurere
+address:
+  street: Rua Acácio Melo, 70
+  postalCode: 88053-682
+geo:                              # TODO: pino do prédio no Google Maps, 5 casas decimais (a V30 falha até lá)
+  latitude: "-27.4xxxx"
+  longitude: "-48.4xxxx"
+beachDistanceMeters: 50
+amenities:
+  - wifi
+  - freeParking
+  - privateEntrance
+  - beachGear
+  - fireExtinguisher
+
+images:
+  - src: ../../../assets/booking/photos/varanda/05-513748046.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "Fachada do prédio de dois andares, com varanda em cima e capim alto no canteiro da frente"
+      en: "Front of the two-storey building, a balcony upstairs and tall grasses in the front bed"
+      es: "Frente del edificio de dos pisos, con balcón arriba y pastos altos en el cantero"
+    fileName:
+      pt: jurere-predio-fachada
+      en: jurere-building-front
+      es: jurere-edificio-frente
+
+  - src: ../../../assets/booking/photos/varanda/04-513748132.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "O prédio visto da rua, atrás da cerca verde e do jardim"
+      en: "The building seen from the street, behind the green fence and garden"
+      es: "El edificio visto desde la calle, detrás del cerco verde y el jardín"
+    fileName:
+      pt: jurere-predio-vista-da-rua
+      en: jurere-building-from-street
+      es: jurere-edificio-desde-la-calle
+
+  - src: ../../../assets/booking/photos/varanda/02-513748256.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "Portão verde de entrada do prédio, com caminho de lajotas e vasos"
+      en: "Green entrance gate of the building, with a paved path and potted plants"
+      es: "Portón verde de entrada al edificio, con camino de baldosas y macetas"
+    fileName:
+      pt: jurere-predio-portao
+      en: jurere-building-gate
+      es: jurere-edificio-porton
+
+  - src: ../../../assets/booking/photos/terreo/26-125321713.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "Corredor interno do prédio, piso de lajotas e vasos azuis com plantas"
+      en: "Inner walkway of the building, with paving stones and blue plant pots"
+      es: "Pasillo interno del edificio, con piso de adoquines y macetas azules"
+    fileName:
+      pt: jurere-predio-corredor-interno
+      en: jurere-building-inner-walkway
+      es: jurere-edificio-pasillo-interno
+
+  - src: ../../../assets/booking/photos/varanda/03-513748152.jpg
+    category: neighborhood
+    provisional: true
+    alt:
+      pt: "Rua de lajotas ao lado do prédio, seguindo em direção à praia"
+      en: "Paved lane beside the building, running toward the beach"
+      es: "Pasaje de adoquines al costado del edificio, que va hacia la playa"
+    fileName:
+      pt: jurere-rua-ao-lado-do-predio
+      en: jurere-lane-beside-building
+      es: jurere-pasaje-al-costado-del-edificio
+
+  - src: ../../../assets/booking/photos/terreo/23-122486093.jpg
+    category: neighborhood
+    provisional: true
+    alt:
+      pt: "Rua de lajotas com cerca viva de um lado, num dia de céu azul"
+      en: "Paved lane with a hedge along one side, under a blue sky"
+      es: "Pasaje de adoquines con cerco vivo de un lado, con cielo despejado"
+    fileName:
+      pt: jurere-rua-de-lajotas
+      en: jurere-paved-lane
+      es: jurere-pasaje-de-adoquines
+
+  - src: ../../../assets/booking/photos/varanda/01-118090581.jpg
+    category: beach
+    provisional: true
+    alt:
+      pt: "Praia de Jurerê com água clara na beira e o morro verde no fim da areia"
+      en: "Jurerê beach with clear water at the shoreline and a green hill at the far end"
+      es: "Playa de Jurerê con agua clara en la orilla y el morro verde al fondo"
+    fileName:
+      pt: praia-de-jurere-agua-clara
+      en: jurere-beach-clear-water
+      es: playa-de-jurere-agua-clara
+
+  - src: ../../../assets/booking/photos/comum/02-515795732.jpg
+    category: beach
+    provisional: true
+    alt:
+      pt: "Pôr do sol alaranjado na praia de Jurerê, com um coqueiro inclinado sobre a areia"
+      en: "Orange sunset on Jurerê beach, with a coconut palm leaning over the sand"
+      es: "Atardecer naranja en la playa de Jurerê, con un cocotero inclinado sobre la arena"
+    fileName:
+      pt: por-do-sol-praia-de-jurere
+      en: sunset-jurere-beach
+      es: atardecer-playa-de-jurere
+
+  - src: ../../../assets/booking/photos/varanda/33-513746744.jpg
+    category: beach
+    provisional: true
+    alt:
+      pt: "Cadeiras de praia listradas e guarda-sol fechado, guardados num canto"
+      en: "Striped beach chairs and a folded umbrella, stored in a corner"
+      es: "Reposeras rayadas y sombrilla cerrada, guardadas en un rincón"
+    fileName:
+      pt: cadeiras-e-guarda-sol-de-praia
+      en: beach-chairs-and-umbrella
+      es: reposeras-y-sombrilla
+
+  # Baixa resolução (960x1280): servem só para galeria pequena. TODO: tirar quando houver foto nova.
+  - src: ../../../assets/booking/photos/terreo/24-162391381.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "Portão aberto e corredor de entrada do prédio, com vasos de plantas"
+      en: "Open gate and entrance walkway of the building, with potted plants"
+      es: "Portón abierto y pasillo de entrada del edificio, con macetas"
+    fileName:
+      pt: jurere-predio-entrada
+      en: jurere-building-entrance
+      es: jurere-edificio-entrada
+
+  - src: ../../../assets/booking/photos/terreo/25-162391235.jpg
+    category: exterior
+    provisional: true
+    alt:
+      pt: "Corredor interno com piso de lajotas, vasos azuis e um banco encostado na parede"
+      en: "Inner walkway with paving stones, blue pots and a bench against the wall"
+      es: "Pasillo interno con adoquines, macetas azules y un banco contra la pared"
+    fileName:
+      pt: jurere-predio-corredor-com-banco
+      en: jurere-building-walkway-bench
+      es: jurere-edificio-pasillo-con-banco

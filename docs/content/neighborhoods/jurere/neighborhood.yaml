@@ -1,0 +1,29 @@
+# Draft (T17, stage B). Final location: content/neighborhoods/jurere/neighborhood.yaml (moved by T24).
+# Format: docs/plan/data-model.md §4.3. Facts: docs/content/jurere-research.md.
+# After the move, add on this line: yaml-language-server: $schema=../../../.astro/collections/neighborhoods.schema.json
+city: florianopolis
+order: 1
+
+name:
+  pt: Jurerê
+  en: Jurerê
+  es: Jurerê
+
+geo:
+  # TODO confirmar: pin at the centre of Jurerê (Tradicional) beach, near Rua Acácio Melo, on Google Maps,
+  # 5 decimal places. While it stays like this, V30 fails on purpose.
+  latitude: "-27.4xxxx"
+  longitude: "-48.4xxxx"
+
+seo:
+  # From docs/plan/keywords.md §6.2 (lengths checked by T12: titles 49/47/45, descriptions 132/138/129).
+  title:
+    pt: "O que fazer em Jurerê Tradicional: guia do bairro"
+    en: "Things to Do in Jurerê Tradicional: Local Guide"
+    es: "Qué hacer en Jurerê Tradicional y cómo llegar"
+  description:
+    pt: "Praias, onde comer, como chegar e a melhor época para Jurerê Tradicional, em Florianópolis. E a diferença para Jurerê Internacional."
+    en: "Beaches, where to eat, how to get there and when to visit Jurerê Tradicional, Florianópolis. And how it differs from Jurerê Internacional."
+    es: "Playas, dónde comer, cómo llegar y cuándo ir a Jurerê Tradicional, Florianópolis. Y en qué se diferencia de Jurerê Internacional."
+
+# The guide text lives in guide.pt.md, guide.en.md and guide.es.md, next to this file.

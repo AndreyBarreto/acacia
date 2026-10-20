@@ -1,0 +1,28 @@
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+
+# test output
+coverage/
+test-results/
+playwright-report/
+
+# local tooling state
+.omc/
+.env
+.env.*
+.DS_Store
+
+# Booking page copy (contains guest reviews); kept local only
+assets/booking/page-snapshot-*.txt
+
+# local-only: disposable prototypes, discarded logo variants, third-party skills, agent process docs
+docs/design/directions/
+docs/brand/directions/
+assets/brand/logo/variants/
+.claude/skills/
+tasks/
+docs/plan/
+docs/plan.md
+docs/research/

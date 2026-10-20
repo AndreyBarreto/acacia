@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acácia · logo (T06)</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  /* Preview only. No external fonts: system serif/sans keep the page offline. */
+  :root {
+    --concha: #EEF1EA; --restinga: #1F3B2D; --folha: #4A6450; --mar-raso: #D3E5DD; --acacia: #E8B42C;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--restinga); font: 15px/1.5 system-ui, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font: 400 30px/1.2 Georgia, serif; margin: 0 0 4px; }
+  h2 { font: 400 21px/1.3 Georgia, serif; margin: 44px 0 4px; }
+  p.lead, p.note { color: var(--folha); margin: 0 0 16px; max-width: 70ch; }
+  code { font-size: 13px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .tile { flex: 1 1 320px; padding: 28px; display: grid; place-items: center; min-height: 160px; position: relative; }
+  .tile.light { background: var(--concha); }
+  .tile.dark { background: var(--restinga); }
+  .tile.white { background: #fff; outline: 1px solid #dde3da; }
+  .tile.sand { background: var(--mar-raso); }
+  .tile img { max-width: 100%; display: block; }
+  .cap { position: absolute; left: 12px; bottom: 8px; font-size: 12px; color: var(--folha); }
+  .dark .cap { color: var(--mar-raso); }
+  .choice, .tile { min-width: 0; }
+  .choice { flex: 1 1 340px; border: 1px solid #dde3da; padding: 16px; }
+  .choice h3 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+  .choice .tag { font-size: 12px; font-weight: 600; background: var(--acacia); color: var(--restinga); padding: 1px 6px; margin-left: 6px; }
+  .zoom { background: var(--concha); overflow: hidden; height: 190px; display: flex; align-items: center; justify-content: flex-start; }
+  .zoom img { height: 520px; max-width: none; margin-left: -880px; margin-top: 60px; }
+
+  /* Circular crop as in WhatsApp / Instagram */
+  .chat { background: #fff; border: 1px solid #dde3da; width: 360px; max-width: 100%; }
+  .chat.dark-ui { background: #111b21; border-color: #222d34; color: #e9edef; }
+  .chat-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid rgba(127,127,127,.18); }
+  .chat-row img { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+  .chat-row b { display: block; font-weight: 600; }
+  .chat-row span { font-size: 13px; opacity: .7; }
+  .avatars { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+  .avatars figure { margin: 0; text-align: center; font-size: 12px; color: var(--folha); }
+  .avatars img { display: block; border-radius: 50%; margin: 0 auto 6px; }
+
+  /* Browser tab with 16 px favicon */
+  .tabs { display: flex; flex-wrap: wrap; gap: 16px; }
+  .tabbar { padding: 8px 8px 0; width: 300px; max-width: 100%; }
+  .tabbar.light { background: #dee1e6; }
+  .tabbar.dark { background: #202124; }
+  .tab { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px 8px 0 0; font-size: 12px; }
+  .tabbar.light .tab { background: #fff; color: #202124; }
+  .tabbar.dark .tab { background: #35363a; color: #e8eaed; }
+  .tab img { width: 16px; height: 16px; image-rendering: auto; }
+  .px { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; margin-top: 16px; }
+  .px figure { margin: 0; font-size: 12px; color: var(--folha); text-align: center; }
+  .px img { display: block; margin: 0 auto 6px; }
+  .print { width: 2cm; height: 2cm; }
+  table { border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  td, th { text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid #e3e8e1; vertical-align: top; }
+  .sw { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; border: 1px solid rgba(0,0,0,.12); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Acácia: logo final (T06)</h1>
+  <p class="lead">Direção A · Restinga. Wordmark em Young Serif convertida em contornos, símbolo do ramo com três flores-pompom, paleta exata da direção. Todos os arquivos são gerados por <code>source/build_logo.py</code>.</p>
+
+  <h2>1. Horizontal</h2>
+  <p class="note"><code>logo-horizontal-light.svg</code> (para fundos claros) e <code>logo-horizontal-dark.svg</code> (para fundos escuros). Fundo transparente.</p>
+  <div class="row">
+    <div class="tile light"><img src="logo-horizontal-light.svg" alt="Logo Acácia, versão clara" height="110"><span class="cap">light · sobre Concha</span></div>
+    <div class="tile dark"><img src="logo-horizontal-dark.svg" alt="Logo Acácia, versão escura" height="110"><span class="cap">dark · sobre Restinga</span></div>
+  </div>
+  <div class="row" style="margin-top:16px">
+    <div class="tile white"><img src="logo-horizontal-light.svg" alt="" height="48"><span class="cap">light · branco · 48 px (altura de cabeçalho)</span></div>
+    <div class="tile sand"><img src="logo-horizontal-light.svg" alt="" height="48"><span class="cap">light · sobre Mar raso · 48 px</span></div>
+    <div class="tile dark"><img src="logo-horizontal-dark.svg" alt="" height="32"><span class="cap">dark · 32 px (rodapé)</span></div>
+  </div>
+
+  <h2>2. Acento do "á": folíolo × agudo normal</h2>
+  <p class="note">Teste pedido na T05. No folíolo, o acento vira uma folha do mesmo desenho dos folíolos do ramo. Em tamanho pequeno ele ainda é lido como acento.</p>
+  <div class="row">
+    <div class="choice"><h3>Folíolo <span class="tag">recomendado · nos arquivos finais</span></h3>
+      <div class="zoom"><img src="logo-horizontal-light.svg" alt="Detalhe do acento em forma de folíolo"></div>
+      <div class="tile light" style="margin-top:10px;min-height:0"><img src="logo-horizontal-light.svg" alt="" height="40"></div>
+    </div>
+    <div class="choice"><h3>Agudo da fonte</h3>
+      <div class="zoom"><img src="variants/logo-horizontal-light-acute.svg" alt="Detalhe do acento agudo normal"></div>
+      <div class="tile light" style="margin-top:10px;min-height:0"><img src="variants/logo-horizontal-light-acute.svg" alt="" height="40"></div>
+    </div>
+  </div>
+
+  <h2>3. Símbolo: duas variações da folha</h2>
+  <p class="note">Ficou uma dúvida real: a folha em "traços de régua" (liga com a régua dos 50 m) ou a folha cheia, em silhueta (mais botânica, mais pesada em tamanho pequeno). As flores e o caule são iguais nas duas.</p>
+  <div class="row">
+    <div class="choice"><h3>A1 · Ramo (folha em traços) <span class="tag">recomendado · nos arquivos finais</span></h3>
+      <div class="row">
+        <div class="tile dark" style="flex-basis:150px"><img src="logo-square-dark.svg" alt="Símbolo A1, versão escura" width="150"></div>
+        <div class="tile light" style="flex-basis:150px"><img src="logo-square-light.svg" alt="Símbolo A1, versão clara" width="150"></div>
+      </div>
+    </div>
+    <div class="choice"><h3>A2 · Pena (folha cheia)</h3>
+      <div class="row">
+        <div class="tile dark" style="flex-basis:150px"><img src="variants/logo-square-dark-pena.svg" alt="Símbolo A2, versão escura" width="150"></div>
+        <div class="tile light" style="flex-basis:150px"><img src="variants/logo-square-light-pena.svg" alt="Símbolo A2, versão clara" width="150"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>4. Quadrado / avatar (WhatsApp e Instagram)</h2>
+  <p class="note"><code>logo-square-dark.svg</code> e <code>logo-square-light.svg</code>: quadrado cheio, desenho dentro do círculo inscrito. O recorte circular de 40 px abaixo é o tamanho real da lista de conversas.</p>
+  <div class="row">
+    <div class="chat">
+      <div class="chat-row"><img src="logo-square-dark.svg" alt="Avatar A1 escuro"><div><b>Acácia</b><span>A1 · escuro · 40 px</span></div></div>
+      <div class="chat-row"><img src="variants/logo-square-dark-pena.svg" alt="Avatar A2 escuro"><div><b>Acácia</b><span>A2 · escuro · 40 px</span></div></div>
+      <div class="chat-row"><img src="logo-square-light.svg" alt="Avatar A1 claro"><div><b>Acácia</b><span>A1 · claro · 40 px</span></div></div>
+    </div>
+    <div class="chat dark-ui">
+      <div class="chat-row"><img src="logo-square-dark.svg" alt=""><div><b>Acácia</b><span>A1 · escuro · tema escuro</span></div></div>
+      <div class="chat-row"><img src="variants/logo-square-dark-pena.svg" alt=""><div><b>Acácia</b><span>A2 · escuro · tema escuro</span></div></div>
+      <div class="chat-row"><img src="logo-square-light.svg" alt=""><div><b>Acácia</b><span>A1 · claro · tema escuro</span></div></div>
+    </div>
+    <div class="avatars">
+      <figure><img src="logo-square-dark.svg" width="110" alt="">110 px (perfil)</figure>
+      <figure><img src="logo-square-dark.svg" width="56" alt="">56 px</figure>
+      <figure><img src="logo-square-dark.svg" width="40" alt="">40 px</figure>
+      <figure><img src="logo-square-dark.svg" width="28" alt="">28 px</figure>
+    </div>
+  </div>
+
+  <h2>5. Favicon</h2>
+  <p class="note"><code>favicon.svg</code> é um desenho reduzido do símbolo (caule grosso, uma folha só, flores maiores), porque os traços da folha somem abaixo de 32 px. PNGs: <code>favicon-32.png</code>, <code>apple-touch-icon-180.png</code> e <code>icon-512.png</code> (os dois últimos com fundo cheio, porque o iOS e o Android arredondam os cantos sozinhos).</p>
+  <div class="tabs">
+    <div class="tabbar light"><div class="tab"><img src="favicon.svg" alt="Favicon 16 px">Apto 4 · Acácia, a 50 m da praia</div></div>
+    <div class="tabbar dark"><div class="tab"><img src="favicon.svg" alt="">Apto 4 · Acácia, a 50 m da praia</div></div>
+  </div>
+  <div class="px">
+    <figure><img src="favicon.svg" width="16" height="16" alt="">16 px</figure>
+    <figure><img src="favicon-32.png" width="32" height="32" alt="">favicon-32.png</figure>
+    <figure><img src="apple-touch-icon-180.png" width="90" height="90" alt="" style="border-radius:20px">apple-touch-icon-180.png (50%)</figure>
+    <figure><img src="icon-512.png" width="128" height="128" alt="" style="border-radius:50%">icon-512.png (máscara circular)</figure>
+    <figure><img src="logo-square-dark.svg" class="print" alt="">2 cm na impressão</figure>
+  </div>
+
+  <h2>6. Cores usadas</h2>
+  <table>
+    <tr><th>Cor</th><th>Hex</th><th>No logo</th></tr>
+    <tr><td><span class="sw" style="background:#1F3B2D"></span>Restinga</td><td><code>#1F3B2D</code></td><td>Texto e ramo na versão clara; fundo do avatar escuro e do favicon</td></tr>
+    <tr><td><span class="sw" style="background:#EEF1EA"></span>Concha</td><td><code>#EEF1EA</code></td><td>Texto e ramo na versão escura; fundo do avatar claro</td></tr>
+    <tr><td><span class="sw" style="background:#E8B42C"></span>Acácia</td><td><code>#E8B42C</code></td><td>As três flores, em todas as versões</td></tr>
+  </table>
+  <p class="note" style="margin-top:10px">Folha e Mar raso ficam fora do logo. Amarelo sobre Concha tem 1,67:1: as flores funcionam como cor, mas no avatar claro em 40 px elas perdem força. Por isso o avatar recomendado é o escuro (6,39:1).</p>
+</main>
+</body>
+</html>

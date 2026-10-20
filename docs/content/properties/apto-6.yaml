@@ -1,0 +1,412 @@
+# Rascunho T18 (textos) no formato da T11 (docs/plan/data-model.md §4.5 e §11).
+# Destino final (T24): content/properties/apto-6/property.yaml
+# Os caminhos ../../../assets/... funcionam nos dois lugares (os dois ficam 3 níveis abaixo da raiz).
+#
+# Campos PROPOSTOS, fora do data-model (decidir na T24): subtitle e images[].fileName
+# (ver o cabeçalho de apto-4.yaml).
+#
+# Tudo o que depende de confirmação está marcado com TODO.
+# Diferença para o apto 4 (anti-canibalização, T12 §5): aqui o principal é térreo + 50 m da praia.
+# Nada de "vista para o mar" nem "varanda" neste arquivo.
+
+identifier: acacia-6                 # nunca muda (schema.org, GA4, iCal)
+status: draft                        # vira published quando os TODOs fecharem
+order: 2
+neighborhood: jurere
+building: residencial-acacia
+unitLabel: Apto 6
+showUnitPublicly: false
+propertyType: Apartment
+
+name:
+  pt: "Apto 6"
+  en: "Apt 6"
+  es: "Depto 6"
+
+subtitle:                            # PROPOSTO
+  pt: "Térreo, sem escada"
+  en: "Ground floor, step-free"
+  es: "Planta baja, sin escalones"
+
+summary:                             # ≤ 160
+  pt: "No térreo, sem escada da rua até dentro, a 50 m da praia. Cama de casal no quarto e sofá-cama na sala: até 3 pessoas."
+  en: "On the ground floor and step-free from the street to the door, 50 m from the beach. A double bed and a sofa bed: sleeps 3."
+  es: "En planta baja, sin escalones desde la calle hasta adentro, a 50 m de la playa. Cama matrimonial y sofá cama: hasta 3 personas."
+
+description:
+  pt: |
+    O Apto 6 fica no térreo. Do portão até a porta não tem degrau, o que ajuda quem chega com mala pesada, carrinho de bebê ou prefere evitar escada. A praia de Jurerê está a 50 m, no fim da rua de lajotas.
+
+    São cerca de 33 m², em branco e cinza. O quarto tem cama de casal e uma janela que dá para o morro; na sala, o sofá abre em cama para a terceira pessoa. A cozinha fica na mesma peça, com cooktop de quatro bocas, forno elétrico, micro-ondas, frigobar e cafeteira, e uma mesa de granito com quatro cadeiras.
+
+    Tem Wi-Fi, mesa de trabalho, ar split quente e frio e TV com streaming. Se a ideia é ficar mais tempo e trabalhar daqui, funciona; o mínimo é de 4 noites, o ano todo.
+
+    A garagem fica no prédio, sem custo. Mandamos as instruções do self check-in pelo WhatsApp.
+  en: |
+    Apt 6 is on the ground floor, with no steps between the front gate and the door. That helps if you're bringing heavy bags or a stroller, or would simply rather skip stairs. Jurerê beach is 50 m away, at the end of the paved lane.
+
+    It's about 33 m² (355 sq ft), finished in white and grey. The bedroom has a double bed and a window facing the green hills; in the living room, the sofa opens into a bed for a third guest. The kitchen shares the same space, with a four-burner stovetop, electric oven, microwave, mini fridge and coffee maker, plus a granite table with four chairs.
+
+    There's Wi-Fi, a work desk, split air conditioning that heats and cools, and a TV with streaming. It suits a longer stay with your laptop; the minimum is 4 nights, all year round.
+
+    Parking is in the building and free. We send self check-in instructions on WhatsApp.
+  es: |
+    El depto 6 está en planta baja: del portón a la puerta no hay ni un escalón. Se agradece si venís con valijas pesadas o cochecito, o si preferís no subir escaleras. La playa de Jurerê está a 50 m, al final del pasaje de adoquines.
+
+    Tiene unos 33 m², en blanco y gris. El dormitorio tiene cama matrimonial y una ventana que mira al morro; en el living, el sofá se abre en cama para la tercera persona. La cocina está en el mismo ambiente, con anafe de cuatro hornallas, horno eléctrico, microondas, frigobar y cafetera, y una mesa de granito con cuatro sillas.
+
+    Hay Wi-Fi, mesa para trabajar, aire split frío/calor y tele con streaming. Si pensás quedarte un tiempo largo y trabajar desde acá, funciona; el mínimo es de 4 noches, todo el año.
+
+    La cochera está en el edificio, sin cargo. Las instrucciones del self check-in te las mandamos por WhatsApp.
+  # Não dizer "acessível para cadeira de rodas" (não confirmado): só "sem escada / step-free / sin escalones".
+
+highlights:                          # 3 a 6 itens, ≤ 80 cada
+  pt:
+    - "Térreo, sem escada da rua até dentro"
+    - "A 50 m da praia de Jurerê"
+    - "Cama de casal e sofá-cama: até 3 pessoas"
+    - "Wi-Fi e mesa de trabalho"
+    - "Garagem no prédio, sem custo"
+    - "Mesa de granito para 4 na cozinha"
+  en:
+    - "Ground floor, step-free from the street"
+    - "50 m from Jurerê beach"
+    - "Double bed plus sofa bed: sleeps 3"
+    - "Wi-Fi and a work desk"
+    - "Free parking in the building"
+    - "Granite dining table for 4"
+  es:
+    - "Planta baja, sin escalones desde la calle"
+    - "A 50 m de la playa de Jurerê"
+    - "Cama matrimonial y sofá cama: hasta 3 personas"
+    - "Wi-Fi y mesa para trabajar"
+    - "Cochera en el edificio, sin cargo"
+    - "Mesa de granito para 4 en la cocina"
+
+seo:                                 # T12 §6.4; "garaje" trocado por "cochera" (decisão T05)
+  title:                             # ≤ 60
+    pt: "Apartamento térreo a 50 m da praia em Jurerê"
+    en: "Ground-Floor Apartment 50 m from Jurerê Beach"
+    es: "Departamento en planta baja a 50 m de la playa, Jurerê"
+  description:                       # 70 a 155
+    pt: "Apartamento térreo, sem escada, para até 3 pessoas, a 50 m da praia em Jurerê. 1 quarto, garagem e Wi-Fi. Mínimo de 4 noites."
+    en: "Step-free ground-floor apartment for up to 3 guests, 50 m from the beach in Jurerê. 1 bedroom, free parking, Wi-Fi. 4-night minimum."
+    es: "Departamento en planta baja, sin escalones, para hasta 3 personas a 50 m de la playa en Jurerê. 1 dormitorio, cochera y Wi-Fi. Mínimo 4 noches."
+
+capacity:
+  maxGuests: 3
+bedrooms: 1
+bathrooms: 1
+floorSizeM2: 33
+sleepingAreas:
+  - room: bedroom
+    beds: [{ type: double, count: 1 }]
+  - room: livingRoom
+    beds: [{ type: sofaBed, count: 1 }]
+floor: ground
+views: [mountain, courtyard]
+
+amenities:                           # somadas às do prédio (wifi, freeParking, privateEntrance, beachGear, fireExtinguisher)
+  - airConditioning
+  - heating
+  - kitchen
+  - ovenStove
+  - microwave
+  - minibar
+  - coffeeMaker
+  - kitchenware
+  - diningTable
+  - tv
+  - streaming
+  - desk
+  - bedLinen
+  - towels
+  - hairDryer
+  - wardrobe
+  - iron
+  - dryingRack
+  # Sem wheelchairAccessible: o Booking marca, mas o usuário só confirmou "sem degraus".
+
+rules:
+  checkIn: { from: "14:00" }
+  checkOut: { until: "11:00" }
+  minNights: 4
+  smoking: false
+  pets: false
+  children: true
+  crib: false
+  selfCheckIn: true
+  # Texto das regras estruturadas: igual ao do apto 4 (ver comentário em apto-4.yaml; final na T19).
+  notes:
+    pt:
+      - "Avise pelo WhatsApp, com antecedência, a que horas pretende chegar."
+      - "Pagamento e cancelamento: combinamos pelo WhatsApp, antes de confirmar a reserva."   # TODO: tirar se a T19 puser essa frase na UI
+    en:
+      - "Let us know on WhatsApp, ahead of time, roughly when you'll arrive."
+      - "Payment and cancellation are agreed on WhatsApp before we confirm your stay."
+    es:
+      - "Avisanos por WhatsApp, con tiempo, a qué hora pensás llegar."
+      - "Pago y cancelación: lo arreglamos por WhatsApp antes de confirmar la reserva."
+
+# Fotos do Booking (assets/booking/photos/terreo), provisórias. Ordem = ordem sugerida da galeria
+# (quarto → sala → cozinha → banheiro), boas primeiro e as de baixa resolução no fim.
+# Falta a foto mais importante deste apto: a entrada térrea, do portão até a porta (roteiro de fotos, brand.md §6).
+# TODO (curadoria, T28): as 9 fotos antigas de 960x1280 repetem os mesmos ângulos; tirar da galeria se possível.
+images:
+  - src: ../../../assets/booking/photos/terreo/17-345300438.jpg
+    category: bedroom
+    cover: true
+    provisional: true
+    alt:
+      pt: "Quarto do Apto 6 com cama de casal e janela ampla para o morro verde"
+      en: "Apt 6 bedroom with a double bed and a wide window onto the green hill"
+      es: "Dormitorio del depto 6 con cama matrimonial y ventana amplia al morro verde"
+    fileName:
+      pt: apto-6-jurere-quarto-janela-morro
+      en: apt-6-jurere-bedroom-hill-view
+      es: depto-6-jurere-dormitorio-ventana-morro
+
+  - src: ../../../assets/booking/photos/terreo/18-345300355.jpg
+    category: bedroom
+    provisional: true
+    alt:
+      pt: "Cama de casal do Apto 6 com colcha estampada, criado-mudo e abajur"
+      en: "Apt 6 double bed with a patterned bedspread, bedside table and lamp"
+      es: "Cama matrimonial del depto 6 con cubrecama estampado, mesa de luz y velador"
+    fileName:
+      pt: apto-6-quarto-cama-de-casal
+      en: apt-6-bedroom-double-bed
+      es: depto-6-dormitorio-cama-matrimonial
+
+  - src: ../../../assets/booking/photos/terreo/04-164488594.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Sofá cinza da sala do Apto 6, com a cozinha atrás"
+      en: "Grey sofa in the Apt 6 living room, with the kitchen behind it"
+      es: "Sillón gris del living del depto 6, con la cocina atrás"
+    fileName:
+      pt: apto-6-sala-sofa
+      en: apt-6-living-room-sofa
+      es: depto-6-living-sillon
+
+  - src: ../../../assets/booking/photos/terreo/05-164488551.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Sala do Apto 6 com sofá, TV em suporte na parede e a cozinha na mesma peça"
+      en: "Apt 6 living room with sofa, wall-mounted TV and the kitchen in the same room"
+      es: "Living del depto 6 con sillón, tele en la pared y la cocina en el mismo ambiente"
+    fileName:
+      pt: apto-6-sala-tv
+      en: apt-6-living-room-tv
+      es: depto-6-living-tele
+
+  - src: ../../../assets/booking/photos/terreo/03-164488670.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cozinha branca do Apto 6: cooktop, micro-ondas, forno e mesa de granito para 4"
+      en: "White Apt 6 kitchen: stovetop, microwave, oven and a granite table for 4"
+      es: "Cocina blanca del depto 6: anafe, microondas, horno y mesa de granito para 4"
+    fileName:
+      pt: apto-6-cozinha-mesa-granito
+      en: apt-6-kitchen-granite-table
+      es: depto-6-cocina-mesa-de-granito
+
+  - src: ../../../assets/booking/photos/terreo/02-164488758.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cooktop em primeiro plano, mesa de granito e a sala do Apto 6 ao fundo"
+      en: "Stovetop in front, granite table and the Apt 6 living room behind"
+      es: "Anafe adelante, mesa de granito y el living del depto 6 al fondo"
+    fileName:
+      pt: apto-6-cooktop-e-sala
+      en: apt-6-stovetop-and-living-room
+      es: depto-6-anafe-y-living
+
+  - src: ../../../assets/booking/photos/terreo/07-164487250.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Mesa de granito com cadeiras brancas e o sofá do Apto 6 logo atrás"
+      en: "Granite table with white chairs and the Apt 6 sofa just behind"
+      es: "Mesa de granito con sillas blancas y el sillón del depto 6 justo atrás"
+    fileName:
+      pt: apto-6-mesa-e-sofa
+      en: apt-6-table-and-sofa
+      es: depto-6-mesa-y-sillon
+
+  - src: ../../../assets/booking/photos/terreo/01-345300662.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cozinha do Apto 6 com a mesa posta e uma cadeira de praia dobrada ao lado"
+      en: "Apt 6 kitchen with the table set and a folded beach chair beside it"
+      es: "Cocina del depto 6 con la mesa puesta y una reposera plegada al lado"
+    fileName:
+      pt: apto-6-cozinha-cadeira-de-praia
+      en: apt-6-kitchen-beach-chair
+      es: depto-6-cocina-reposera
+
+  - src: ../../../assets/booking/photos/terreo/06-164488494.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Vista da entrada do Apto 6, com a TV à esquerda e a cozinha ao fundo"
+      en: "View from the Apt 6 entrance, the TV on the left and the kitchen beyond"
+      es: "Vista desde la entrada del depto 6, con la tele a la izquierda y la cocina al fondo"
+    fileName:
+      pt: apto-6-vista-da-entrada
+      en: apt-6-view-from-entrance
+      es: depto-6-vista-desde-la-entrada
+
+  - src: ../../../assets/booking/photos/terreo/19-164488359.jpg
+    category: bathroom
+    provisional: true
+    alt:
+      pt: "Banheiro do Apto 6 com box de vidro, vaso e azulejos claros"
+      en: "Apt 6 bathroom with a glass shower, toilet and light tiles"
+      es: "Baño del depto 6 con mampara de vidrio, inodoro y azulejos claros"
+    fileName:
+      pt: apto-6-banheiro-box
+      en: apt-6-bathroom-shower
+      es: depto-6-bano-ducha
+
+  - src: ../../../assets/booking/photos/terreo/21-164487377.jpg
+    category: bathroom
+    provisional: true
+    alt:
+      pt: "Cuba quadrada sobre bancada e espelho no banheiro do Apto 6"
+      en: "Square vessel basin on the counter and mirror in the Apt 6 bathroom"
+      es: "Bacha cuadrada sobre la mesada y espejo en el baño del depto 6"
+    fileName:
+      pt: apto-6-banheiro-cuba
+      en: apt-6-bathroom-basin
+      es: depto-6-bano-bacha
+
+  # Baixa resolução (960x1280, fotos antigas): só galeria pequena.
+  - src: ../../../assets/booking/photos/terreo/08-162391513.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Sala e cozinha integradas do Apto 6, com mesa de granito e sofá"
+      en: "Open-plan living room and kitchen in Apt 6, with granite table and sofa"
+      es: "Living y cocina integrados del depto 6, con mesa de granito y sillón"
+    fileName:
+      pt: apto-6-sala-e-cozinha
+      en: apt-6-open-plan-living-kitchen
+      es: depto-6-living-y-cocina
+
+  - src: ../../../assets/booking/photos/terreo/09-162391090.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cozinha do Apto 6 vista do corredor de entrada"
+      en: "Apt 6 kitchen seen from the entrance hallway"
+      es: "Cocina del depto 6 vista desde el pasillo de entrada"
+    fileName:
+      pt: apto-6-cozinha-vista-do-corredor
+      en: apt-6-kitchen-from-hallway
+      es: depto-6-cocina-desde-el-pasillo
+
+  - src: ../../../assets/booking/photos/terreo/10-162390956.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Visão geral do Apto 6, da mesa até a janela da sala"
+      en: "Overview of Apt 6, from the table to the living-room window"
+      es: "Vista general del depto 6, de la mesa a la ventana del living"
+    fileName:
+      pt: apto-6-visao-geral
+      en: apt-6-overview
+      es: depto-6-vista-general
+
+  - src: ../../../assets/booking/photos/terreo/11-162390879.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cooktop de quatro bocas e mesa de granito do Apto 6"
+      en: "Four-burner stovetop and granite table in Apt 6"
+      es: "Anafe de cuatro hornallas y mesa de granito del depto 6"
+    fileName:
+      pt: apto-6-cooktop-quatro-bocas
+      en: apt-6-four-burner-stovetop
+      es: depto-6-anafe-cuatro-hornallas
+
+  - src: ../../../assets/booking/photos/terreo/12-162390851.jpg
+    category: other
+    provisional: true
+    alt:
+      pt: "Corredor do Apto 6 com espelho na parede, levando à sala"
+      en: "Apt 6 hallway with a wall mirror, leading to the living room"
+      es: "Pasillo del depto 6 con espejo en la pared, que lleva al living"
+    fileName:
+      pt: apto-6-corredor
+      en: apt-6-hallway
+      es: depto-6-pasillo
+
+  - src: ../../../assets/booking/photos/terreo/13-162390805.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Bancada da cozinha do Apto 6 com micro-ondas e forno no armário de cima"
+      en: "Apt 6 kitchen counter, with microwave and oven in the upper cabinet"
+      es: "Mesada de la cocina del depto 6, con microondas y horno en el mueble de arriba"
+    fileName:
+      pt: apto-6-bancada-cozinha
+      en: apt-6-kitchen-counter
+      es: depto-6-mesada-cocina
+
+  - src: ../../../assets/booking/photos/terreo/14-162390751.jpg
+    category: kitchen
+    provisional: true
+    alt:
+      pt: "Cozinha, mesa e o canto do sofá do Apto 6 na mesma peça"
+      en: "Kitchen, table and the corner of the sofa in the open-plan Apt 6 space"
+      es: "Cocina, mesa y la punta del sillón del depto 6 en el mismo ambiente"
+    fileName:
+      pt: apto-6-cozinha-mesa-sofa
+      en: apt-6-kitchen-table-sofa
+      es: depto-6-cocina-mesa-sillon
+
+  - src: ../../../assets/booking/photos/terreo/15-162390682.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Sofá-cama cinza do Apto 6, fechado, com almofada listrada"
+      en: "The grey Apt 6 sofa bed, closed, with a striped cushion"
+      es: "El sofá cama gris del depto 6, cerrado, con almohadón rayado"
+    fileName:
+      pt: apto-6-sofa-cama
+      en: apt-6-sofa-bed
+      es: depto-6-sofa-cama
+
+  - src: ../../../assets/booking/photos/terreo/16-162390654.jpg
+    category: living
+    provisional: true
+    alt:
+      pt: "Sala do Apto 6 vista da cozinha, com sofá e janela ao fundo"
+      en: "Apt 6 living room seen from the kitchen, with sofa and window beyond"
+      es: "Living del depto 6 visto desde la cocina, con sillón y ventana al fondo"
+    fileName:
+      pt: apto-6-sala-vista-da-cozinha
+      en: apt-6-living-room-from-kitchen
+      es: depto-6-living-desde-la-cocina
+
+  - src: ../../../assets/booking/photos/terreo/20-162391420.jpg
+    category: bathroom
+    provisional: true
+    alt:
+      pt: "Box de vidro e vaso no banheiro do Apto 6, em foto antiga"
+      en: "Glass shower and toilet in the Apt 6 bathroom, older photo"
+      es: "Mampara de vidrio e inodoro en el baño del depto 6, foto anterior"
+    fileName:
+      pt: apto-6-banheiro-foto-antiga
+      en: apt-6-bathroom-older-photo
+      es: depto-6-bano-foto-anterior
+  # terreo/22-162391008.jpg ficou de fora: é a mesma cena da terreo/20 (V58 e galeria).
+
+# contact:            # sem override: usa o WhatsApp global
+# Futuro (não implementado): pricing, calendar
