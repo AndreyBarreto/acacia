@@ -5,5 +5,7 @@
   "banner.accept": "Accept",
   "banner.decline": "Decline",
   "preferences": "Cookie preferences",
-  "privacy.title": "Privacy policy"
+  "privacy.title": "Privacy policy",
+  "privacy.seo.title": "Privacy Policy and Cookies",
+  "privacy.seo.description": "What Acácia collects when you visit the site or message us on WhatsApp, why, for how long, and how to ask us to correct or delete your data."
 }

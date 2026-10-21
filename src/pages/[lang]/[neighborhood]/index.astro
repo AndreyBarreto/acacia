@@ -5,6 +5,8 @@ import { t } from '../../../lib/i18n/t';
 import { loadContent } from '../../../lib/content/load';
 import { propertiesIn } from '../../../lib/neighborhood';
 import { routePath } from '../../../lib/routes';
+import { absoluteUrl } from '../../../lib/seo/head';
+import { breadcrumbList, touristDestination } from '../../../lib/seo/jsonld';
 import * as pt from '../../../../content/neighborhoods/jurere/guide.pt.md';
 import * as en from '../../../../content/neighborhoods/jurere/guide.en.md';
 import * as es from '../../../../content/neighborhoods/jurere/guide.es.md';
@@ -25,14 +27,48 @@ export async function getStaticPaths() {
 const locale = Astro.params.lang as Locale;
 const { neighborhood } = Astro.props;
 const { Content } = guides[neighborhood.id as keyof typeof guides][locale];
-const { properties } = await loadContent();
+const { site, cities, buildings, properties } = await loadContent();
 const apartments = propertiesIn(properties, neighborhood.id);
+
+const { data } = neighborhood;
+const city = cities.find((entry) => entry.id === data.city.id);
+const name = data.name[locale];
+const url = absoluteUrl(site.siteUrl, routePath({ id: 'neighborhood' }, locale));
+const jsonLd = [
+  breadcrumbList([
+    {
+      name: t(locale, 'property.breadcrumb.home'),
+      url: absoluteUrl(site.siteUrl, routePath({ id: 'home' }, locale)),
+    },
+    { name },
+  ]),
+  ...(city
+    ? [
+        touristDestination({
+          locale,
+          url,
+          name,
+          description: data.seo.description[locale],
+          geo: data.geo,
+          city: city.data,
+        }),
+      ]
+    : []),
+];
+// OG image: the first beach photo of a building in this neighborhood.
+const beach = buildings
+  .filter((entry) => entry.data.neighborhood.id === neighborhood.id)
+  .flatMap((entry) => entry.data.images ?? [])
+  .find((image) => image.category === 'beach');
 ---
 
 <BaseLayout
   locale={locale}
   page={{ id: 'neighborhood' }}
-  title={neighborhood.data.seo.title[locale]}
+  title={data.seo.title[locale]}
+  description={data.seo.description[locale]}
+  image={beach?.src}
+  jsonLd={jsonLd}
 >
   <article class="guide">
     <Content />

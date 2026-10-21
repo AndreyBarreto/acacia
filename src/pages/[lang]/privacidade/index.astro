@@ -15,7 +15,12 @@ const { Content } = { pt, en, es }[locale];
 const title = t(locale, 'consent.privacy.title');
 ---
 
-<BaseLayout locale={locale} page={{ id: 'privacy' }} title={title}>
+<BaseLayout
+  locale={locale}
+  page={{ id: 'privacy' }}
+  title={t(locale, 'consent.privacy.seo.title')}
+  description={t(locale, 'consent.privacy.seo.description')}
+>
   <article class="policy">
     <h1>{title}</h1>
     <Content />
