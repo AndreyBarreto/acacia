@@ -25,8 +25,8 @@ Respostas do usuário de 2026-10-19 para as lacunas de [booking-data.md](booking
 - **E-mail:** nenhum por enquanto.
 
 ## Empresa
-- Sem CNPJ por enquanto; atendimento remoto (self check-in).
-- Sem Perfil da Empresa no Google (ver T13).
+- Tem CNPJ, em outro nome (não "Acácia"); a família vai aos aptos.
+- Perfil da Empresa no Google: criar como área de atendimento (ver CLAUDE.md e T36).
 - Responsável pelos dados (privacidade): fica como placeholder (o usuário deixou vazio de propósito).
 
 ## Domínio e hospedagem
