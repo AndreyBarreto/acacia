@@ -15,7 +15,7 @@ Tarefas e protocolo para agentes: [`tasks/README.md`](tasks/README.md).
 - **Imóveis no lançamento:** 2 apartamentos na Rua Luiz Rampa, 70, **Jurerê (Tradicional)**, Florianópolis/SC, a 50 m da praia. Apto 4 = com varanda e vista para o mar; apto 6 = térreo. Até 3 pessoas cada (cama de casal + sofá-cama). Dados em [`docs/booking-data.md`](docs/booking-data.md) e [`docs/project-info.md`](docs/project-info.md).
 - **Público:** casais, famílias pequenas, argentinos/uruguaios e trabalho remoto/estadias longas.
 - **Posicionamento:** intermediário, pé na areia. Marca acolhedora, direta e tranquila; nunca ostentosa, genérica nem festeira.
-- **Sem CNPJ** por enquanto; atendimento remoto (self check-in).
+- **Tem CNPJ, em outro nome** (não "Acácia"); a família vai aos aptos (2026-10-20, T36).
 
 ## Decisões
 
@@ -106,7 +106,8 @@ Formato: decisão — motivo (data, tarefa de origem).
 - Identifiers fixos `acacia-4` e `acacia-6` (slugs `apto-4`/`apto-6`); endereço público sem o número do apto; WhatsApp global com override opcional por imóvel; `status: draft`; geo como texto com 5 casas decimais.
 
 ### Google e privacidade
-- **Não criar o Perfil da Empresa no Google por enquanto** — sem CNPJ e sem atendimento presencial, o negócio não é elegível e o risco de suspensão é alto. Reavaliar se isso mudar (2026-10-19, T13).
+- ~~Não criar o Perfil da Empresa no Google por enquanto~~ (2026-10-19, T13) — revisto abaixo.
+- **Criar o Perfil da Empresa agora, como área de atendimento** (ramo B da T13): nome "Acácia", endereço oculto, área Florianópolis, telefone do WhatsApp, site depois do go-live. Conta Google = e-mail pessoal do usuário. O usuário aceitou o risco de suspensão: o CNPJ está em outro nome e a operação é só dos aptos próprios (2026-10-20, T36).
 - **GA4 só carrega depois do "Aceitar"** — o caminho mais seguro com o guia da ANPD; aceitamos perder parte das métricas (2026-10-19, T20).
 - **Privacidade:** o encarregado é a pessoa responsável (placeholder até definir), com menção curta às leis da Argentina e do Uruguai, resposta a pedidos em 15 dias e conversas de WhatsApp guardadas só enquanto necessário, com revisão anual (2026-10-19, T20).
 
