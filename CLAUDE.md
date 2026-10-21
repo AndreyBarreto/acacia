@@ -107,9 +107,9 @@ Formato: decisão — motivo (data, tarefa de origem).
 
 ### Google e privacidade
 - ~~Não criar o Perfil da Empresa no Google por enquanto~~ (2026-10-19, T13) — revisto abaixo.
-- **Criar o Perfil da Empresa agora, como área de atendimento** (ramo B da T13): nome "Acácia", endereço oculto, área Florianópolis, telefone do WhatsApp, site depois do go-live. Conta Google = e-mail pessoal do usuário. O usuário aceitou o risco de suspensão: o CNPJ está em outro nome e a operação é só dos aptos próprios (2026-10-20, T36).
+- **Criar o Perfil da Empresa agora, como área de atendimento** (ramo B da T13): nome "Acácia", endereço oculto, área Florianópolis, telefone do WhatsApp, site depois do go-live. Conta Google = e-mail pessoal do usuário. O usuário aceitou o risco de suspensão: o CNPJ está em outro nome e a operação é só dos aptos próprios (2026-10-20, T36). O CNPJ é um MEI com atividade registrada diferente de aluguel e endereço na Lagoa da Conceição; o usuário decidiu criar o perfil mesmo assim (2026-10-21). O número do CNPJ não entra no repositório público (fica em `tasks/T36`, que é local).
 - **GA4 só carrega depois do "Aceitar"** — o caminho mais seguro com o guia da ANPD; aceitamos perder parte das métricas (2026-10-19, T20).
-- **Privacidade:** o encarregado é a pessoa responsável (placeholder até definir), com menção curta às leis da Argentina e do Uruguai, resposta a pedidos em 15 dias e conversas de WhatsApp guardadas só enquanto necessário, com revisão anual (2026-10-19, T20).
+- **Privacidade:** o encarregado é a pessoa responsável (placeholder até falar com o contador, 2026-10-21), com menção curta às leis da Argentina e do Uruguai, resposta a pedidos em 15 dias e conversas de WhatsApp guardadas só enquanto necessário, com revisão anual (2026-10-19, T20).
 
 ### Skills (T15, 2026-10-19)
 - Instalar **só neste projeto** (`.claude/skills`): `astro-seo`, `playwright-skill` (só core + cli) e `terraform-style-guide`, depois de revisar o SKILL.md e os scripts de cada uma. Ficam de fora `accessibility-compliance` (o axe já cobre) e `web-design-guidelines` (baixa instruções remotas a cada uso).
