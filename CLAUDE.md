@@ -48,7 +48,7 @@ Formato: decisão — motivo (data, tarefa de origem).
 
 ### Marca
 - O nome é **Acácia** (2026-10-19, T03).
-- O domínio é **acaciafloripa.com.br**, com `acaciafloripa.com` redirecionando, e o Instagram é **@acaciafloripa** — todos livres em 2026-10-19; não prende a marca ao bairro, e "acacia" puro está ocupado. A marca continua sendo só "Acácia". O registro é feito pelo usuário (2026-10-19, T04).
+- ~~O domínio é acaciafloripa.com.br, com acaciafloripa.com redirecionando~~ (2026-10-19, T04) — revisto: **o endereço definitivo é `https://acacia.deyzito.com`**, subdomínio de um domínio que o usuário já tem, com DNS no Route 53 — não precisa registrar domínio novo nem redirecionar `.com` (2026-10-21). O Instagram continua **@acaciafloripa**, e a marca continua sendo só "Acácia".
 - **Logo símbolo + texto**: o símbolo sozinho serve de avatar do WhatsApp e de favicon (2026-10-19, T03).
 - **Tipografia mista**: serifa nos títulos, sem serifa no texto (2026-10-19, T03).
 - **Cores livres, inspiradas no lugar** (areia, mar, restinga). Sem referências do usuário: o agente propõe (2026-10-19, T03).
@@ -69,7 +69,7 @@ Formato: decisão — motivo (data, tarefa de origem).
 - **Conteúdo só em arquivos no repo** (Markdown/YAML validados com Zod), **sem CMS** por enquanto — quem edita é programador (2026-10-19, T10).
 - **CSS puro com custom properties** e estilos com escopo do Astro — zero dependência e menos "cara de template" (2026-10-19, T10).
 - **TypeScript strict + pnpm + ESLint/Prettier** — os plugins Astro são maduros; o Biome será reavaliado depois (2026-10-19, T10).
-- **Hospedagem na AWS via Terraform** (S3 + CloudFront + Route 53 + ACM) — o usuário já usa AWS; custo real de ~R$ 9 a 16/mês, contando o `.com` e a 2ª zona do Route 53 (2026-10-19 T10; corrigido em 2026-10-20 T16).
+- **Hospedagem na AWS via Terraform** (S3 + CloudFront + Route 53 + ACM) — o usuário já usa AWS; custo de poucos reais por mês: com o subdomínio `acacia.deyzito.com`, só entra um registro na zona do Route 53 que já existe e um certificado ACM, sem domínio novo (2026-10-19 T10; revisto em 2026-10-21).
 - **Sem e-mail no domínio** por enquanto (2026-10-19, T10).
 - **GitHub + GitHub Actions, com repositório público** e a branch principal protegida exigindo CI verde — no GitHub Free a proteção só vale em repo público, e o CI é ilimitado. Sem segredos no repo: deploy por OIDC (2026-10-19 T14; 2026-10-20 T16).
 - **404 por idioma:** uma 404 única (status 404 real) com os 3 textos, e um script inline mínimo mostra o idioma do prefixo da URL (sem JS, aparece o pt) — a CloudFront aceita só uma página de erro por distribuição (2026-10-20, T16).

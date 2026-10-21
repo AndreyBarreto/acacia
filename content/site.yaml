@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=../.astro/collections/site.schema.json
 brandName: Acácia
-siteUrl: https://acaciafloripa.com.br
+siteUrl: https://acacia.deyzito.com
 defaultLocale: pt
 hostLanguages: [pt-BR, es] # o anúncio do Booking diz que o anfitrião fala pt e es
 contact:

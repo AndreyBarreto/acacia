@@ -10,7 +10,7 @@ import {
 
 // After the schema: geo strings become numbers (here with trailing zeros lost, -27.4381).
 const parsedBuilding = { ...building, geo: { latitude: -27.4381, longitude: -48.49587 } };
-const images = Array.from({ length: 9 }, (_, i) => `https://acaciafloripa.com.br/_astro/${i}.jpg`);
+const images = Array.from({ length: 9 }, (_, i) => `https://acacia.deyzito.com/_astro/${i}.jpg`);
 
 const rental = (locale: 'pt' | 'en' | 'es') =>
   vacationRental({ locale, site, city, building: parsedBuilding, property, images });
@@ -142,7 +142,7 @@ describe('organization', () => {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Acácia',
-      url: 'https://acaciafloripa.com.br/',
+      url: 'https://acacia.deyzito.com/',
     });
   });
 });
@@ -151,8 +151,8 @@ describe('breadcrumbList', () => {
   it('numbers the items from 1, absolute URLs, the last one without item', () => {
     expect(
       breadcrumbList([
-        { name: 'Início', url: 'https://acaciafloripa.com.br/pt/' },
-        { name: 'Jurerê', url: 'https://acaciafloripa.com.br/pt/jurere/' },
+        { name: 'Início', url: 'https://acacia.deyzito.com/pt/' },
+        { name: 'Jurerê', url: 'https://acacia.deyzito.com/pt/jurere/' },
         { name: 'Apto 4' },
       ]),
     ).toEqual({
@@ -163,13 +163,13 @@ describe('breadcrumbList', () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Início',
-          item: 'https://acaciafloripa.com.br/pt/',
+          item: 'https://acacia.deyzito.com/pt/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Jurerê',
-          item: 'https://acaciafloripa.com.br/pt/jurere/',
+          item: 'https://acacia.deyzito.com/pt/jurere/',
         },
         { '@type': 'ListItem', position: 3, name: 'Apto 4' },
       ],
@@ -186,7 +186,7 @@ describe('touristDestination', () => {
     expect(
       touristDestination({
         locale: 'en',
-        url: 'https://acaciafloripa.com.br/en/jurere/',
+        url: 'https://acacia.deyzito.com/en/jurere/',
         name: 'Jurerê',
         description: 'Beaches, where to eat.',
         geo: { latitude: -27.43779, longitude: -48.4827 },
@@ -197,7 +197,7 @@ describe('touristDestination', () => {
       '@type': 'TouristDestination',
       name: 'Jurerê',
       description: 'Beaches, where to eat.',
-      url: 'https://acaciafloripa.com.br/en/jurere/',
+      url: 'https://acacia.deyzito.com/en/jurere/',
       geo: { '@type': 'GeoCoordinates', latitude: '-27.43779', longitude: '-48.48270' },
       containedInPlace: {
         '@type': 'City',

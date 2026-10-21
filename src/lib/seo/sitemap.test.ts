@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { sitemapPages, sitemapXml } from './sitemap';
 
-const siteUrl = 'https://acaciafloripa.com.br';
+const siteUrl = 'https://acacia.deyzito.com';
 
 describe('sitemapPages', () => {
   it('lists home, neighborhood, privacy and every property, each in the 3 languages', () => {
@@ -27,15 +27,15 @@ describe('sitemapXml', () => {
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n')).toBe(true);
     expect(xml).toContain('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"');
     expect(xml).toContain('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"');
-    expect(xml).toContain('<loc>https://acaciafloripa.com.br/pt/</loc>');
-    expect(xml).toContain('<loc>https://acaciafloripa.com.br/pt/jurere/apto-4/</loc>');
+    expect(xml).toContain('<loc>https://acacia.deyzito.com/pt/</loc>');
+    expect(xml).toContain('<loc>https://acacia.deyzito.com/pt/jurere/apto-4/</loc>');
   });
 
   it('adds one image:image per photo, absolute and XML-escaped', () => {
     expect(xml).toContain(
-      '<image:image><image:loc>https://acaciafloripa.com.br/_astro/a.jpg</image:loc></image:image>',
+      '<image:image><image:loc>https://acacia.deyzito.com/_astro/a.jpg</image:loc></image:image>',
     );
-    expect(xml).toContain('https://acaciafloripa.com.br/_astro/b&amp;c.jpg');
+    expect(xml).toContain('https://acacia.deyzito.com/_astro/b&amp;c.jpg');
     expect(xml.match(/<image:image>/g)).toHaveLength(2);
   });
 

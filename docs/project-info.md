@@ -30,7 +30,7 @@ Respostas do usuário de 2026-10-19 para as lacunas de [booking-data.md](booking
 - Responsável pelos dados (privacidade): fica como placeholder (o usuário deixou vazio de propósito).
 
 ## Domínio e hospedagem
-- **Domínio:** acaciafloripa.com.br (+ .com) e @acaciafloripa. O registro é feito pelo usuário.
+- **Endereço do site:** https://acacia.deyzito.com (subdomínio de um domínio do usuário, DNS no Route 53). Instagram: @acaciafloripa.
 - **Hospedagem:** AWS (S3 + CloudFront + Route 53), via Terraform.
 
 ## Fotos

@@ -3,7 +3,7 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
 
-const siteUrl = 'https://acaciafloripa.com.br';
+const siteUrl = 'https://acacia.deyzito.com';
 const locales = ['pt', 'en', 'es'] as const;
 const hreflangOf = { pt: 'pt-BR', en: 'en', es: 'es' } as const;
 const groups = ['/', '/jurere/', '/jurere/apto-4/', '/jurere/apto-6/', '/privacidade/'];

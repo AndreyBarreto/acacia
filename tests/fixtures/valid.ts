@@ -3,7 +3,7 @@
 
 export const site = {
   brandName: 'Acácia',
-  siteUrl: 'https://acaciafloripa.com.br',
+  siteUrl: 'https://acacia.deyzito.com',
   defaultLocale: 'pt',
   hostLanguages: ['pt-BR', 'es'],
   contact: { whatsapp: '+5548999442015' },

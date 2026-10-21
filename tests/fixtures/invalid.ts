@@ -255,14 +255,14 @@ export const invalidFixtures: InvalidFixture[] = [
     rule: 'V63',
     case: 'siteUrl is not https',
     schema: 'site',
-    data: withValue(valid.site, 'siteUrl', 'http://acaciafloripa.com.br'),
+    data: withValue(valid.site, 'siteUrl', 'http://acacia.deyzito.com'),
     error: 'siteUrl must start with https://',
   },
   {
     rule: 'V63',
     case: 'siteUrl ends with a slash',
     schema: 'site',
-    data: withValue(valid.site, 'siteUrl', 'https://acaciafloripa.com.br/'),
+    data: withValue(valid.site, 'siteUrl', 'https://acacia.deyzito.com/'),
     error: 'siteUrl must not end with a slash',
   },
   {

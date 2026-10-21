@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { absoluteUrl, hreflangLinks, ogLocale } from './head';
 
-const siteUrl = 'https://acaciafloripa.com.br';
+const siteUrl = 'https://acacia.deyzito.com';
 
 describe('absoluteUrl', () => {
   it('joins the site URL and a root-relative path', () => {
-    expect(absoluteUrl(siteUrl, '/pt/jurere/')).toBe('https://acaciafloripa.com.br/pt/jurere/');
+    expect(absoluteUrl(siteUrl, '/pt/jurere/')).toBe('https://acacia.deyzito.com/pt/jurere/');
   });
 
   it('rejects a path without the leading slash', () => {
@@ -16,10 +16,10 @@ describe('absoluteUrl', () => {
 describe('hreflangLinks', () => {
   it('lists pt-BR, en, es and x-default (= pt), absolute and with the trailing slash', () => {
     expect(hreflangLinks(siteUrl, { id: 'property', slug: 'apto-4' })).toEqual([
-      { hreflang: 'pt-BR', href: 'https://acaciafloripa.com.br/pt/jurere/apto-4/' },
-      { hreflang: 'en', href: 'https://acaciafloripa.com.br/en/jurere/apto-4/' },
-      { hreflang: 'es', href: 'https://acaciafloripa.com.br/es/jurere/apto-4/' },
-      { hreflang: 'x-default', href: 'https://acaciafloripa.com.br/pt/jurere/apto-4/' },
+      { hreflang: 'pt-BR', href: 'https://acacia.deyzito.com/pt/jurere/apto-4/' },
+      { hreflang: 'en', href: 'https://acacia.deyzito.com/en/jurere/apto-4/' },
+      { hreflang: 'es', href: 'https://acacia.deyzito.com/es/jurere/apto-4/' },
+      { hreflang: 'x-default', href: 'https://acacia.deyzito.com/pt/jurere/apto-4/' },
     ]);
   });
 });
