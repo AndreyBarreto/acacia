@@ -16,7 +16,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "deploy": "./scripts/deploy.sh"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
