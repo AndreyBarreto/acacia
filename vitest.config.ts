@@ -6,6 +6,6 @@ export default getViteConfig({
     // The on-disk module cache keeps stale import.meta.glob results (e.g. a new src/i18n/*.json
     // file is not picked up), so tests would fail locally until the cache was cleared.
     fsModuleCache: false,
-    include: ['src/**/*.test.ts', 'tests/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'tests/**/*.test.ts', 'infra/**/*.test.ts'],
   },
 });

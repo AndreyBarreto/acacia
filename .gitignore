@@ -29,3 +29,9 @@ docs/research/
 
 # Claude Code local permissions
 .claude/settings.local.json
+
+# Terraform: local state and plugins (state stays only on this machine)
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfplan
