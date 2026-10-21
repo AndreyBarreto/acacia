@@ -31,5 +31,7 @@ export default defineConfig({
     url: `http://localhost:${port}/`,
     // Never reuse a running server: it could be a dev server instead of the production build.
     reuseExistingServer: false,
+    // The build processes every photo and OG image; on a 2-core CI runner it takes over 60 s.
+    timeout: 180_000,
   },
 });
